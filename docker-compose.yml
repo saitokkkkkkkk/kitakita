@@ -1,0 +1,19 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=kita
+      - TZ=Asia/Tokyo
+    volumes:
+      - ./data/mysql:/var/lib/mysql:cached
+
+  kita:
+    build: ./web
+    ports:
+      - "80:80"
+    volumes:
+      - ./apps/kita/laravel:/var/www/html:cached
