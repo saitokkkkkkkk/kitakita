@@ -16,4 +16,4 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./apps/kita/laravel:/var/www/html:cached
+      - ./apps/kita:/var/www/html:cached
