@@ -8,3 +8,5 @@ docker exec -it traning_kita_app_kita_1 composer install
 docker exec -it traning_kita_app_kita_1 cp .env.example .env
 docker exec -it traning_kita_app_kita_1 php artisan key:generate
 ```
+
+上記コマンドで http://localhost が表示できるはずです。
