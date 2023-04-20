@@ -1,17 +1,19 @@
-FROM php:7.3-apache
+FROM php:8.1-apache
 
 RUN apt-get update -y
-RUN apt-get install -y zip unzip vim
+RUN apt-get install -y zip unzip vim libonig-dev libzip-dev
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql mbstring
+RUN docker-php-ext-install pdo pdo_mysql zip
 
-# Install Node
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt-get install -y nodejs
-
-# Install npm
-RUN npm install npm@latest -g
+# Install npm & NodeJs
+RUN apt-get install -y npm && \
+    npm cache clean --force && \
+    npm install n -g && \
+    n 19.4 && \
+    # Remove old "nodejs, npm" installed first to avoid confusing.
+    apt-get purge -y nodejs npm && \
+    apt-get clean
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
