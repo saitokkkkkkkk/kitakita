@@ -1,6 +1,7 @@
 version: '3'
 services:
   mysql:
+    container_name: mysql
     image: mysql:5.7
     ports:
       - "3306:3306"
@@ -12,6 +13,7 @@ services:
       - ./data/mysql:/var/lib/mysql:cached
 
   kita:
+    container_name: kita
     build: ./web
     ports:
       - "80:80"
