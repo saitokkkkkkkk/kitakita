@@ -1,4 +1,4 @@
-name: Tests PHPStan5
+name: Test PHPStan5
 
 on:
   push:
