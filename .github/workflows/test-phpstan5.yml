@@ -32,6 +32,6 @@ jobs:
         run: docker-compose run -v ${{ github.workspace }}/apps/kita/vendor:/var/www/html/vendor kita composer install --prefer-dist --no-progress
 
       - name: Run PHPStan
-        # 理想は"docker-compose run --rm kita vendor/bin/phpstan analyse app --level 5"によってコンテナ環境上でテストを行うべきだが、
+        # 理想は"docker-compose run --rm kita vendor/bin/phpstan analyse app --level 5"によってコンテナ環境上でテストを行うべきだが
         # コンテナ構築に時間がかかるため、ホスト環境のパッケージで行うものとする
         run: cd apps/kita && vendor/bin/phpstan analyse app --level 5
