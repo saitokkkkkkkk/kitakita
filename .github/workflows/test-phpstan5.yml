@@ -34,4 +34,4 @@ jobs:
       - name: Run PHPStan
         # 理想は"docker-compose run --rm kita vendor/bin/phpstan analyse app --level 5"によってコンテナ環境上でテストを行うべきだが
         # コンテナ構築に時間がかかるため、ホスト環境のパッケージで行うものとする
-        run: cd apps/kita && vendor/bin/phpstan analyse app --level 5
+        run: docker exec -it kita bash && vendor/bin/phpstan analyse app --level 5
