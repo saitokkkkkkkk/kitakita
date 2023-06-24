@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run:  cd apps/kita && composer install --prefer-dist --no-progress
       - name: Install phpstan
-        run: composer require --dev phpstan/phpstan
+        run: composer require phpstan/phpstan
 
       - name: Run PHPStan
         run: cd apps/kita/vendor/bin && ls
