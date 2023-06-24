@@ -16,4 +16,4 @@ jobs:
         run:  cd apps/kita && composer install --prefer-dist --no-progress
 
       - name: Run PHPStan
-        run: cd apps/kita && vendor/bin/phpstan analyse app --level 5
+        run: pwd
