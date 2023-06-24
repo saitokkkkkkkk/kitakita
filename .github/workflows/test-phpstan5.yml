@@ -18,4 +18,4 @@ jobs:
         run: composer require phpstan/phpstan
 
       - name: Run PHPStan
-        run: cd apps/kita/vendor/bin && ls
+        run: cd apps/kita/vendor/bin && .\vendor\bin\phpstan -h
