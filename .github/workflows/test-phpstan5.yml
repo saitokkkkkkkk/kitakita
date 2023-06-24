@@ -1,10 +1,6 @@
 name: Test PHPStan5
 
 on:
-  push:
-    branches:
-      - main
-      - master
   pull_request:
     branches:
       - main
@@ -13,23 +9,11 @@ on:
 jobs:
   phpstan:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Cache composer dependencies
-        id: cache-composer
-        uses: actions/cache@v3
-        with:
-          path: ./apps/kita/vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('./apps/kita/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
       - name: Install dependencies
-        if: steps.cache-composer.outputs.cache-hit != 'true'
-        run: docker-compose run -v ${{ github.workspace }}/apps/kita/vendor:/var/www/html/vendor kita composer install --prefer-dist --no-progress
+        run:  cd apps/kita && kita composer install --prefer-dist --no-progress
 
       - name: Run PHPStan
-        run: docker-compose run --rm kita vendor/bin/phpstan analyse app --level 5
+        run: cd apps/kita && vendor/bin/phpstan analyse app --level 5
