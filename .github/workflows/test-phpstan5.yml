@@ -16,4 +16,4 @@ jobs:
         run:  cd apps/kita && composer install --prefer-dist --no-progress
 
       - name: Run PHPStan
-        run: cd apps/kita/vendor/bin && pwd
+        run: cd apps/kita/vendor/bin && ls
