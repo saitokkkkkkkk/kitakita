@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install dependencies
-        run:  cd apps/kita && kita composer install --prefer-dist --no-progress
+        run:  cd apps/kita && composer install --prefer-dist --no-progress
 
       - name: Run PHPStan
         run: cd apps/kita && vendor/bin/phpstan analyse app --level 5
