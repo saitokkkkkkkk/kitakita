@@ -9,6 +9,10 @@ docker exec -it kita bash
 composer install
 cp .env.example .env
 php artisan key:generate
+
+# .githooks/pre-commitが実行されるようにする
+git config --local core.hooksPath .githooks
+chmod -R +x .githooks/
 ```
 http://localhost にアクセスするとLaravelの初期画面が表示されるはずです。
 
