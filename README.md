@@ -10,7 +10,7 @@ composer install
 cp .env.example .env
 php artisan key:generate
 
-# .githooks/pre-commitが実行されるようにする
+# .githooks/pre-commit がcommit時に実行されるよう設定する
 git config --local core.hooksPath .githooks
 chmod -R +x .githooks/
 ```
