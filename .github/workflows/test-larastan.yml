@@ -1,6 +1,10 @@
 name: Test Larastan
 
 on:
+  push:
+    branches:
+      - main
+      - master
   pull_request:
     branches:
       - main
@@ -9,13 +13,23 @@ on:
 jobs:
   phpstan:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Cache composer dependencies
+        id: cache-composer
+        uses: actions/cache@v3
+        with:
+          path: ./apps/kita/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('./apps/kita/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
       - name: Install dependencies
-        run:  cd apps/kita && composer install --prefer-dist --no-progress
-      - name: Install phpstan
-        run: composer require phpstan/phpstan
+        if: steps.cache-composer.outputs.cache-hit != 'true'
+        run: docker-compose run -v ${{ github.workspace }}/apps/kita/vendor:/var/www/html/vendor kita composer install --prefer-dist --no-progress
 
       - name: Run PHP-CS-Fixer
         # CS Fixerにより整形されたコードを検知する
