@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# php-cs-fixer
+error=false
+
+echo -e "\033[33mRunning CS-Fixer by pre-commit event\033[m"
+docker-compose exec -T kita vendor/bin/php-cs-fixer fix --dry-run
+if [ $? != 0 ]; then
+    echo -e "Files need to be fixed are found."
+    error=true
+fi
+
+if "${error}"; then
+    echo -e "\033[31mYour commit failed.\033[m Please run \"docker-compose exec kita vendor/bin/php-cs-fixer fix\" command."
+    exit 1
+fi
+
