@@ -4,4 +4,4 @@ includes:
 parameters:
     paths:
         - app
-    level: max
+    level: 5
