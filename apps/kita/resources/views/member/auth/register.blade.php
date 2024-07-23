@@ -6,90 +6,70 @@
     <title>Kita会員登録</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rounded+Mplus:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+        .btn-custom-success {
+            background-color: #8bc34a; /* 濃い緑色 */
+            border-color: #7cb342; /* 濃い緑色の境界線 */
+            color: #ffffff; /* ボタン文字の色を白に */
         }
-        .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
-            text-align: left; /* ボタンを左寄せにする */
+
+        .btn-custom-success:hover {
+            background-color: #7cb342; /* ホバー時の濃い緑色 */
+            border-color: #689f38; /* ホバー時の濃い緑色の境界線 */
+            color: #ffffff; /* ホバー時の文字色を白に */
         }
-        .form-title {
-            margin-bottom: 20px;
-            text-align: left;
-            color: #6c757d;
+        .card-title {
             font-family: 'Poppins', sans-serif;
-        }
-        .btn-custom {
-            background-color: #6abf69;
-            border: none;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .btn-custom:hover {
-            background-color: #28a745; /* ホバー時の緑 */
-            color: white; /* ホバー時の文字の色 */
-        }
-        /*「Kita会員登録」の下線 */
-        .divider {
-            border: 0;
-            height: 1px;
-            background: #e0e0e0;
-            margin: 20px 0;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-8 col-lg-6">
-            <h3 class="form-title">Kita会員登録</h3>
-            <hr class="divider">
-            <div class="form-container">
-                {!! Form::open(['route' => 'show.registration', 'method' => 'POST']) !!}
-                @csrf
-                <div class="form-group">
-                    {!! Form::label('name', 'ユーザー名') !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
-                    @error('name')
-                    <small class="form-text text-danger">{{ $message }}</small>
-                    @enderror
+            <div class="text-center">
+                <h3 class="card-title text-left text-muted">Kita会員登録</h3>
+                <hr>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    {!! Form::open(['route' => 'show.registration', 'method' => 'POST']) !!}
+                    @csrf
+                    <div class="form-group">
+                        {!! Form::label('name', 'ユーザー名') !!}
+                        {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                        @error('name')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('email', 'メールアドレス') !!}
+                        {!! Form::text('email', old('email'), ['class' => 'form-control']) !!}
+                        @error('email')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('password', 'パスワード') !!}
+                        {!! Form::password('password', ['class' => 'form-control']) !!}
+                        @error('password')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('password_confirmation', 'パスワード（確認用）') !!}
+                        {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                        @error('password_confirmation')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!-- ボタンを左端へ -->
+                    <div class="text-left">
+                        {!! Form::submit('登録する', ['class' => 'btn btn-custom-success']) !!}
+                    </div>
+                    {!! Form::close() !!}
                 </div>
-                <div class="form-group">
-                    {!! Form::label('email', 'メールアドレス') !!}
-                    {!! Form::text('email', old('email'), ['class' => 'form-control']) !!}
-                    @error('email')
-                    <small class="form-text text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    {!! Form::label('password', 'パスワード') !!}
-                    {!! Form::password('password', ['class' => 'form-control']) !!}
-                    @error('password')
-                    <small class="form-text text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    {!! Form::label('password_confirmation', 'パスワード（確認用）') !!}
-                    {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
-                    @error('password_confirmation')
-                    <small class="form-text text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-                {!! Form::submit('登録する', ['class' => 'btn btn-custom']) !!}
-                {!! Form::close() !!}
             </div>
         </div>
     </div>
