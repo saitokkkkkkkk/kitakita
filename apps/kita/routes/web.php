@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\ArticleListController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +22,17 @@ Auth::routes();
 //会員登録
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/member_registration', 'showRegistration')
-        ->name('show.registration');
+        ->name('show.member.registration');
     Route::post('/member_registration', 'register')
-        ->name('register');
+        ->name('member.registration');
+});
+
+//会員ログイン
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'showLogin')
+        ->name('show.login');
+    Route::post('/login', 'login')
+        ->name('login');
 });
 
 //記事一覧画面表示

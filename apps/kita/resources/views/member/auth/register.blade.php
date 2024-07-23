@@ -34,7 +34,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    {!! Form::open(['route' => 'show.registration', 'method' => 'POST']) !!}
+                    {!! Form::open(['route' => 'member.registration', 'method' => 'POST']) !!}
                     @csrf
                     <div class="form-group">
                         {!! Form::label('name', 'ユーザー名') !!}
