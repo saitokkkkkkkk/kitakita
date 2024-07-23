@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Member\ArticleListController;
 use App\Http\Controllers\Member\Auth\RegisterController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
