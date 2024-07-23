@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Member\ArticleListController;
+use App\Http\Controllers\Member\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +22,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//会員登録
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/member_registration', 'showRegistration')
+        ->name('show.registration');
+    Route::post('/member_registration', 'register')
+        ->name('register');
+});
+
+//記事一覧画面表示
+Route::get('/articles', [ArticleListController::class, 'index'])
+    ->name('articles.index');
