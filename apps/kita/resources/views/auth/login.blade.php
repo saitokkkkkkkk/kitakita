@@ -11,7 +11,11 @@
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-8 col-lg-6">
             <div class="text-center">
-                <h3 class="card-title text-left text-muted">Kitaログイン</h3>
+                <h3
+                    class="card-title text-left text-muted"
+                    style="font-family: 'Poppins', sans-serif; margin-bottom: 20px; text-align: left; color: #6c757d;">
+                    Kitaログイン
+                </h3>
                 <hr>
             </div>
             <div class="card">
@@ -23,22 +27,20 @@
                             {!! Form::label('email', 'メールアドレス') !!}
                             {!! Form::text('email', old('email'), ['class' => 'form-control']) !!}
                             @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <!--パスワード-->
                         <div class="form-group">
                             {!! Form::label('password', 'パスワード') !!}
                             {!! Form::password('password', ['class' => 'form-control']) !!}
-                                @error('password')
-                                    <small class="form-text text-danger">{{ $message }}</small>
-                                @enderror
+                            @error('password')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <!--ログインボタン-->
                         <div class="text-left">
-                            {!! Form::submit('ログイン', ['class' => 'btn btn-success']) !!}
+                            {!! Form::submit('ログイン', ['class' => 'btn', 'style' => 'background-color: #8cbf6d; color: white; border-color: #8cbf6d;']) !!}
                         </div>
                     {!! Form::close() !!}
                 </div>
