@@ -69,4 +69,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    //消したらエラー出る
+    protected function registered()
+    {
+
+    }
 }
