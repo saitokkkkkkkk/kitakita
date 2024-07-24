@@ -18,6 +18,9 @@
     <script src="{{ mix('js/app.js') }}"></script>
 </head>
 <body>
+    @php
+        use Illuminate\Support\Facades\Route;
+    @endphp
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

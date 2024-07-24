@@ -38,3 +38,11 @@ Route::controller(LoginController::class)->group(function () {
 //記事一覧画面表示
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
+
+//強制ログアウト（一時的）
+Route::get('/temporary-logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect()->route('login')->with('status', 'You have been logged out temporarily.');
+});
