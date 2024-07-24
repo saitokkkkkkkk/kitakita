@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kita会員登録</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -11,7 +12,11 @@
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-8 col-lg-6">
             <div class="text-center">
-                <h3 class="card-title text-left text-muted">Kita会員登録</h3>
+                <h3
+                    class="card-title text-left text-muted"
+                    style="font-family: 'Poppins', sans-serif; margin-bottom: 20px; text-align: left; color: #6c757d;">
+                    Kita会員登録
+                </h3>
                 <hr>
             </div>
             <div class="card">
@@ -47,7 +52,7 @@
                         @enderror
                     </div>
                     <div class="text-left">
-                        {!! Form::submit('登録する', ['class' => 'btn btn-success']) !!}
+                        {!! Form::submit('登録する', ['class' => 'btn', 'style' => 'background-color: #8cbf6d; color: white; border-color: #8cbf6d;']) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>
