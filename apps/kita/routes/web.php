@@ -29,7 +29,7 @@ Route::controller(RegisterController::class)->group(function () {
 
 //会員ログイン
 Route::controller(LoginController::class)->group(function () {
-    Route::get('/login', 'showLogin')
+    Route::get('/login', 'showLoginForm')
         ->name('show.login');
     Route::post('/login', 'login')
         ->name('login');

@@ -32,11 +32,6 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    public function showLogin()
-    {
-        return view('member.auth.login');
-    }
-
     public function login(LoginRequest $request)
     {
 
