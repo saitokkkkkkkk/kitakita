@@ -20,7 +20,7 @@ Auth::routes();
 
 //会員登録
 Route::controller(RegisterController::class)->group(function () {
-    Route::get('/member_registration', 'showRegistration')
+    Route::get('/member_registration', 'showRegistrationForm')
         ->name('show.registration');
     Route::post('/member_registration', 'register')
         ->name('register');
@@ -29,3 +29,9 @@ Route::controller(RegisterController::class)->group(function () {
 //記事一覧画面表示
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
+
+//強制ログアウト（ログアウト機能を作成したら消去）
+Route::get('/force-logout', function () {
+    Auth::logout();
+    return redirect('/');
+});
