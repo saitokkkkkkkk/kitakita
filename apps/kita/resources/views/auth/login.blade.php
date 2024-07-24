@@ -20,6 +20,9 @@
             </div>
             <div class="card">
                 <div class="card-body">
+                    <div class="mb-3 text-right">
+                        新規会員登録は<a href="{{ route('show.registration') }}">こちら</a>
+                    </div>
                     {!! Form::open(['route' => 'login', 'method' => 'POST']) !!}
                         @csrf
                         <!--メアド-->
