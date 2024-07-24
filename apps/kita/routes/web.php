@@ -33,5 +33,6 @@ Route::get('/articles', [ArticleListController::class, 'index'])
 //強制ログアウト（ログアウト機能を作成したら消去）
 Route::get('/force-logout', function () {
     Auth::logout();
+
     return redirect('/');
 });
