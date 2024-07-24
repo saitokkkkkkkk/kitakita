@@ -21,8 +21,8 @@ Auth::routes();
 
 //会員登録
 Route::controller(RegisterController::class)->group(function () {
-    Route::get('/member_registration', 'showRegistration')
-        ->name('show.member.registration');
+    Route::get('/member_registration', 'showRegistrationForm')
+        ->name('show.registration');
     Route::post('/member_registration', 'register')
         ->name('member.registration');
 });
@@ -39,10 +39,8 @@ Route::controller(LoginController::class)->group(function () {
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
 
-//強制ログアウト（一時的）
-Route::get('/temporary-logout', function () {
+//強制ログアウト（ログアウト機能を作成したら消去）
+Route::get('/force-logout', function () {
     Auth::logout();
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
-    return redirect()->route('login')->with('status', 'You have been logged out temporarily.');
+    return redirect('/');
 });
