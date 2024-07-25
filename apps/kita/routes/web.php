@@ -27,21 +27,16 @@ Route::controller(RegisterController::class)->group(function () {
         ->name('member.registration');
 });
 
-//会員ログイン
+//会員ログイン、ログアウト
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'showLoginForm')
         ->name('show.login');
     Route::post('/login', 'login')
         ->name('login');
+    Route::get('/logout', 'logout')
+        ->name('logout');
 });
 
 //記事一覧画面表示
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
-
-//強制ログアウト（ログアウト機能を作成したら消去）
-Route::get('/force-logout', function () {
-    Auth::logout();
-
-    return redirect('/login');
-});

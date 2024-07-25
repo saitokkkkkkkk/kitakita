@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -40,7 +41,10 @@ class LoginController extends Controller
     }
 
     protected $maxAttempts = 3;
-    protected $decayMinutes = 15;
+
+    //ロックアウト時間
+    protected $decayMinutes = 1;
+
     public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -71,6 +75,7 @@ class LoginController extends Controller
         //maxAttempts直後からロックアウト開始
         if (method_exists($this, 'hasTooManyLoginAttempts') && $this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
+
             return $this->sendLockoutResponse($request);
         }
 
@@ -81,5 +86,27 @@ class LoginController extends Controller
     protected function throttleKey(Request $request)
     {
         return $request->ip();
+    }
+
+    //ログアウト
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        //dump('After guard logout', $request->session()->all());
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        //dd('After session invalidate', $request->session()->all());
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        //遷移先は/login
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect('/login');
     }
 }
