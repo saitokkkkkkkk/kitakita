@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Member\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
+//use App\Http\Requests\LoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -32,8 +33,10 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    public function login(LoginRequest $request)
+    protected function authenticated(Request $request, $user)
     {
-
+        // ログイン成功後のリダイレクト先
+        return redirect()->intended('/articles');
     }
+
 }
