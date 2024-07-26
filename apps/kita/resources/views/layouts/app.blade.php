@@ -35,9 +35,10 @@
                       font-family: 'Nunito Sans', sans-serif; /* Nunito フォント */">
                 {{ config('app.name', 'Kita') }}
             </a>
+            <!-- 検索窓 -->
+            <!-- 人マーク -->
         </div>
     </nav>
-
     <main class="py-4">
         @yield('content')
     </main>
