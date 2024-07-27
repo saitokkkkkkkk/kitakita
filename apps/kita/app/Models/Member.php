@@ -29,4 +29,10 @@ class Member extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    //リレーション
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'member_id');
+    }
 }

@@ -1,8 +1,25 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.bunny.net/css?family=Nunito:wght@100;200;300;400;600&display=swap');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+//navバー
+.navbar-brand {
+    background-color: #8cbf6d; /* 黄緑色 */
+    font-size: 1.9rem; /* フォントサイズを調整 */
+    padding-left: 1.7rem; /* 左側のパディングを設定 */
+    padding-right: 1.7rem; /* 右側のパディングを設定 */
+    padding-top: 0.1rem; /* 上側のパディングを設定 */
+    padding-bottom: 0.1rem; /* 下側のパディングを設定 */
+    text-decoration: none;  /*テキストの下線を消す */
+    font-family: 'Nunito Sans', sans-serif; /* フォント */
+}
+
+//タグ
+.badge-rounded {
+    border-radius: 0.2rem; /* 角を鋭く */
+}
