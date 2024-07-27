@@ -11,6 +11,7 @@ class ArticleListController extends Controller
     public function index()
     {
         $articles = Article::all();
+
         return view('member.index', compact('articles'));
     }
 }
