@@ -11,7 +11,7 @@
                         <tr>
                             <td>
                                 @foreach ($article->tags as $tag)
-                                    <span class="badge bg-primary badge-rounded">#{{ $tag->name }}</span>
+                                    <span class="badge bg-primary badge-rounded">{{ $tag->name }}</span>
                                 @endforeach
                             </td>
                             <td>{{ $article->created_at->format('Y-m-d') }}</td>
