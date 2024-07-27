@@ -7,11 +7,11 @@ use App\Models\Article;
 
 class ArticleListController extends Controller
 {
-    //view()の引数としてcompact('articles')を一覧画面機能作成時に追加
     public function index()
     {
-        $articles = Article::all();
-
+        //環境変数からページネーション件数を取得
+        $paginationCount = env('PAGINATION_COUNT', 10);
+        $articles = Article::paginate($paginationCount);
         return view('member.index', compact('articles'));
     }
 }

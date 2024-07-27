@@ -8,9 +8,9 @@
                     <div class="card p-4">
                         <div class="list-group-flush mb-8 font-color">
                             @foreach($articles as $article)
-                                <p class="small text-muted mb-0">
+                                <small class="text-muted mb-0 d-block">
                                     {{ $article->member->name }}が{{ $article->created_at->format('Y年m月d日') }}に投稿
-                                </p>
+                                </small>
                                 <strong  class="article-title">{{ $article->title }}</strong>
                                 <div>
                                     @foreach ($article->tags as $tag)
@@ -23,6 +23,9 @@
                                 @endif
                             @endforeach
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-center my-4">
+                        {{ $articles->render() }}
                     </div>
                 </div>
             </div>
