@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white navbar-border">
+    <nav class="fixed-top navbar navbar-expand-md navbar-light bg-white navbar-border">
         <div class="container">
             <div class="row justify-content-center w-100">
                 <div class="col-md-8 d-flex justify-content-between align-items-center">
@@ -34,7 +34,7 @@
             </div>
         </div>
     </nav>
-    <main>
+    <main class="mt-10">
         @yield('content')
     </main>
 </div>
