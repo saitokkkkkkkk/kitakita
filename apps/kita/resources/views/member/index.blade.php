@@ -24,9 +24,9 @@
                                     @endif
                                 @endforeach
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-center my-4 custom-pagination">
-                            {{ $articles->links('vendor.pagination.simple') }}
+                            <div class="d-flex justify-content-center my-4 custom-pagination">
+                                {{ $articles->links('vendor.pagination.simple') }}
+                            </div>
                         </div>
                     </div>
                 </div>
