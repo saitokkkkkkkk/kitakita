@@ -12,6 +12,7 @@ class ArticleListController extends Controller
         //環境変数からページネーション件数を取得
         $paginationCount = env('PAGINATION_COUNT', 10);
         $articles = Article::paginate($paginationCount);
+
         return view('member.index', compact('articles'));
     }
 }

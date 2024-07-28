@@ -36,6 +36,10 @@
 
 .bg-custom-gray {
     background-color: #f5f5f5;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .font-color {
@@ -50,3 +54,44 @@ small {
     font-size: 0.5rem; /* smallクラスのフォントサイズをさらに小さく調整 */
 }
 
+/* 以下、ページネーション */
+.custom-pagination > span,
+.custom-pagination > a, {
+    font-family: 'Nunito Sans', sans-serif;
+    margin: 0 !important;
+    color: #8cbf6d !important;
+    border: 1px solid #8cbf6d !important;
+    padding: 0.5rem 1rem !important;
+    text-decoration: none;
+    border-radius: 0 !important; /* ボーダー半径をリセット */
+}
+
+.custom-pagination > span:first-child,
+.custom-pagination > a:first-child {
+    border-top-left-radius: 0.25rem !important; /* 左上の角を丸く */
+    border-bottom-left-radius: 0.25rem !important; /* 左下の角を丸く */
+}
+
+.custom-pagination > span:last-child,
+.custom-pagination > a:last-child {
+    border-top-right-radius: 0.25rem !important; /* 右上の角を丸く */
+    border-bottom-right-radius: 0.25rem !important; /* 右下の角を丸く */
+}
+
+.custom-pagination > span + a,
+.custom-pagination > a + a,
+.custom-pagination > a + span {
+    border-left-width: 0 !important; /* 要素間のボーダーを削除 */
+}
+
+.custom-pagination > span:hover,
+.custom-pagination > a:hover {
+    color: #218838 !important;
+}
+
+.custom-pagination > span[aria-current],
+.custom-pagination > span[aria-current] span {
+    background-color: #8cbf6d !important;
+    border-color: #8cbf6d !important;
+    color: white !important;
+}
