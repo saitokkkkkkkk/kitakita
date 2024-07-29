@@ -23,6 +23,11 @@ class LoginController extends Controller
 
     use AuthenticatesUsers, ThrottlesLogins;
 
+    protected $maxAttempts = 3;
+
+    //ロックアウト時間
+    protected $decayMinutes = 1;
+
     /**
      * Create a new controller instance.
      *
@@ -34,17 +39,31 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    //ログイン後の遷移先
-    protected function authenticated(Request $request, $user)
+    /**
+     * Redirect the user after authentication.
+     *
+     * @param \Illuminate\Http\Request $request The current request instance.
+     *
+     * @return \Illuminate\Http\RedirectResponse Redirects to the intended URL or '/articles'.
+     */
+    protected function authenticated(Request $request)
     {
         return redirect()->intended('/articles');
     }
 
-    protected $maxAttempts = 3;
-
-    //ロックアウト時間
-    protected $decayMinutes = 1;
-
+    /**
+     * Handle an incoming login request.
+     *
+     * Validates the login request, checks for throttling, attempts authentication,
+     * and handles successful or failed login responses. Manages session and lockout logic.
+     *
+     * @param \Illuminate\Http\Request $request The HTTP request instance containing login credentials.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *         Redirects on success or returns a response for lockout or failure.
+     *
+     * @throws \Illuminate\Validation\ValidationException If validation fails.
+     */
     public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -82,23 +101,32 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-    //スロットルキーの生成方法を変更して異なるメアドもロックアウト
+
+    /**
+     * Get the throttle key for login attempts.
+     *
+     * @param \Illuminate\Http\Request $request The HTTP request instance.
+     *
+     * @return string The throttle key, the client's IP address.
+     */
     protected function throttleKey(Request $request)
     {
         return $request->ip();
     }
 
-    //ログアウト
+
+    /**
+     * Log the user out and redirect or return a JSON response.
+     *
+     * @param \Illuminate\Http\Request $request The HTTP request instance.
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
     public function logout(Request $request)
     {
         $this->guard()->logout();
 
-        //dump('After guard logout', $request->session()->all());
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
-        //dd('After session invalidate', $request->session()->all());
 
         if ($response = $this->loggedOut($request)) {
             return $response;
