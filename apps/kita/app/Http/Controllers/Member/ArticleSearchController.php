@@ -20,8 +20,8 @@ class ArticleSearchController extends Controller
         $paginationCount = env('PAGINATION_COUNT', 10);
 
         if ($query) {
-            $articles = Article::where('title', 'LIKE', '%' . $query . '%')
-                ->orWhere('contents', 'LIKE', '%' . $query . '%')
+            $articles = Article::where('title', 'LIKE', '%'.$query.'%')
+                ->orWhere('contents', 'LIKE', '%'.$query.'%')
                 ->paginate($paginationCount);
         } else {
             $articles = Article::paginate($paginationCount);

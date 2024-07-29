@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Member\ArticleListController;
-use App\Http\Controllers\Member\ArticleSearchController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,14 +26,9 @@ Route::controller(RegisterController::class)->group(function () {
         ->name('member.registration');
 });
 
-//記事検索機能
-Route::get('/articles', [ArticleSearchController::class, 'index'])
-    ->name('articles.search');
-
-//記事一覧画面表示
+//記事一覧画面表示と検索機能
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
-
 
 //強制ログアウト（ログアウト機能を作成したら消去）
 Route::get('/force-logout', function () {

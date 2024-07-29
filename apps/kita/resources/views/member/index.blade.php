@@ -18,20 +18,21 @@
                                             <span class="badge bg-primary badge-rounded">{{ $tag->name }}</span>
                                         @endforeach
                                     </div>
-                                    <!-- 下線を追加 -->
                                     @if(!$loop->last)
-                                        <hr class="my-2.5"> <!-- 上下のマージンを設定 -->
+                                        <hr class="my-2.5">
                                     @endif
                                 @endforeach
                             </div>
+                            @if($articles->total() > 10) <!-- 記事が11以上存在する場合のみページネーションを表示 -->
                             <div class="d-flex justify-content-center my-4 custom-pagination">
                                 {{ $articles->links('vendor.pagination.simple') }}
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="py-3"></footer> <!-- これで下部に空間を作り、背景色を適用 -->
+        <footer class="py-3"></footer>
     </div>
 @endsection
