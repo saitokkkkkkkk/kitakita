@@ -8,13 +8,25 @@ use Illuminate\Http\Request;
 
 class ArticleListController extends Controller
 {
+    /**
+     * Display a paginated list of articles with optional search filtering.
+     *
+     * This method retrieves articles from the database, optionally filtering them
+     * based on a search query provided in the request. It uses pagination to limit
+     * the number of articles displayed per page.
+     *
+     * @param \Illuminate\Http\Request $request The HTTP request instance, which may contain
+     *                                          the search query parameter.
+     *
+     * @return \Illuminate\View\View Returns a view displaying the paginated list of articles.
+     *
+     * @throws \Exception Throws an exception if there is an issue with querying the database.
+     */
     public function index(Request $request)
     {
-        //環境変数からページネーション件数を取得
         $paginationCount = env('PAGINATION_COUNT', 10);
         $query = Article::query();
 
-        //検索パラメータがあればフィルタリング
         if ($request->has('search'))
         {
             $query->where('title', 'LIKE', '%'.$request->search.'%')
@@ -22,7 +34,8 @@ class ArticleListController extends Controller
         }
 
         $articles = $query->paginate($paginationCount);
+        $noArticles = $articles->isEmpty();
 
-        return view('member.index', compact('articles'));
+        return view('member.index', compact('articles', 'noArticles'));
     }
 }

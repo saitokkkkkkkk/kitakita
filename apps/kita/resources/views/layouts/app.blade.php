@@ -28,10 +28,10 @@
                         {{ config('app.name', 'Kita') }}
                     </a>
                     <!-- 検索窓 -->
-                    <form class="d-flex align-items-center" action="{{ route('articles.index') }}" method="GET">
-                        <input class="form-control me-0" type="search" name="search" placeholder="Search for something" aria-label="検索" value="{{ request('search') }}">
-                        <button class="btn btn-outline-success" type="submit">検索</button>
-                    </form>
+                    {!! Form::open(['route' => 'articles.index', 'method' => 'GET', 'class' => 'd-flex align-items-center']) !!}
+                        {!! Form::search('search', request('search'), ['class' => 'form-control me-0', 'placeholder' => 'Search for something', 'aria-label' => '検索']) !!}
+                        {!! Form::button('検索', ['type' => 'submit', 'class' => 'btn btn-outline-success']) !!}
+                    {!! Form::close() !!}
                     <!-- 記事作成 -->
                     <!-- 人マーク -->
                 </div>
