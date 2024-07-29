@@ -28,8 +28,8 @@
                         {{ config('app.name', 'Kita') }}
                     </a>
                     <!-- 検索窓 -->
-                    <form class="d-flex" action="{{ route('articles.index') }}" method="GET">
-                        <input class="form-control me-2" type="search" name="search" placeholder="検索" aria-label="検索" value="{{ request('search') }}">
+                    <form class="d-flex align-items-center" action="{{ route('articles.index') }}" method="GET">
+                        <input class="form-control me-0" type="search" name="search" placeholder="Search for something" aria-label="検索" value="{{ request('search') }}">
                         <button class="btn btn-outline-success" type="submit">検索</button>
                     </form>
                     <!-- 記事作成 -->
