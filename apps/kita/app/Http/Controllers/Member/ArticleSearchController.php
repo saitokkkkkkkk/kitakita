@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\Member;
+namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
@@ -16,7 +16,7 @@ class ArticleSearchController extends Controller
      */
     public function index(Request $request)
     {
-        $query = $request->input('query');
+        $query = $request->input('search'); // 'search' パラメータを取得
         $paginationCount = env('PAGINATION_COUNT', 10);
 
         if ($query) {
@@ -27,7 +27,6 @@ class ArticleSearchController extends Controller
             $articles = Article::paginate($paginationCount);
         }
 
-        return view('articles.search', compact('articles', 'query'));
+        return view('member.index', compact('articles', 'query')); // ビューのパスを適切に修正
     }
-
 }
