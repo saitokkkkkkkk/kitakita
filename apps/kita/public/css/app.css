@@ -11966,3 +11966,9 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.login-heading {
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 20px;
+  text-align: left;
+  color: #6c757d;
+}

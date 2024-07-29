@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+//Auth::routes();
 
 //会員登録
 Route::controller(RegisterController::class)->group(function () {
