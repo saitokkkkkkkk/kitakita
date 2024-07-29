@@ -13,14 +13,13 @@ class ArticleListController extends Controller
      *
      * This method retrieves articles from the database, optionally filtering them
      * based on a search query provided in the request. It uses pagination to limit
-     * the number of articles displayed per page.
+     * the number of articles displayed per page. If no search query is provided,
+     * it will display all articles paginated.
      *
      * @param \Illuminate\Http\Request $request The HTTP request instance, which may contain
      *                                          the search query parameter.
      *
      * @return \Illuminate\View\View Returns a view displaying the paginated list of articles.
-     *
-     * @throws \Exception Throws an exception if there is an issue with querying the database.
      */
     public function index(Request $request)
     {
