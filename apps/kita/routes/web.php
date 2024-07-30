@@ -1,5 +1,6 @@
 <?php
 
+use app\Http\Controllers\Member\ArticleCreateController;
 use App\Http\Controllers\Member\ArticleListController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,14 @@ Route::controller(RegisterController::class)->group(function () {
 //記事一覧画面表示
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
+
+//記事投稿（保存の方はserviceに切り出すか）
+Route::controller(ArticleCreateController::class)->group(function () {
+    Route::get('/articles/create', [ArticleCreateController::class, 'show'])
+        ->name('articles.create');
+    Route::post('/articles', [ArticleCreateController::class, 'store'])
+        ->name('articles.store');
+});
 
 //強制ログアウト（ログアウト機能を作成したら消去）
 Route::get('/force-logout', function () {
