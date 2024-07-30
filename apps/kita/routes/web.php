@@ -50,7 +50,7 @@ Route::controller(ArticleCreateController::class)->group(function () {
         ->name('articles.store');
 });
 
-//強制ログアウト（ログアウト機能を作成したら消去）
+//強制ログアウト（ログアウトはpostなのでログアウトボタン作成まで一応残しとく）
 Route::get('/force-logout', function () {
     Auth::logout();
 
