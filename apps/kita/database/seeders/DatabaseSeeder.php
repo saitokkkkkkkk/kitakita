@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
         // ArticleTagSeederを最初に実行してタグデータを作成
         $this->call(ArticleTagSeeder::class);
 
+        //
+        $this->call(MembersTableSeeder::class);
+
         // ArticlesTableSeederを次に実行して記事データを作成
         $this->call(ArticlesTableSeeder::class);
 

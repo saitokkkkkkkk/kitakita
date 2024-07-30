@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito:wght@100;200;300;400;600&display=swap');
+@import url('https://fonts.bunny.net/css?family=Nunito');
 
 // Variables
 @import 'variables';
@@ -94,4 +94,9 @@ small {
     background-color: #8cbf6d !important;
     border-color: #8cbf6d !important;
     color: white !important;
+}
+
+// ログインと会員画面
+.login-register-heading {
+    font-family: 'Poppins', sans-serif;
 }

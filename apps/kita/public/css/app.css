@@ -1,4 +1,4 @@
-@import url(https://fonts.bunny.net/css?family=Nunito:wght@100;200;300;400;600&display=swap);
+@import url(https://fonts.bunny.net/css?family=Nunito);
 @charset "UTF-8";
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
@@ -12052,4 +12052,8 @@ small, .small {
   background-color: #8cbf6d !important;
   border-color: #8cbf6d !important;
   color: white !important;
+}
+
+.login-register-heading {
+  font-family: "Poppins", sans-serif;
 }

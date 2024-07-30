@@ -23,7 +23,17 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('/member_registration', 'showRegistrationForm')
         ->name('show.registration');
     Route::post('/member_registration', 'register')
-        ->name('member.registration');
+        ->name('register');
+});
+
+//会員ログイン、ログアウト
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'showLoginForm')
+        ->name('show.login');
+    Route::post('/login', 'login')
+        ->name('login');
+    Route::post('/logout', 'logout')
+        ->name('logout');
 });
 
 //記事一覧画面表示
