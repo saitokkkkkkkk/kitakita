@@ -4,6 +4,7 @@ use App\Http\Controllers\Member\ArticleCreateController;
 use App\Http\Controllers\Member\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
+use App\Http\Controllers\Member\AfterSavingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,13 +43,17 @@ Route::get('/articles', [ArticleListController::class, 'index'])
 
 //ログイン状態の会員のみがアクセス可能なルート
 Route::middleware(['auth:web'])->group(function () {
-    //記事投稿
+    //記事新規作成
     Route::controller(ArticleCreateController::class)->group(function () {
-        Route::get('/articles/create', [ArticleCreateController::class, 'show'])
+        Route::get('/articles/create', 'show')
             ->name('articles.create');
-        Route::post('/articles', [ArticleCreateController::class, 'store'])
+        Route::post('/articles', 'store')
             ->name('articles.store');
     });
+
+    //記事新規作成、編集後の描画
+    Route::get('/articles/{article}/edit', [AfterSavingController::class, 'show'])
+        ->name('articles.edit');
 
     //ログアウト
     Route::post('/logout', [LoginController::class, 'logout'])

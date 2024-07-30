@@ -11983,3 +11983,12 @@ textarea.form-control-lg {
 .form-control.custom-border {
   border: 1px solid #8cbf6d;
 }
+
+.fade {
+  opacity: 1;
+  transition: opacity 0.15s linear;
+}
+
+.fade.out {
+  opacity: 0;
+}

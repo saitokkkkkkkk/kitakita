@@ -46,17 +46,16 @@ class ArticleCreateController extends Controller
 
         try {
             //サービスのメソッド呼ぶ
-            $this->articleService->storeArticle($validated);
+            $article = $this->articleService->storeArticle($validated);
 
-            /*リダイレクト（記事編集機能を作成後、routeの引数を変更する予定。
-            successメッセージも表示。）
-            */
-            return redirect()->route('articles.index')
+            //リダイレクト
+            return redirect()->route('articles.edit', ['article' => $article->id])
                 ->with('success', '記事投稿が完了しました');
         } catch (\Exception $e) {
 
+            //何かエラーがあったら表示
             return redirect()->back()
-                ->withErrors(['error' => '記事の作成中にエラーが発生しました'])
+                ->withErrors(['error' => '記事作成中にエラーが発生しました'])
                 ->withInput();
         }
     }
