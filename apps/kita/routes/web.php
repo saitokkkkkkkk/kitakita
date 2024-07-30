@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Member\ArticleCreateController;
 use App\Http\Controllers\Member\ArticleListController;
+use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,17 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('/member_registration', 'showRegistrationForm')
         ->name('show.registration');
     Route::post('/member_registration', 'register')
-        ->name('register');
+        ->name('member.registration');
+});
+
+//会員ログイン、ログアウト
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'showLoginForm')
+        ->name('show.login');
+    Route::post('/login', 'login')
+        ->name('login');
+    Route::post('/logout', 'logout')
+        ->name('logout');
 });
 
 //記事一覧画面表示
