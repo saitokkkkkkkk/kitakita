@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\ArticleTag;
+use Illuminate\Database\Seeder;
 
 class ArticleTagSeeder extends Seeder
 {
@@ -24,7 +24,7 @@ class ArticleTagSeeder extends Seeder
             'Lifestyle',
             'Business',
             'Sports',
-            'Food'
+            'Food',
         ];
 
         foreach ($tags as $tag) {

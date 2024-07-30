@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Article;
 use App\Models\ArticleTag;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class ArticleArticleTagSeeder extends Seeder
