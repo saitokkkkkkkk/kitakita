@@ -33,7 +33,7 @@ Route::controller(LoginController::class)->group(function () {
         ->name('show.login');
     Route::post('/login', 'login')
         ->name('login');
-    Route::get('/logout', 'logout')
+    Route::post('/logout', 'logout')
         ->name('logout');
 });
 
