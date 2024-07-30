@@ -14,11 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // ArticleTagSeederを最初に実行してタグデータを作成
+        $this->call(ArticleTagSeeder::class);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // ArticlesTableSeederを次に実行して記事データを作成
+        $this->call(ArticlesTableSeeder::class);
+
+        // 最後に中間テーブルのシーダーを実行
+        $this->call(ArticleArticleTagSeeder::class);
     }
 }
