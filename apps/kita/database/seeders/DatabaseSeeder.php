@@ -14,16 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // ArticleTagSeederを最初に実行してタグデータを作成
+        // 最初にタグデータ作成
         $this->call(ArticleTagSeeder::class);
 
-        //
+        // メンバーも先に作成
         $this->call(MembersTableSeeder::class);
 
-        // ArticlesTableSeederを次に実行して記事データを作成
+        // 次に記事データ入れる
         $this->call(ArticlesTableSeeder::class);
 
-        // 最後に中間テーブルのシーダーを実行
+        // 最後に中間テーブルのシーダー実行
         $this->call(ArticleArticleTagSeeder::class);
     }
 }
