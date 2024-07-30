@@ -28,31 +28,36 @@ Route::controller(RegisterController::class)->group(function () {
         ->name('member.registration');
 });
 
-//会員ログイン、ログアウト
+//会員ログイン
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'showLoginForm')
         ->name('show.login');
     Route::post('/login', 'login')
         ->name('login');
-    Route::post('/logout', 'logout')
-        ->name('logout');
 });
 
 //記事一覧画面表示
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
 
-//記事投稿（保存の方はserviceに切り出すか）
-Route::controller(ArticleCreateController::class)->group(function () {
-    Route::get('/articles/create', [ArticleCreateController::class, 'show'])
-        ->name('articles.create');
-    Route::post('/articles', [ArticleCreateController::class, 'store'])
-        ->name('articles.store');
+//ログイン状態の会員のみがアクセス可能なルート
+Route::middleware(['auth:web'])->group(function () {
+    //記事投稿
+    Route::controller(ArticleCreateController::class)->group(function () {
+        Route::get('/articles/create', [ArticleCreateController::class, 'show'])
+            ->name('articles.create');
+        Route::post('/articles', [ArticleCreateController::class, 'store'])
+            ->name('articles.store');
+    });
+
+    //ログアウト
+    Route::post('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
 });
 
-//強制ログアウト（ログアウトはpostなのでログアウトボタン作成まで一応残しとく）
+//強制ログアウト（ログアウトはpostなのでログアウトボタン作成まで一応いるっぽい）
 Route::get('/force-logout', function () {
     Auth::logout();
 
-    return redirect('/');
+    return redirect('/login');
 });
