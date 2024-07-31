@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\Member\AfterSavingController;
 use App\Http\Controllers\Member\ArticleCreateController;
 use App\Http\Controllers\Member\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
-use App\Http\Controllers\Member\AfterSavingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
