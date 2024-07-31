@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 @import url(https://fonts.bunny.net/css?family=Nunito:wght@100;200;300;400;600&display=swap);
-=======
-@import url(https://fonts.bunny.net/css?family=Nunito);
->>>>>>> 001569661da1fde8d0641701e1bf8785e163465b
 @charset "UTF-8";
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
@@ -11970,7 +11966,6 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-<<<<<<< HEAD
 .navbar-brand {
   background-color: #8cbf6d; /* 黄緑色 */
   font-size: 1.9rem; /* フォントサイズを調整 */
@@ -12096,10 +12091,10 @@ form.d-flex .btn.btn-outline-success {
   /* ボタンのホバー時のスタイル */
 }
 form.d-flex .btn.btn-outline-success:hover {
-    background-color: #218838; /* ホバー時の背景色 */
-    color: white; /* ホバー時の文字色 */
+  background-color: #218838; /* ホバー時の背景色 */
+  color: white; /* ホバー時の文字色 */
 }
+
 .login-register-heading {
   font-family: "Poppins", sans-serif;
-
 }

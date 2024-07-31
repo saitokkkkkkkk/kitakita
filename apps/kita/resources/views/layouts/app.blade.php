@@ -11,8 +11,8 @@
                     </a>
                     <!-- 検索窓 -->
                     {!! Form::open(['route' => 'articles.index', 'method' => 'GET', 'class' => 'd-flex align-items-center']) !!}
-                        {!! Form::search('search', request('search'), ['class' => 'form-control me-0', 'placeholder' => 'Search for something', 'aria-label' => '検索']) !!}
-                        {!! Form::button('検索', ['type' => 'submit', 'class' => 'btn btn-outline-success']) !!}
+                    {!! Form::search('search', request('search'), ['class' => 'form-control me-0', 'placeholder' => 'Search for something', 'aria-label' => '検索']) !!}
+                    {!! Form::button('検索', ['type' => 'submit', 'class' => 'btn btn-outline-success']) !!}
                     {!! Form::close() !!}
                     <!-- 記事作成 -->
                     <!-- 人マーク -->
