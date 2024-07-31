@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Facade;
+
 return [
 
     /*
@@ -207,8 +209,8 @@ return [
     */
 
     'aliases' => [
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
+        'aliases' => Facade::defaultAliases()->merge([
+        ])->toArray(),
     ],
 
 ];

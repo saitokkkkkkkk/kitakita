@@ -3,6 +3,7 @@
 use App\Http\Controllers\Member\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
+use app\Http\Controllers\Member\MemberProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,3 +41,18 @@ Route::controller(LoginController::class)->group(function () {
 //記事一覧画面表示
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
+
+//プロフィール編集
+Route::get('/profile', [MemberProfileController::class, 'show']);
+
+//強制ログアウト（pushの時に削除）
+Route::get('/force-logout', function () {
+    Auth::logout(); // ユーザーをログアウト
+
+    // セッションを無効化してリダイレクト
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+
+    return redirect('/login');
+});
+
