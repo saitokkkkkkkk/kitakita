@@ -21,14 +21,16 @@ class ArticleListController extends Controller
      *
      * @return \Illuminate\View\View Returns a view displaying the paginated list of articles.
      */
-    // ArticleSearchController.php
+
+    public const PAGINATION_COUNT = 10;
 
     public function index(Request $request)
     {
         $searchQuery = $request->input('search', '');
 
         $articles = Article::where('title', 'like', "%{$searchQuery}%")
-            ->paginate(10)
+            //記事一覧ブランチで言われた修正をこちらの検索ブランチで修正
+            ->paginate(self::PAGINATION_COUNT)
             ->appends(['search' => $searchQuery]);
 
         $noArticles = $articles->isEmpty();
