@@ -9,9 +9,21 @@
                     <a class="navbar-brand text-white rounded-circle" href="{{ route('articles.index') }}">
                         {{ config('app.name', 'Kita') }}
                     </a>
-                    <!-- 検索窓 -->
-                    <!-- 記事作成 -->
                     <!-- 人マーク -->
+                    <div class="dropdown">
+                        <a class="btn btn-outline-secondary dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="far fa-user-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <!-- ここに「プロフィール編集」 -->
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">ログアウト</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

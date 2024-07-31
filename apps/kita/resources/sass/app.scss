@@ -100,3 +100,35 @@ small {
 .login-register-heading {
     font-family: 'Poppins', sans-serif;
 }
+
+// 人マーク
+/* ドロップダウンの矢印を非表示にする */
+.btn-outline-secondary.dropdown-toggle::after {
+    display: none !important; /* !important を追加 */
+}
+
+/* ボタンの背景色と枠線をカスタマイズする */
+.btn-outline-secondary {
+    border: none !important; /* ボタンの枠線を削除 */
+    background-color: #8cbf6d !important; /* ボタンの背景色 */
+    color: white !important; /* ボタン内の文字色 */
+}
+
+/* ドロップダウンメニューのスタイルをカスタマイズする */
+.dropdown-menu {
+    border: 0.5px solid #ccc !important; /* ドロップダウンメニューの外枠をグレーに設定 */
+    box-shadow: none !important; /* ドロップダウンメニューの影を削除 */
+}
+
+/* ドロップダウンアイテムのスタイル */
+.dropdown-item {
+    background-color: #ffffff !important; /* アイテムの背景色を白に設定 */
+    border-radius: 0.1rem !important; /* アイテムの角を丸める */
+    color: #3399ff !important; /* ドロップダウンメニューのアイテムの文字色 */
+    padding: 0.375rem 1rem !important; /* アイテム内の余白を設定 */
+}
+
+/* ドロップダウンアイテムのホバー時のスタイル */
+.dropdown-item:hover {
+    background-color: #e0f0e0 !important; /* ドロップダウンアイテムのホバー時の背景色 */
+}
