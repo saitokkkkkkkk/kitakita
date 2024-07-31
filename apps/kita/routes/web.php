@@ -24,7 +24,7 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('/member_registration', 'showRegistrationForm')
         ->name('show.registration');
     Route::post('/member_registration', 'register')
-        ->name('member.register');
+        ->name('member.registration');
 });
 
 //会員ログイン、ログアウト

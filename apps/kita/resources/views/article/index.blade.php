@@ -5,7 +5,7 @@
         <div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-8">
+                    <div class="index col-md-8">
                         <div class="card p-4 w-100">
                             <div class="list-group-flush mb-8 font-color">
                                 @foreach($articles as $article)

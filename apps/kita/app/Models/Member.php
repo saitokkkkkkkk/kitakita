@@ -20,7 +20,6 @@ class Member extends Authenticatable
         'remember_token',
     ];
 
-
     /**
      * Get the articles for the member.
      *

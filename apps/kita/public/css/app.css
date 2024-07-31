@@ -11985,10 +11985,17 @@ textarea.form-control-lg {
   border-radius: 0.2rem; /* 角を鋭く */
 }
 
-.card {
+.auth-page .card {
   border: 1px solid #ddd; /* カードの枠線 */
   border-radius: 4px; /* 角をほんのり丸くする */
   margin-top: 11px; /* 上部のマージン */
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.index .card {
+  border: 1px solid #ddd; /* カードの枠線 */
+  border-radius: 4px; /* 角をほんのり丸くする */
+  margin-top: 110px; /* 上部のマージン */
   font-family: "Nunito Sans", sans-serif;
 }
 
