@@ -7,6 +7,7 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+<<<<<<< HEAD
 .navbar-brand {
     background-color: #8cbf6d; /* 黄緑色 */
     font-size: 1.9rem; /* フォントサイズを調整 */
@@ -137,3 +138,11 @@ form.d-flex .btn {
         }
     }
 }
+
+// ログインと会員画面
+.login-register-heading {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
