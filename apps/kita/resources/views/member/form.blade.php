@@ -4,14 +4,16 @@
     <div class="container">
         <div class="row justify-content-center align-items-center vh-100">
             <div class="col-md-8 col-lg-6 col-xl-8">
+
                 <!-- 成功メッセージの表示 -->
                 @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
-                        {{ session('success') }}
+                        {!! session('success') !!}
                     </div>
                 @endif
                 <div class="card">
                     <div class="card-body">
+
                         <!-- 保存後の画面（after-saving.blade.php）ではフォームを無効にする -->
                         @if($formRoute && $formMethod)
                             {!! Form::open(['route' => $formRoute, 'method' => $formMethod]) !!}
@@ -53,18 +55,12 @@
                             @enderror
                         </div>
 
-                        <!-- 保存後の画面（after-saving.blade.php）ではボタンのルートを変更 -->
+                        <!-- 保存後の画面（after-saving.blade.php）ではボタン不要 -->
                         @if($formRoute && $formMethod && $submitButtonText)
                             <div class="text-right">
                                 {!! Form::submit($submitButtonText, ['class' => 'btn btn-success btn-rounded']) !!}
                             </div>
                             {!! Form::close() !!}
-                        @else
-                            @if($submitButtonText)
-                                <div class="text-right">
-                                    <a href="{{ route('articles.index') }}" class="btn btn-success btn-rounded">{{ $submitButtonText }}</a>
-                                </div>
-                            @endif
                         @endif
                     </div>
                 </div>

@@ -5,7 +5,7 @@
         // 保存後なので全部不要
         $formRoute = '';
         $formMethod = '';
-        $submitButtonText = '一覧表示に戻る';
+        $submitButtonText = '';
     @endphp
     @parent
 

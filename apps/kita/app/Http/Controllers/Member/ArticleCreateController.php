@@ -49,7 +49,7 @@ class ArticleCreateController extends Controller
 
         //リダイレクト
         return redirect()->route('articles.edit', ['article' => $article->id])
-            ->with('success', '記事投稿が完了しました');
+            ->with('success', '<strong>Success!</strong><br>記事投稿が完了しました');
 
     }
 }
