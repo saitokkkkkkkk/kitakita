@@ -12,7 +12,8 @@ class ArticleListController extends Controller
 
     public function index()
     {
-        $articles = Article::paginate(self::PAGINATION_COUNT);
+        // 作成日時が新しい順にソートし、ページネーション
+        $articles = Article::orderBy('created_at', 'desc')->paginate(self::PAGINATION_COUNT);
 
         return view('article.index', compact('articles'));
     }

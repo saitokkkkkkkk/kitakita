@@ -1,6 +1,6 @@
 <?php
 
-use app\Http\Controllers\Article\ArticleListController;
+use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +24,7 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('/member_registration', 'showRegistrationForm')
         ->name('show.registration');
     Route::post('/member_registration', 'register')
-        ->name('register');
+        ->name('member.register');
 });
 
 //会員ログイン、ログアウト
@@ -40,10 +40,3 @@ Route::controller(LoginController::class)->group(function () {
 //記事一覧画面表示
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
-
-//強制ログアウト（ログアウト機能を作成したら消去）
-Route::get('/force-logout', function () {
-    Auth::logout();
-
-    return redirect('/');
-});
