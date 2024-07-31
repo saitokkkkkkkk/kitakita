@@ -11992,3 +11992,12 @@ textarea.form-control-lg {
 .fade.out {
   opacity: 0;
 }
+
+#success-alert {
+  opacity: 1; /* 初期状態は不透明 */
+  transition: opacity 0.015s ease; /* 透明度のトランジション */
+}
+
+#success-alert.out {
+  opacity: 0; /* outクラスが追加されたら透明に */
+}

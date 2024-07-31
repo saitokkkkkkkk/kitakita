@@ -11,22 +11,10 @@
 
     <!-- フォーム入力内容を表示 -->
     @if($article)
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                document.querySelector('input[name="title"]').value = @json($article->title);
-                document.querySelector('textarea[name="contents"]').value = @json($article->contents);
-
-                // タグが複数選択されるようにする
-                const tags = @json($article->tags->pluck('id'));
-                const select = document.querySelector('select[name="tags[]"]');
-                if (select) {
-                    // 選択する値を設定する
-                    Array.from(select.options).forEach(option => {
-                        option.selected = tags.includes(parseInt(option.value));
-                    });
-                }
-            });
-        </script>
+        <div id="article-data"
+             data-title="{{ $article->title }}"
+             data-contents="{{ $article->contents }}"
+             data-tags="{{ json_encode($article->tags->pluck('id')) }}">
+        </div>
     @endif
-
 @endsection
