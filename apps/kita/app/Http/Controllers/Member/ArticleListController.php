@@ -21,7 +21,6 @@ class ArticleListController extends Controller
      *
      * @return \Illuminate\View\View Returns a view displaying the paginated list of articles.
      */
-
     public const PAGINATION_COUNT = 10;
 
     public function index(Request $request)
