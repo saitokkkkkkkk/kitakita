@@ -11988,7 +11988,7 @@ textarea.form-control-lg {
 .card {
   border: 1px solid #ddd; /* カードの枠線 */
   border-radius: 4px; /* 角をほんのり丸くする */
-  margin-top: 110px; /* 上部のマージン */
+  margin-top: 11px; /* 上部のマージン */
   font-family: "Nunito Sans", sans-serif;
 }
 
