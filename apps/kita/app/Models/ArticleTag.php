@@ -17,6 +17,11 @@ class ArticleTag extends Model
         'name',
     ];
 
+    /**
+     * The articles that belong to the tag.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     // リレーションシップ
     public function articles()
     {

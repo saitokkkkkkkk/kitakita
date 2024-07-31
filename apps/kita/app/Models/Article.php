@@ -17,12 +17,22 @@ class Article extends Model
         'member_id',
     ];
 
+    /**
+     * Get the member that owns the article.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     //リレーション
     public function member()
     {
         return $this->belongsTo(Member::class, 'member_id');
     }
 
+    /**
+     * The tags that belong to the article.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function tags()
     {
         return $this->belongsToMany(ArticleTag::class, 'article_article_tag', 'article_id', 'article_tag_id');

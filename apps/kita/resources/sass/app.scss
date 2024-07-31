@@ -96,6 +96,25 @@ small {
     color: white !important;
 }
 
+.custom-pagination a,
+.custom-pagination span {
+    max-width: 100%; /* 最大幅を親要素に合わせる */
+    overflow: hidden; /* はみ出す内容を隠す */
+}
+
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* 複数行にわたる場合でも対応 */
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0; /* 中央揃えのためのマージン */
+}
+
+.custom-pagination > * {
+    align-items: center; /* アイテムを縦方向に中央揃え */
+}
+
 // ログインと会員画面
 .login-register-heading {
     font-family: 'Poppins', sans-serif;
@@ -131,4 +150,9 @@ small {
 /* ドロップダウンアイテムのホバー時のスタイル */
 .dropdown-item:hover {
     background-color: #e0f0e0 !important; /* ドロップダウンアイテムのホバー時の背景色 */
+}
+
+//水平スクロールを隠す
+html, body {
+    overflow-x: hidden;
 }

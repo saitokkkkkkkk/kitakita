@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <div class="card p-4">
+                        <div class="card p-4 w-100">
                             <div class="list-group-flush mb-8 font-color">
                                 @foreach($articles as $article)
                                     <small class="text-muted mb-0 d-block">
@@ -24,6 +24,7 @@
                                     @endif
                                 @endforeach
                             </div>
+                            <!-- ページネーションをカード内に移動 -->
                             <div class="d-flex justify-content-center my-4 custom-pagination">
                                 {{ $articles->links('vendor.pagination.simple') }}
                             </div>

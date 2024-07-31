@@ -16,6 +16,7 @@
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
+                    {{-- Display Page Number --}}
                     @if ($page == $paginator->currentPage())
                         <span aria-current="page">
                             <span class="relative inline-flex items-center text-sm font-medium text-white bg-green-600 border border-green-600 leading-5">{{ $page }}</span>
@@ -26,6 +27,11 @@
                         </a>
                     @endif
                 @endforeach
+            @elseif ($element == '...')
+                {{-- Display Ellipsis --}}
+                <span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-green-600 bg-white border border-green-600 cursor-default leading-5 mx-1">
+                    {!! __('...') !!}
+                </span>
             @endif
         @endforeach
 

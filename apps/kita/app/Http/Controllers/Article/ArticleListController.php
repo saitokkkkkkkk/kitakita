@@ -10,6 +10,11 @@ class ArticleListController extends Controller
     // 定数を定義
     public const PAGINATION_COUNT = 10;
 
+    /**
+     * Display a listing of the articles with pagination.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         // 作成日時が新しい順にソートし、ページネーション
