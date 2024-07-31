@@ -45,5 +45,5 @@ Route::get('/articles', [ArticleListController::class, 'index'])
 Route::get('/force-logout', function () {
     Auth::logout();
 
-    return redirect('/');
+    return redirect('/login');
 });
