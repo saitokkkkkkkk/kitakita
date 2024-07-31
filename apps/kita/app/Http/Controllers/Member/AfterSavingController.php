@@ -9,7 +9,7 @@ use App\Models\ArticleTag;
 class AfterSavingController extends Controller
 {
     /**
-     * Display the post-save confirmation page for either creating or editing an article.
+     * Display the post-save view.
      *
      * @param int|null $articleId
      * @return \Illuminate\View\View

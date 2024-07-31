@@ -12,17 +12,12 @@
                 @endif
                 <div class="card">
                     <div class="card-body">
-                        <!-- 何かのエラー出た時のメッセージ -->
-                        @if ($errors->has('error'))
-                            <div class="alert alert-danger">
-                                {{ $errors->first('error') }}
-                            </div>
-                        @endif
                         <!-- 保存後の画面（after-saving.blade.php）ではフォームを無効にする -->
                         @if($formRoute && $formMethod)
                             {!! Form::open(['route' => $formRoute, 'method' => $formMethod]) !!}
                             @csrf
                         @endif
+
                         <!-- タイトル -->
                         <div class="form-group">
                             {!! Form::label('title', 'タイトル', ['for' => 'title']) !!}

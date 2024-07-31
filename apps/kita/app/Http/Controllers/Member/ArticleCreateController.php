@@ -22,7 +22,7 @@ class ArticleCreateController extends Controller
     }
 
     /**
-     * Display the form for creating a new article providing a list of tags.
+     * Display the form for creating a new article.
      *
      * @return \Illuminate\View\View
      */
@@ -34,7 +34,7 @@ class ArticleCreateController extends Controller
     }
 
     /**
-     * Store a newly created article in the database.
+     * Store a newly created article.
      *
      * @param \App\Http\Requests\StoreArticleRequest $request
      * @return \Illuminate\Http\RedirectResponse
@@ -44,19 +44,12 @@ class ArticleCreateController extends Controller
         //バリデーション済みのデータもらう
         $validated = $request->validated();
 
-        try {
-            //サービスのメソッド呼ぶ
-            $article = $this->articleService->storeArticle($validated);
+        //サービスのメソッド呼ぶ
+        $article = $this->articleService->storeArticle($validated);
 
-            //リダイレクト
-            return redirect()->route('articles.edit', ['article' => $article->id])
-                ->with('success', '記事投稿が完了しました');
-        } catch (\Exception $e) {
+        //リダイレクト
+        return redirect()->route('articles.edit', ['article' => $article->id])
+            ->with('success', '記事投稿が完了しました');
 
-            //何かエラーがあったら表示
-            return redirect()->back()
-                ->withErrors(['error' => '記事作成中にエラーが発生しました'])
-                ->withInput();
-        }
     }
 }
