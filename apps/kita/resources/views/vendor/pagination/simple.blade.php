@@ -13,6 +13,13 @@
 
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
+            {{-- "Three Dots" Separator --}}
+            @if (is_string($element))
+                <span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-green-600 bg-white border border-green-600 cursor-default leading-5 mx-1">
+                    {{ $element }}
+                </span>
+            @endif
+
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
