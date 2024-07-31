@@ -40,3 +40,10 @@ Route::controller(LoginController::class)->group(function () {
 //記事一覧画面表示と検索機能
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
+
+//強制ログアウト（ログアウト機能を作成したら消去）
+Route::get('/force-logout', function () {
+    Auth::logout();
+
+    return redirect('/');
+});
