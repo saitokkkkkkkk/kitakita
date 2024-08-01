@@ -1,4 +1,4 @@
-@extends('member.form')
+@extends('article.form')
 
 @section('content')
     @php

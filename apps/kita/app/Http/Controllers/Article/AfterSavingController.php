@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace app\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
@@ -26,6 +26,6 @@ class AfterSavingController extends Controller
         $successMessage = session('success');
 
         // 全部渡して画面を返す
-        return view('member.after-saving', compact('article', 'tags', 'successMessage'));
+        return view('article.after-saving', compact('article', 'tags', 'successMessage'));
     }
 }

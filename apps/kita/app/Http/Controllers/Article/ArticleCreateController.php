@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace app\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
@@ -30,7 +30,7 @@ class ArticleCreateController extends Controller
     {
         $tags = ArticleTag::all();
 
-        return view('member.create', compact('tags'));
+        return view('article.create', compact('tags'));
     }
 
     /**

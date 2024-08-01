@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\Member\AfterSavingController;
-use App\Http\Controllers\Member\ArticleCreateController;
-use App\Http\Controllers\Member\ArticleListController;
+use App\Http\Controllers\Article\AfterSavingController;
+use App\Http\Controllers\Article\ArticleCreateController;
+use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Auth::routes();
 
 //会員登録
 Route::controller(RegisterController::class)->group(function () {

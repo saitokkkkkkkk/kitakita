@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace app\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 
@@ -10,6 +10,6 @@ class ArticleListController extends Controller
     public function index()
     {
         //$articles = Article::all();
-        return view('member.index');
+        return view('article.index');
     }
 }
