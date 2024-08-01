@@ -26,8 +26,8 @@ class ArticleListController extends Controller
      */
     public function index(Request $request)
     {
-        // 現在のページ番号をクエリから取得
-        $currentPage = $request->query('page', 1);
+        // 現在のページ番号をクエリから取得し、整数にキャスト
+        $currentPage = intval($request->query('page', '1'));
 
         // 最大ページ番号を取得
         $maxPage = Article::orderBy('created_at', 'desc')
