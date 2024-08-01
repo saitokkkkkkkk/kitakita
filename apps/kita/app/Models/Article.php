@@ -10,7 +10,11 @@ class Article extends Model
 {
     use HasFactory, SoftDeletes;
 
-    //マスアサインメント可能
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
     protected $fillable = [
         'title',
         'contents',
@@ -22,7 +26,6 @@ class Article extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    //リレーション
     public function member()
     {
         return $this->belongsTo(Member::class, 'member_id');

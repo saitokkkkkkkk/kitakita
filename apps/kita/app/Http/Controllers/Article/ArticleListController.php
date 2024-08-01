@@ -7,7 +7,9 @@ use App\Models\Article;
 
 class ArticleListController extends Controller
 {
-    // 定数を定義
+    /**
+     * Number of articles to show per page.
+     */
     public const PAGINATION_COUNT = 10;
 
     /**
