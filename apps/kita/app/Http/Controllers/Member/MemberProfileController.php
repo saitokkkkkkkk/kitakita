@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class MemberProfileController extends Controller
 {
-    // 描画
+    /**
+     * Display the profile edit form.
+     *
+     * @return \Illuminate\View\View
+     */
     public function show()
     {
         // 現在ログイン中のユーザーを取得
@@ -21,7 +25,12 @@ class MemberProfileController extends Controller
         ]);
     }
 
-    // 更新
+    /**
+     * Update the member's profile.
+     *
+     * @param  \App\Http\Requests\UpdateMemberProfileRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateMemberProfileRequest $request)
     {
         //ログイン中のユーザ取得
