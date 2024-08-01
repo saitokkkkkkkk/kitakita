@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Member\ArticleListController;
+use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use App\Http\Controllers\Member\MemberProfileController;
@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Auth::routes();
 
 //会員登録
 Route::controller(RegisterController::class)->group(function () {

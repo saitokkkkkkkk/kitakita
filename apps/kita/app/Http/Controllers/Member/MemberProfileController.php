@@ -5,15 +5,19 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateMemberProfileRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 
 class MemberProfileController extends Controller
 {
     /**
      * Display the profile edit form.
      *
-     * @return \Illuminate\View\View
+     * @return Application|Factory|View|RedirectResponse
      */
-    public function show()
+    public function show(): Application|Factory|View|RedirectResponse
     {
         // 現在ログイン中のユーザーを取得
         $member = Auth::user();
