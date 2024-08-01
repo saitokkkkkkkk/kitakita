@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
@@ -28,12 +28,12 @@ class ArticleListController extends Controller
         $searchQuery = $request->input('search', '');
 
         $articles = Article::where('title', 'like', "%{$searchQuery}%")
-            //記事一覧ブランチで言われた修正をこちらの検索ブランチで修正
+            //記事一覧ブランチで言われた修正をこちらの検索ブランチでも修正してる
             ->paginate(self::PAGINATION_COUNT)
             ->appends(['search' => $searchQuery]);
 
         $noArticles = $articles->isEmpty();
 
-        return view('member.index', compact('articles', 'searchQuery', 'noArticles'));
+        return view('article.index', compact('articles', 'searchQuery', 'noArticles'));
     }
 }

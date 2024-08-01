@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Member\ArticleListController;
+use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
