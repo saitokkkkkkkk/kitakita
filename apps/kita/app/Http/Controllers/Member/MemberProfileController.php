@@ -17,7 +17,7 @@ class MemberProfileController extends Controller
         // 必要な情報をビューに渡す
         return view('member.profile', [
             'name' => $member->name,
-            'email' => $member->email
+            'email' => $member->email,
         ]);
     }
 

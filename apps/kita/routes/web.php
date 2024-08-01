@@ -60,4 +60,3 @@ Route::get('/force-logout', function () {
 
     return redirect('/login');
 });
-

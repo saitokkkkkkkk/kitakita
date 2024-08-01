@@ -101,7 +101,6 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-
     /**
      * Get the throttle key for login attempts.
      *
@@ -113,7 +112,6 @@ class LoginController extends Controller
     {
         return $request->ip();
     }
-
 
     /**
      * Log the user out and redirect or return a JSON response.
