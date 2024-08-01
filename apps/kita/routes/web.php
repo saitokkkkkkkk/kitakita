@@ -42,12 +42,16 @@ Route::controller(LoginController::class)->group(function () {
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
 
-//プロフィール編集
-Route::controller(MemberProfileController::class)->group(function () {
-    Route::get('/profile', 'show')
-        ->name('member.profile.show');
-    Route::put('/profile', 'update')
-        ->name('member.profile.update');
+
+//ログイン状態の会員のみがアクセス可能なルート
+Route::middleware(['auth:web'])->group(function () {
+    //プロフィール編集
+    Route::controller(MemberProfileController::class)->group(function () {
+        Route::get('/profile', 'show')
+            ->name('member.profile.show');
+        Route::put('/profile', 'update')
+            ->name('member.profile.update');
+    });
 });
 
 //強制ログアウト（pushの時に削除）

@@ -11970,38 +11970,7 @@ textarea.form-control-lg {
   font-family: "Poppins", sans-serif;
 }
 
-.profile-edit-container {
-  margin-top: 50px;
-}
-.profile-edit-container .card {
-  padding: 20px;
-  margin-top: 20px;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  background-color: #ffffff;
-}
-.profile-edit-container h2, .profile-edit-container .h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 10px;
-}
-.profile-edit-container .form-group {
-  margin-bottom: 20px;
-}
-.profile-edit-container .form-group label {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.profile-edit-container .form-group .form-control {
-  padding: 10px;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
-}
-.profile-edit-container .form-group .btn-outline-success {
-  margin-top: 10px;
-}
-.profile-edit-container .btn-success {
-  margin-top: 20px;
+.btn-success {
+  background-color: #8BC34A !important;
+  border-color: #8BC34A !important;
 }

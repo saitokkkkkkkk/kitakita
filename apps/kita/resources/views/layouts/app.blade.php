@@ -1,5 +1,6 @@
 @include('partials.head')
-<body>
+{{-- これはnavバーのコード --}}
+<body class="bg-light">
     <div id="app">
         <main class="py-4">
             @yield('content')
