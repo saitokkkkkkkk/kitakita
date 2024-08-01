@@ -19,11 +19,13 @@
             $start = max($paginator->currentPage() - $pageRange, 1);
             // 最後のページを超えないようにする
             $end = min($paginator->currentPage() + $pageRange, $paginator->lastPage());
-            
+
+            // $pageRange=1の時、現在ページが1か2ならば、最終ページ（$end）の表示はどっちも3
             if ($paginator->currentPage() <= $pageRange + 1) {
                 $end = min($pageRange * 2 + 1, $paginator->lastPage());
             }
 
+            // 例)最大ページが4なら、現在ページが3か4の時、表示ページの最小（$start）はどっちも2
             if ($paginator->currentPage() >= $paginator->lastPage() - $pageRange) {
                 $start = max($paginator->lastPage() - $pageRange * 2, 1);
             }

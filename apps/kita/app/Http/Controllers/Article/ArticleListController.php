@@ -10,10 +10,20 @@ class ArticleListController extends Controller
 {
     /**
      * Number of articles to show per page.
+     *
+     * @var int
      */
     public const PAGINATION_COUNT = 10;
 
-
+    /**
+     * Display a listing of the articles with pagination.
+     *
+     * This method handles pagination of articles and redirects to the last page
+     * if the requested page number exceeds the maximum available page number.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function index(Request $request)
     {
         // 現在のページ番号をクエリから取得
@@ -23,7 +33,7 @@ class ArticleListController extends Controller
         $maxPage = Article::orderBy('created_at', 'desc')
             ->paginate(self::PAGINATION_COUNT)->lastPage();
 
-        // 現在のページが最大ページ番号を超えている場合は最大ページのところにリダイレクト
+        // クエリが最大ページ番号を超えている場合は最大ページのとこにリダイレクト
         if ($currentPage > $maxPage) {
             return redirect()->route('articles.index', ['page' => $maxPage]);
         }
