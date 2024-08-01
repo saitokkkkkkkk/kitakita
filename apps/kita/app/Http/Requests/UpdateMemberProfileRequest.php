@@ -27,7 +27,7 @@ class UpdateMemberProfileRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             //Auth::id()で現在のユーザのメアドをユニークから除外（名前のみの変更に対応）
-            'email' => 'required|string|email|max:255|unique:members,email,' . Auth::id(),
+            'email' => 'required|string|email|max:255|unique:members,email,'.Auth::id(),
         ];
     }
 }
