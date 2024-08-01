@@ -24,7 +24,6 @@
                                     @endif
                                 @endforeach
                             </div>
-                            <!-- ページネーションをカード内に移動 -->
                             <div class="d-flex justify-content-center my-4 custom-pagination">
                                 {{ $articles->links('vendor.pagination.simple') }}
                             </div>
