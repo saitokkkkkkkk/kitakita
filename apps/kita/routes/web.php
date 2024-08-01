@@ -42,7 +42,6 @@ Route::controller(LoginController::class)->group(function () {
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
 
-
 //ログイン状態の会員のみがアクセス可能なルート
 Route::middleware(['auth:web'])->group(function () {
     //プロフィール編集
