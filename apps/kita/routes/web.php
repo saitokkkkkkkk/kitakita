@@ -3,7 +3,7 @@
 use App\Http\Controllers\Member\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
-use app\Http\Controllers\Member\MemberProfileController;
+use App\Http\Controllers\Member\MemberProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +43,12 @@ Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
 
 //プロフィール編集
-Route::get('/profile', [MemberProfileController::class, 'show']);
+Route::controller(MemberProfileController::class)->group(function () {
+    Route::get('/profile', 'show')
+        ->name('member.profile.show');
+    Route::put('/profile', 'update')
+        ->name('member.profile.update');
+});
 
 //強制ログアウト（pushの時に削除）
 Route::get('/force-logout', function () {
