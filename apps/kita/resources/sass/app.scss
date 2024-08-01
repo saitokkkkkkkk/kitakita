@@ -161,7 +161,13 @@ small {
     background-color: #e0f0e0 !important; /* ドロップダウンアイテムのホバー時の背景色 */
 }
 
-//水平スクロールを隠す
+/* ログアウトボタンの右側のマージンを設定 */
+.btn-outline-secondary.me-2 {
+    margin-right: 0.5rem; /* ボタンとアイコンの間にスペースを追加 */
+}
+
 html, body {
     overflow-x: hidden;
 }
+
+
