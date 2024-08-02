@@ -7,9 +7,167 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+.navbar-brand {
+    background-color: #8cbf6d; /* 黄緑色 */
+    font-size: 1.9rem; /* フォントサイズを調整 */
+    padding-left: 1.7rem; /* 左側のパディングを設定 */
+    padding-right: 1.7rem; /* 右側のパディングを設定 */
+    padding-top: 0.1rem; /* 上側のパディングを設定 */
+    padding-bottom: 0.1rem; /* 下側のパディングを設定 */
+    text-decoration: none;  /*テキストの下線を消す */
+    font-family: 'Nunito Sans', sans-serif; /* フォント */
+}
+
+.navbar-border {
+    border-bottom: 0.5px solid gray; /* 黒の線を追加 */
+}
+
+//タグ
+.badge-rounded {
+    border-radius: 0.2rem; /* 角を鋭く */
+}
+
+//ログインと登録画面でのカード
+.auth-page .card {
+    border: 1px solid #ddd; /* カードの枠線 */
+    border-radius: 4px; /* 角をほんのり丸くする */
+    margin-top: 11px; /* 上部のマージン */
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+//一覧表示でのカード
+.index .card {
+    border: 1px solid #ddd; /* カードの枠線 */
+    border-radius: 4px; /* 角をほんのり丸くする */
+    margin-top: 110px; /* 上部のマージン */
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.bg-custom-gray {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.font-color {
+    color: #6c757d;
+}
+
+.article-title {
+    font-size: larger;
+}
+
+small {
+    font-size: 0.5rem; /* smallクラスのフォントサイズをさらに小さく調整 */
+}
+
+/* 以下、ページネーション */
+.custom-pagination > span,
+.custom-pagination > a, {
+    font-family: 'Nunito Sans', sans-serif;
+    margin: 0 !important;
+    color: #8cbf6d !important;
+    border: 1px solid #8cbf6d !important;
+    padding: 0.5rem 1rem !important;
+    text-decoration: none;
+    border-radius: 0 !important; /* ボーダー半径をリセット */
+}
+
+.custom-pagination > span:first-child,
+.custom-pagination > a:first-child {
+    border-top-left-radius: 0.25rem !important; /* 左上の角を丸く */
+    border-bottom-left-radius: 0.25rem !important; /* 左下の角を丸く */
+}
+
+.custom-pagination > span:last-child,
+.custom-pagination > a:last-child {
+    border-top-right-radius: 0.25rem !important; /* 右上の角を丸く */
+    border-bottom-right-radius: 0.25rem !important; /* 右下の角を丸く */
+}
+
+.custom-pagination > span + a,
+.custom-pagination > a + a,
+.custom-pagination > a + span {
+    border-left-width: 0 !important; /* 要素間のボーダーを削除 */
+}
+
+.custom-pagination > span:hover,
+.custom-pagination > a:hover {
+    color: #218838 !important;
+}
+
+.custom-pagination > span[aria-current],
+.custom-pagination > span[aria-current] span {
+    background-color: #8cbf6d !important;
+    border-color: #8cbf6d !important;
+    color: white !important;
+}
+
+.custom-pagination a,
+.custom-pagination span {
+    max-width: 100%; /* 最大幅を親要素に合わせる */
+    overflow: hidden; /* はみ出す内容を隠す */
+}
+
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* 複数行にわたる場合でも対応 */
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0; /* 中央揃えのためのマージン */
+}
+
+.custom-pagination > * {
+    align-items: center; /* アイテムを縦方向に中央揃え */
+}
+
 // ログインと会員画面
 .login-register-heading {
     font-family: 'Poppins', sans-serif;
+}
+
+// 人マーク
+/* ドロップダウンの矢印を非表示にする */
+.btn-outline-secondary.dropdown-toggle::after {
+    display: none !important; /* !important を追加 */
+}
+
+/* ボタンの背景色と枠線をカスタマイズする */
+.btn-outline-secondary {
+    border: none !important; /* ボタンの枠線を削除 */
+    background-color: #8cbf6d !important; /* ボタンの背景色 */
+    color: white !important; /* ボタン内の文字色 */
+}
+
+/* ドロップダウンメニューのスタイルをカスタマイズする */
+.dropdown-menu {
+    border: 0.5px solid #ccc !important; /* ドロップダウンメニューの外枠をグレーに設定 */
+    box-shadow: none !important; /* ドロップダウンメニューの影を削除 */
+}
+
+/* ドロップダウンアイテムのスタイル */
+.dropdown-item {
+    background-color: #ffffff !important; /* アイテムの背景色を白に設定 */
+    border-radius: 0.1rem !important; /* アイテムの角を丸める */
+    color: #3399ff !important; /* ドロップダウンメニューのアイテムの文字色 */
+    padding: 0.375rem 1rem !important; /* アイテム内の余白を設定 */
+}
+
+/* ドロップダウンアイテムのホバー時のスタイル */
+.dropdown-item:hover {
+    background-color: #e0f0e0 !important; /* ドロップダウンアイテムのホバー時の背景色 */
+}
+
+/* ログアウトボタンの右側のマージンを設定 */
+.btn-outline-secondary.me-2 {
+    margin-right: 0.5rem; /* ボタンとアイコンの間にスペースを追加 */
+}
+
+html, body {
+    overflow-x: hidden;
 }
 
 
