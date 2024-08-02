@@ -5,8 +5,13 @@
         <div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="index col-md-8">
-                        <div class="card p-4 w-100">
+                    <div class="index col-md-8 my-5">
+                        <div class="card p-4 my-5 mw-100">
+                            @if($noArticles)
+                                <div class="alert alert-warning" role="alert">
+                                    記事が存在しません
+                                </div>
+                            @else
                             <div class="list-group-flush mb-8 font-color">
                                 @foreach($articles as $article)
                                     <small class="text-muted mb-0 d-block">
@@ -27,6 +32,7 @@
                             <div class="d-flex justify-content-center my-4 custom-pagination">
                                 {{ $articles->links('vendor.pagination.simple') }}
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

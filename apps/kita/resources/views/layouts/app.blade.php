@@ -41,7 +41,3 @@
     </main>
 </div>
 </body>
-<<<<<<< HEAD
-
-=======
->>>>>>> b7332fec2af10f6a409d0da22e0fda4f9c59fb77
