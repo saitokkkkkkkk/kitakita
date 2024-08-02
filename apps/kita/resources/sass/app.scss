@@ -8,20 +8,22 @@
 @import 'bootstrap/scss/bootstrap';
 
 
-.navbar-brand {
-    background-color: #8cbf6d; /* 黄緑色 */
-    font-size: 1.9rem; /* フォントサイズを調整 */
-    padding-left: 1.7rem; /* 左側のパディングを設定 */
-    padding-right: 1.7rem; /* 右側のパディングを設定 */
-    padding-top: 0.1rem; /* 上側のパディングを設定 */
-    padding-bottom: 0.1rem; /* 下側のパディングを設定 */
-    text-decoration: none;  /*テキストの下線を消す */
-    font-family: 'Nunito Sans', sans-serif; /* フォント */
+/*.navbar-brand {
+    background-color: #8cbf6d;
+    font-size: 1.9rem;
+    padding-left: 1.7rem;*
+    padding-right: 1.7rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    text-decoration: none;
+    font-family: 'Nunito Sans', sans-serif;
 }
-
+*/
+/*
 .navbar-border {
-    border-bottom: 0.5px solid gray; /* 黒の線を追加 */
+    border-bottom: 0.5px solid gray;
 }
+*/
 
 //タグ
 .badge-rounded {
@@ -106,7 +108,7 @@ small {
     color: white !important;
 }
 
-/* 検索窓 */
+/* 検索窓
 form.d-flex .form-control {
     height: 30px;
     border-top-right-radius: 0;
@@ -115,37 +117,38 @@ form.d-flex .form-control {
     border-bottom-left-radius: 0.25rem;
     border-color: #8BC34A;
     width: 220px;
-    font-size: 12px; /* フォントサイズ */
-    font-family: 'Nunito Sans', sans-serif; /* フォント */
-    padding: 0 10px; /* 内部の余白を調整して最後の文字が表示されるようにする */
+    font-size: 12px;
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 0 10px;
 }
+*/
 
-/* 検索ボタン */
+/* 検索ボタン
 form.d-flex .btn {
-    width: 80px;
+    //width: 80px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
-    height: 30px; /* 検索窓と同じ高さ */
-    border-color: #8BC34A; /* 黄緑色の縁 */
+    height: 30px;
+    border-color: #8BC34A;
     background-color: #8BC34A;
-    color: white; /* ボタンの文字色 */
+    color: white;
     display: flex;
-    align-items: center; /* 縦方向に中央揃え */
-    justify-content: center; /* 横方向に中央揃え */
-    padding: 0 10px; /* ボタン内の余白 */
-    font-size: 12px; /* フォントサイズ */
-    text-align: center; /* 文字を中央に揃える */
-    font-family: 'Nunito Sans', sans-serif; /* フォント */
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    font-size: 12px;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+}
+*/
 
-    &.btn-outline-success {
-        /* ボタンのホバー時のスタイル */
-        &:hover {
-            background-color: #218838; /* ホバー時の背景色 */
-            color: white; /* ホバー時の文字色 */
-        }
-    }
+//Kitaの楕円形
+.custom-ellipse {
+    border-radius: 50%;
+    width: 100px;
+    height: 50px;
 }
 
 // ログインと会員画面
