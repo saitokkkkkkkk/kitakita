@@ -3,7 +3,6 @@
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Auth::routes();
 
 //会員登録
 Route::controller(RegisterController::class)->group(function () {
@@ -41,9 +38,3 @@ Route::controller(LoginController::class)->group(function () {
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
 
-//強制ログアウト（ログアウト機能を作成したら消去）
-Route::get('/force-logout', function () {
-    Auth::logout();
-
-    return redirect('/login');
-});

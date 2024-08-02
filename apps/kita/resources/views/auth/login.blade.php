@@ -2,7 +2,7 @@
 <body>
 <div class="container">
     <div class="row justify-content-center align-items-center vh-100">
-        <div class="col-md-8 col-lg-6 auth-page">
+        <div class="col-md-8 col-lg-6">
             <div class="text-center">
                 <h3 class="card-title text-left text-muted login-register-heading">
                     Kitaログイン

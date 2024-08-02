@@ -14,8 +14,24 @@
                         {!! Form::search('search', request('search'), ['class' => 'form-control form-control-sm border-success rounded-end-0', 'placeholder' => 'Search for something', 'aria-label' => '検索']) !!}
                         {!! Form::button('検索', ['type' => 'submit', 'class' => 'btn btn-sm btn-success text-nowrap rounded-start-0 px-4 fs-6']) !!}
                     {!! Form::close() !!}
+                    @auth
                     <!-- 記事作成 -->
                     <!-- 人マーク -->
+                    <div class="dropdown">
+                        <a class="btn btn-outline-secondary dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="far fa-user-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <!-- ここに「プロフィール編集」 -->
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">ログアウト</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -25,4 +41,7 @@
     </main>
 </div>
 </body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b7332fec2af10f6a409d0da22e0fda4f9c59fb77
