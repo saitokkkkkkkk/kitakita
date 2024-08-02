@@ -4,7 +4,6 @@ use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use App\Http\Controllers\Member\MemberProfileController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 //会員登録
 Route::controller(RegisterController::class)->group(function () {
@@ -32,8 +32,6 @@ Route::controller(LoginController::class)->group(function () {
         ->name('show.login');
     Route::post('/login', 'login')
         ->name('login');
-    Route::post('/logout', 'logout')
-        ->name('logout');
 });
 
 //記事一覧画面表示
@@ -49,15 +47,8 @@ Route::middleware(['auth:web'])->group(function () {
         Route::put('/profile', 'update')
             ->name('member.profile.update');
     });
-});
 
-//強制ログアウト（pushの時に削除）
-Route::get('/force-logout', function () {
-    Auth::logout(); // ユーザーをログアウト
-
-    // セッションを無効化してリダイレクト
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
-
-    return redirect('/login');
+    //ログアウト
+    Route::post('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
 });

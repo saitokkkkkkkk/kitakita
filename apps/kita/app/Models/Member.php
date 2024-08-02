@@ -12,7 +12,7 @@ class Member extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array<string>
      */
     protected $fillable = [
         'name',
@@ -29,4 +29,14 @@ class Member extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Get the articles for the member.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'member_id');
+    }
 }
