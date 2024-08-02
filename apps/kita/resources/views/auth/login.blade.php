@@ -3,8 +3,8 @@
 <div class="container">
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-8 col-lg-6">
-            <div class="auth-page text-center">
-                <h3 class="card-title text-left text-muted login-register-heading">
+            <div class="text-center">
+                <h3 class="card-title text-left text-muted">
                     Kitaログイン
                 </h3>
                 <hr>
@@ -34,7 +34,7 @@
                         </div>
                         <!--ログインボタン-->
                         <div class="text-left">
-                            {!! Form::submit('ログイン', ['class' => 'btn', 'style' => 'background-color: #8cbf6d; color: white; border-color: #8cbf6d;']) !!}
+                            {!! Form::submit('ログイン', ['class' => 'btn btn-success']) !!}
                         </div>
                     {!! Form::close() !!}
                 </div>
