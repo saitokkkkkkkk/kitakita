@@ -10,19 +10,32 @@ class Article extends Model
 {
     use HasFactory, SoftDeletes;
 
-    //マスアサインメント可能
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
     protected $fillable = [
         'title',
         'contents',
         'member_id',
     ];
 
-    //リレーション
+    /**
+     * Get the member that owns the article.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function member()
     {
         return $this->belongsTo(Member::class, 'member_id');
     }
 
+    /**
+     * The tags that belong to the article.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function tags()
     {
         return $this->belongsToMany(ArticleTag::class, 'article_article_tag', 'article_id', 'article_tag_id');

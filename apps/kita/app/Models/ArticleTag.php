@@ -9,15 +9,27 @@ class ArticleTag extends Model
 {
     use HasFactory;
 
-    // テーブル名を指定
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'article_tags';
 
-    // マスアサインメント可能な属性
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
     protected $fillable = [
         'name',
     ];
 
-    // リレーションシップ
+    /**
+     * The articles that belong to the tag.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function articles()
     {
         return $this->belongsToMany(Article::class, 'article_article_tag', 'article_tag_id', 'article_id');

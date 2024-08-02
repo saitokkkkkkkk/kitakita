@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Article\AfterSavingController;
-use App\Http\Controllers\Article\ArticleCreateController;
+use app\Http\Controllers\Article\AfterSavingController;
+use app\Http\Controllers\Article\ArticleCreateController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 //会員登録
 Route::controller(RegisterController::class)->group(function () {
@@ -57,9 +58,3 @@ Route::middleware(['auth:web'])->group(function () {
         ->name('logout');
 });
 
-//強制ログアウト（ログアウトはpostなのでログアウトボタン作成まで一応いるっぽい）
-Route::get('/force-logout', function () {
-    Auth::logout();
-
-    return redirect('/login');
-});
