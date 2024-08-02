@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 //会員登録
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/member_registration', 'showRegistrationForm')
@@ -57,4 +56,3 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])
         ->name('logout');
 });
-
