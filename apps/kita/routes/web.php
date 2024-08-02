@@ -37,4 +37,3 @@ Route::controller(LoginController::class)->group(function () {
 //記事一覧画面表示と検索機能
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
-

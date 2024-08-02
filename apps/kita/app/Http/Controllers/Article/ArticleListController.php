@@ -42,7 +42,6 @@ class ArticleListController extends Controller
         $articles = Article::orderBy('created_at', 'desc')
             ->paginate(self::PAGINATION_COUNT);
 
-
         $articles = Article::where('title', 'like', "%{$searchQuery}%")
             ->orderBy('created_at', 'desc') // 作成日時で降順にソート
             ->paginate(self::PAGINATION_COUNT)
