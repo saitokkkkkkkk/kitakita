@@ -4,22 +4,20 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateMemberProfileRequest;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Member;
 use Illuminate\Support\Facades\Auth;
 
 class MemberProfileController extends Controller
 {
     /**
-     * Display the profile edit form.
+     * Display the logged-in member's profile.
      *
-     * @return Application|Factory|View|RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function show(): Application|Factory|View|RedirectResponse
+    public function show()
     {
         // 現在ログイン中のユーザーを取得
+        /** @var Member $member */
         $member = Auth::user();
 
         // 必要な情報をビューに渡す
