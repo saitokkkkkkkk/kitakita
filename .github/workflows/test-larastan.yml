@@ -28,6 +28,9 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('./apps/kita/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
+            
+      - name: Verify docker-compose installation
+        run: docker-compose --version || echo "docker-compose is not installed"
 
       - name: Install dependencies
         if: steps.cache-composer.outputs.cache-hit != 'true'
