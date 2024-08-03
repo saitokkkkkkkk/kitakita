@@ -39,9 +39,10 @@ jobs:
       - name: Check Docker Compose version
         run: docker compose version || echo "docker compose is not installed"
 
+      #docker-composeじゃなくてdocker composeに変更
       - name: Install dependencies
         if: steps.cache-composer.outputs.cache-hit != 'true'
-        run: docker-compose run -v ${{ github.workspace }}/apps/kita/vendor:/var/www/html/vendor kita composer install --prefer-dist --no-progress
+        run: docker compose run -v ${{ github.workspace }}/apps/kita/vendor:/var/www/html/vendor kita composer install --prefer-dist --no-progress
 
       - name: Run PHP-CS-Fixer
         # CS Fixerにより整形されたコードを検知する
