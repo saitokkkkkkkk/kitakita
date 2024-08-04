@@ -12,7 +12,7 @@
                     <!-- 検索窓 -->
                     {!! Form::open(['route' => 'articles.index', 'method' => 'GET', 'class' => 'd-flex align-items-center py-3']) !!}
                         {!! Form::search('search', request('search'), ['class' => 'form-control form-control-sm border-success rounded-end-0', 'placeholder' => 'Search for something', 'aria-label' => '検索']) !!}
-                        {!! Form::button('検索', ['type' => 'submit', 'class' => 'btn btn-sm btn-success text-nowrap rounded-start-0 px-4 fs-6']) !!}
+                        {!! Form::button('検索', ['type' => 'submit', 'class' => 'btn btn-sm btn-success text-nowrap rounded-start-0 px-4 me-2 fs-6']) !!}
                     {!! Form::close() !!}
                     @auth
                     <!-- 記事作成 -->
