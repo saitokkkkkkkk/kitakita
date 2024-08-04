@@ -10,8 +10,14 @@
                         <div class="text-white fs-2 fw-light">{{ config('app.name', 'Kita') }}</div>
                     </a>
                     <!--検索窓 -->
-                    <!--記事作成(auth)-->
+
                     @auth
+                        <!--記事作成-->
+                        <div>
+                            <a href="{{ route('articles.create') }}" class="btn btn-sm btn-outline-success">
+                                <div class="text-dark"> 記事を作成する</div>
+                            </a>
+                        </div>
                         <!-- 人マーク -->
                         <div class="dropdown">
                             <a class="btn btn-success btn-sm" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

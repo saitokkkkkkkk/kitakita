@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center align-items-center vh-100">
-            <div class="col-md-8 col-lg-6 col-xl-8">
+            <div class="col-md-8">
 
                 <!-- 成功メッセージの表示 -->
                 @if(session('success'))
@@ -11,6 +11,7 @@
                         {!! session('success') !!}
                     </div>
                 @endif
+
                 <div class="card">
                     <div class="card-body">
 
@@ -58,7 +59,7 @@
                         <!-- 保存後の画面（after-saving.blade.php）ではボタン不要 -->
                         @if($formRoute && $formMethod && $submitButtonText)
                             <div class="text-right">
-                                {!! Form::submit($submitButtonText, ['class' => 'btn btn-success btn-rounded']) !!}
+                                {!! Form::submit($submitButtonText, ['class' => 'btn btn-success']) !!}
                             </div>
                             {!! Form::close() !!}
                         @endif
