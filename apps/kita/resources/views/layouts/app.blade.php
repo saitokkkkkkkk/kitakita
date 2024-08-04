@@ -9,13 +9,20 @@
                     <a class="rounded-circle bg-success d-flex justify-content-center align-items-center text-decoration-none" href="{{ route('articles.index') }}" style="width: 100px; height: 50px;">
                         <div class="text-white fs-2 fw-light">{{ config('app.name', 'Kita') }}</div>
                     </a>
-                    <!--検索窓 -->
+                    <!-- 検索窓 -->
 
                     @auth
-                        <!--記事作成-->
-                        <div>
+                        <!-- 576px未満の時の記事作成ボタン -->
+                        <div class="d-sm-none">
                             <a href="{{ route('articles.create') }}" class="btn btn-sm btn-outline-success">
-                                <div class="text-dark"> 記事を作成する</div>
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        </div>
+
+                        <!-- 576px以上の時の記事作成ボタン -->
+                        <div class="d-none d-sm-flex">
+                            <a href="{{ route('articles.create') }}" class="btn btn-sm btn-outline-success">
+                                <div class="text-dark">記事を作成する</div>
                             </a>
                         </div>
                         <!-- 人マーク -->
@@ -39,7 +46,9 @@
             </div>
         </div>
     </nav>
-    <main class="my-5">
+    <!-- ダミー要素 -->
+    <div style="height: 100px;"></div>
+    <main>
         @yield('content')
     </main>
 </div>

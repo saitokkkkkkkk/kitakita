@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center align-items-center vh-100">
+        <div class="row justify-content-center">
             <div class="col-md-8">
 
                 <!-- 成功メッセージの表示 -->
@@ -59,7 +59,7 @@
                         <!-- 保存後の画面（after-saving.blade.php）ではボタン不要 -->
                         @if($formRoute && $formMethod && $submitButtonText)
                             <div class="text-right">
-                                {!! Form::submit($submitButtonText, ['class' => 'btn btn-success']) !!}
+                                {!! Form::submit($submitButtonText, ['class' => 'btn btn-success rounded-pill']) !!}
                             </div>
                             {!! Form::close() !!}
                         @endif
