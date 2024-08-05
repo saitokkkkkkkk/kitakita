@@ -2,7 +2,7 @@
 <body>
 <div class="container">
     <div class="row justify-content-center align-items-center vh-100">
-        <div class="col-sm-6">
+        <div class="col-md-6">
             <div class="text-center">
                 <h3 class="card-title text-start text-muted">
                     Kita会員登録
