@@ -1,7 +1,7 @@
 <?php
 
-use app\Http\Controllers\Article\AfterSavingController;
-use app\Http\Controllers\Article\ArticleCreateController;
+use App\Http\Controllers\Article\AfterSavingController;
+use App\Http\Controllers\Article\ArticleCreateController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;

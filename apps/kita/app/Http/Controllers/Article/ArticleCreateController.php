@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\Article;
+namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;

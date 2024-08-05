@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\Article;
+namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
@@ -14,10 +14,10 @@ class AfterSavingController extends Controller
      * @param int|null $articleId
      * @return \Illuminate\View\View
      */
-    public function show(int $articleId = null)
+    public function show(int $articleId)
     {
         // 記事IDを$articleに入れる
-        $article = $articleId ? Article::findOrFail($articleId) : null;
+        $article = Article::findOrFail($articleId);
 
         // タグを全て取得
         $tags = ArticleTag::all();
