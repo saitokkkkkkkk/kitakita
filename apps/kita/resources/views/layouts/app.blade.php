@@ -49,7 +49,8 @@
         </div>
     </nav>
     <!-- ダミー要素 -->
-    <div style="height: 100px;"></div>
+    <div class="d-sm-none" style="height: 35px;"></div>
+    <div class="d-none d-sm-flex" style="height: 70px;"></div>
     <main>
         @yield('content')
     </main>

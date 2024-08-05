@@ -4,14 +4,14 @@
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-8 col-lg-6">
             <div class="text-center">
-                <h3 class="card-title text-left text-muted">
+                <h3 class="card-title text-start text-muted">
                     Kitaログイン
                 </h3>
                 <hr>
             </div>
             <div class="card">
                 <div class="card-body">
-                    <div class="mb-3 text-right">
+                    <div class="mb-3 text-end">
                         新規会員登録は<a href="{{ route('show.registration') }}">こちら</a>
                     </div>
                     {!! Form::open(['route' => 'login', 'method' => 'POST']) !!}
@@ -25,7 +25,7 @@
                             @enderror
                         </div>
                         <!--パスワード-->
-                        <div class="form-group">
+                        <div class="form-group mb-2">
                             {!! Form::label('password', 'パスワード') !!}
                             {!! Form::password('password', ['class' => 'form-control']) !!}
                             @error('password')
@@ -33,7 +33,7 @@
                             @enderror
                         </div>
                         <!--ログインボタン-->
-                        <div class="text-left">
+                        <div class="text-start">
                             {!! Form::submit('ログイン', ['class' => 'btn btn-success']) !!}
                         </div>
                     {!! Form::close() !!}

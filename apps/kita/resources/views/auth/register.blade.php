@@ -4,7 +4,7 @@
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-8 col-lg-6">
             <div class="text-center">
-                <h3 class="card-title text-left text-muted">
+                <h3 class="card-title text-start text-muted">
                     Kita会員登録
                 </h3>
                 <hr>
@@ -34,7 +34,7 @@
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-2">
                         {!! Form::label('password_confirmation', 'パスワード（確認用）') !!}
                         {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                         @error('password_confirmation')
