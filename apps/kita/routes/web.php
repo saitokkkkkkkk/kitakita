@@ -1,5 +1,6 @@
 <?php
 
+use app\Http\Controllers\Article\ArticleDetailController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
@@ -37,3 +38,7 @@ Route::controller(LoginController::class)->group(function () {
 //記事一覧画面表示
 Route::get('/articles', [ArticleListController::class, 'index'])
     ->name('articles.index');
+
+//記事詳細表示
+Route::get('/articles/{article}', [ArticleDetailController::class, 'show'])
+    ->name('article.details');

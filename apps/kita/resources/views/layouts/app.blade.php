@@ -1,5 +1,5 @@
 @include('partials.head')
-<body>
+<body class="bg-light">
 <div id="app">
     <nav class="fixed-top navbar navbar-expand-md navbar-light bg-white navbar-border">
         <div class="container">
@@ -32,7 +32,8 @@
             </div>
         </div>
     </nav>
-    <main class="mt-10">
+    <div style="height: 100px;"></div>
+    <main>
         @yield('content')
     </main>
 </div>
