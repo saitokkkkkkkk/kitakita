@@ -37,7 +37,7 @@
                                 <div id="search-form" class="d-none d-sm-flex align-items-center py-3">
                                     {!! Form::open(['route' => 'articles.index', 'method' => 'GET', 'class' => 'd-flex align-items-center']) !!}
                                     {!! Form::search('search', request('search'), ['class' => 'form-control form-control-sm rounded-end-0 border-success', 'placeholder' => 'Search for something', 'aria-label' => '検索']) !!}
-                                    {!! Form::button('検索', ['type' => 'submit', 'class' => 'btn btn-sm btn-success text-nowrap rounded-start-0 px-1 me-2 fs-6']) !!}
+                                    {!! Form::button('検索', ['type' => 'submit', 'class' => 'btn btn-sm btn-success text-nowrap rounded-start-0 px-1 me-2']) !!}
                                     {!! Form::close() !!}
                                 </div>
                             </div>
