@@ -29,20 +29,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      # docker-composeが入ってるか確認
-      - name: Verify docker-compose installation
-        run: docker-compose --version || echo "docker-compose is not installed"
-      #dockerのバージョン確かめる
-      - name: Check Docker version
-        run: docker --version
-      #docker compose（docker-composeではない）のバージョン確認
-      - name: Check Docker Compose version
-        run: docker compose version || echo "docker compose is not installed"
-
-      #docker-composeじゃなくてdocker composeに変更
       - name: Install dependencies
         if: steps.cache-composer.outputs.cache-hit != 'true'
-        run: docker compose run -v ${{ github.workspace }}/apps/kita/vendor:/var/www/html/vendor kita composer install --prefer-dist --no-progress
+        run: docker-compose run -v ${{ github.workspace }}/apps/kita/vendor:/var/www/html/vendor kita composer install --prefer-dist --no-progress
 
       - name: Run PHP-CS-Fixer
         # CS Fixerにより整形されたコードを検知する
