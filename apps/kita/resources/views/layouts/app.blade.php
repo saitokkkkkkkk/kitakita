@@ -24,7 +24,7 @@
                                     <div class="dropdown-menu dropdown-menu-end p-2">
                                         {!! Form::open(['route' => 'articles.index', 'method' => 'GET', 'class' => 'd-flex align-items-center']) !!}
                                         {!! Form::search('search', request('search'), ['class' => 'form-control form-control-sm border-success rounded-end-0', 'placeholder' => 'Search for something']) !!}
-                                        {!! Form::button('<i class="fas fa-search"></i>', ['type' => 'submit', 'class' => 'btn btn-sm btn-success rounded-start-0 px-1 me-2 fs-6']) !!}
+                                        {!! Form::button('<i class="fas fa-search"></i>', ['type' => 'submit', 'class' => 'btn btn-sm btn-success rounded-start-0 px-1 me-2']) !!}
                                         {!! Form::close() !!}
                                     </div>
                                 </div>
