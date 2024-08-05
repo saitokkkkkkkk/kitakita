@@ -33,19 +33,12 @@ class ArticleCreateController extends Controller
         return view('article.create', compact('tags'));
     }
 
-    /**
-     * Store a newly created article.
-     *
-     * @param \App\Http\Requests\StoreArticleRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function store(StoreArticleRequest $request)
     {
-        //バリデーション済みのデータもらう
-        $validated = $request->validated();
 
-        //サービスのメソッド呼ぶ
-        $article = $this->articleService->storeArticle($validated);
+        //バリデーション済みデータを引数としてサービスのメソッド呼ぶ
+        $article = $this->articleService->storeArticle($request->all());
 
         //リダイレクト
         return redirect()->route('articles.edit', ['article' => $article->id])

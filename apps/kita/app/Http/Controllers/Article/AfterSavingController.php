@@ -11,10 +11,11 @@ class AfterSavingController extends Controller
     /**
      * Display the post-save view.
      *
-     * @param int|null $articleId
+     * @param int $articleId
      * @return \Illuminate\View\View
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function show(int $articleId)
+    public function show($articleId)
     {
         // 記事IDを$articleに入れる
         $article = Article::findOrFail($articleId);

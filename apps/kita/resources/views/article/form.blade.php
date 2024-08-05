@@ -56,7 +56,7 @@
                             @enderror
                         </div>
 
-                        <!-- 保存後の画面（after-saving.blade.php）ではボタン不要 -->
+                        <!-- 保存後の画面（新規作成後と更新後で共通） -->
                         @if($formRoute && $formMethod && $submitButtonText)
                             <div class="text-right">
                                 {!! Form::submit($submitButtonText, ['class' => 'btn btn-success rounded-pill']) !!}
