@@ -7,7 +7,7 @@
                 <div class="col-md-8 d-flex align-items-center justify-content-between">
                     <!-- アプリ名 -->
                     <a class="rounded-circle bg-success d-flex justify-content-center align-items-center text-decoration-none" href="{{ route('articles.index') }}" style="width: 100px; height: 50px;">
-                        <div class="text-white fs-2 fw-light">{{ config('app.name', 'Kita') }}</div>
+                        <div class="text-white fs-2 fw-light">{{ config('app.name') }}</div>
                     </a>
                     <!-- 右寄せにする要素を入れる -->
                     <div class="d-flex">

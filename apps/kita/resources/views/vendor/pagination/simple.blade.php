@@ -4,7 +4,7 @@
             {{-- 前ページのリンク --}}
             @if ($paginator->onFirstPage())
                 <li class="page-item disabled">
-                    <a class="page-link text-success border-success">{!! __('Previous') !!}</a>
+                    <a class="page-link text-success border-success text-nowrap">{!! __('Previous') !!}</a>
                 </li>
             @else
                 <li class="page-item">
@@ -46,7 +46,7 @@
                 </li>
             @else
                 <li class="page-item disabled">
-                    <a class="page-link text-success border-success">{!! __('Next') !!}</a>
+                    <a class="page-link text-success border-success text-nowrap">{!! __('Next') !!}</a>
                 </li>
             @endif
         </ul>
