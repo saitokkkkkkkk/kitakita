@@ -13,7 +13,7 @@ class ArticleDetailController extends Controller
      * @param int $id
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(int $id)
     {
         $article = Article::with('tags', 'member')->findOrFail($id);
         //ビューではなくコントローラで処理しとく
