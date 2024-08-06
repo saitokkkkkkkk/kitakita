@@ -30,26 +30,24 @@ class ArticleListController extends Controller
         $currentPage = intval($request->query('page', '1'));
 
         // 最大ページ番号を取得
-        $maxPage = Article::orderBy('created_at', 'desc')
-            ->paginate(self::PAGINATION_COUNT)->lastPage();
+        $totalCount = Article::count();
+        $maxPage = ceil($totalCount / self::PAGINATION_COUNT);
 
-        // クエリが最大ページ番号を超えている場合は最大ページのとこにリダイレクト
+        // クエリが最大ページ番号を超えている場合は404エラー
         if ($currentPage > $maxPage) {
-            return redirect()->route('articles.index', ['page' => $maxPage]);
+            abort(404);
         }
 
-        // 作成日時が新しい順にソートし、ページネーション
-        $articles = Article::orderBy('created_at', 'desc')
-            ->paginate(self::PAGINATION_COUNT);
-
-        $articles = Article::where('title', 'like', "%{$searchQuery}%")
-            ->orderBy('created_at', 'desc') // 作成日時で降順にソート
+        // タイトルと内容について部分一致検索
+        $articles = Article::where(function ($query) use ($searchQuery) {
+            $query->where('title', 'like', "%{$searchQuery}%")
+                ->orWhere('contents', 'like', "%{$searchQuery}%");
+        })
+            ->orderBy('created_at', 'desc')
             ->paginate(self::PAGINATION_COUNT)
             ->appends(['search' => $searchQuery]);
 
-        $noArticles = $articles->isEmpty();
-
-        return view('article.index', compact('articles', 'searchQuery', 'noArticles'));
+        return view('article.index', compact('articles', 'searchQuery'));
 
     }
 }
