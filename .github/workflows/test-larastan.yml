@@ -29,6 +29,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
+      # docker-composeが入ってるか確認
       - name: Verify docker-compose installation
         run: docker-compose --version || echo "docker-compose is not installed"
 

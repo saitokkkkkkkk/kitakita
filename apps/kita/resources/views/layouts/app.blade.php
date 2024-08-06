@@ -7,16 +7,13 @@
                 <div class="col-md-8 d-flex align-items-center justify-content-between">
                     <!-- アプリ名 -->
                     <a class="rounded-circle bg-success d-flex justify-content-center align-items-center text-decoration-none" href="{{ route('articles.index') }}" style="width: 100px; height: 50px;">
-                        <div class="text-white fs-2 fw-light">{{ config('app.name', 'Kita') }}</div>
+                        <div class="text-white fs-2 fw-light">{{ config('app.name') }}</div>
                     </a>
-
                     <!-- 右寄せにする要素を入れる -->
                     <div class="d-flex">
-                        <!-- ここに検索窓 -->
-                        @auth
                             <!-- 576px未満の時 -->
                             <div class="d-sm-none">
-                                <!-- ペン -->
+                                <!-- ここにペン -->
                                 <a href="{{ route('articles.create') }}" class="btn btn-sm btn-outline-success me-2">
                                     <i class="fas fa-pencil-alt"></i>
                                 </a>
@@ -25,14 +22,15 @@
 
                             <!-- 576px以上の時 -->
                             <div class="d-none d-sm-flex">
-                                <!-- 記事作成ボタン -->
+                                <!-- ここに記事作成ボタン -->
                                 <a href="{{ route('articles.create') }}" class="btn btn-sm btn-outline-success me-2">
                                     <div class="text-dark">記事を作成する</div>
                                 </a>
                                 <!-- ここに検索フォーム -->
                             </div>
 
-                            <!-- 人 -->
+                        <!-- 人 -->
+                        @auth
                             <div class="dropdown">
                                 <a class="btn btn-success btn-sm" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="far fa-user-circle"></i>
@@ -56,7 +54,8 @@
         </div>
     </nav>
     <!-- ダミー要素 -->
-    <div style="height: 100px;"></div>
+    <div class="d-sm-none" style="height: 80px;"></div>
+    <div class="d-none d-sm-flex" style="height: 110px;"></div>
     <main>
         @yield('content')
     </main>
