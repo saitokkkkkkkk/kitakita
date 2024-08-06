@@ -20,6 +20,7 @@ class ArticleListController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function index(Request $request)
     {
@@ -48,6 +49,5 @@ class ArticleListController extends Controller
             ->appends(['search' => $searchQuery]);
 
         return view('article.index', compact('articles', 'searchQuery'));
-
     }
 }
