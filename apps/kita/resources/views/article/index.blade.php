@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-light d-flex flex-column justify-content-between">
+    <div class="min-vh-100 d-flex flex-column justify-content-between">
         <div>
             <div class="container">
                 <div class="row justify-content-center">
@@ -14,7 +14,7 @@
                                         <small class="text-muted mb-0 d-block">
                                             {{ $article->member->name }}が{{ $article->created_at->format('Y年m月d日') }}に投稿
                                         </small>
-                                        <strong class="article-title text-muted">{{ $article->title }}</strong>
+                                        <strong class="article-title">{{ $article->title }}</strong>
                                         <div>
                                             @foreach ($article->tags as $tag)
                                                 <span class="badge bg-primary badge-rounded">{{ $tag->name }}</span>
@@ -27,7 +27,7 @@
                                     </a>
                                 @endforeach
                             </div>
-                            <div class="d-flex justify-content-center my-4 custom-pagination">
+                            <div class="d-flex justify-content-center custom-pagination mt-4 mb-0">
                                 {{ $articles->links('vendor.pagination.simple') }}
                             </div>
                         </div>

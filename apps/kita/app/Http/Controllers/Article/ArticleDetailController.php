@@ -7,11 +7,16 @@ use App\Models\Article;
 
 class ArticleDetailController extends Controller
 {
-    //記事詳細を表示
+    /**
+     * Display the details of the clicked article.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
     public function show($id)
     {
         $article = Article::with('tags', 'member')->findOrFail($id);
-        //ビューではなくてコントローラで処理
+        //ビューではなくコントローラで処理しとく
         $userId = auth()->id();
         $canEditOrDelete = $userId && $userId === $article->member_id;
 
