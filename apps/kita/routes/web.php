@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Article\ArticleDetailController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
@@ -38,6 +39,6 @@ Route::controller(LoginController::class)->group(function () {
 Route::prefix('articles')->group(function () {
     Route::get('/', [ArticleListController::class, 'index'])
         ->name('articles.index');
-    Route::get('/{article}', [ArticleListController::class, 'show'])
+    Route::get('/{article}', [ArticleDetailController::class, 'show'])
         ->name('articles.details');
 });
