@@ -38,6 +38,6 @@ Route::controller(LoginController::class)->group(function () {
 Route::prefix('articles')->group(function () {
     Route::get('/', [ArticleListController::class, 'index'])
         ->name('articles.index');
-    Route::get('/{article}', [ArticleListController::class, 'create'])
+    Route::get('/{article}', [ArticleListController::class, 'show'])
         ->name('articles.details');
 });
