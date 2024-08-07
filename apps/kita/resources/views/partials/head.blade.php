@@ -1,4 +1,5 @@
 <!doctype html>
+{{-- これはどのビューでも必要なコード --}}
 <html lang="ja">
 <head>
     <meta charset="utf-8">

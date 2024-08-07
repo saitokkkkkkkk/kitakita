@@ -31,7 +31,12 @@
                                     <i class="far fa-user-circle"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                    <!-- ここにプロフィール編集 -->
+                                    <!-- プロフィール編集 -->
+                                    <li>
+                                        <a href="{{route('member.profile.show')}}" class="dropdown-item text-primary py-0 pl-3">
+                                            プロフィール編集
+                                        </a>
+                                    </li>
                                     <!--ログアウト-->
                                     <li>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
