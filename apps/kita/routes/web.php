@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Article\ArticleDetailController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
@@ -25,7 +26,7 @@ Route::controller(RegisterController::class)->group(function () {
         ->name('member.registration');
 });
 
-//会員ログイン、ログアウト
+//会員ログイン
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'showLoginForm')
         ->name('show.login');
@@ -33,9 +34,13 @@ Route::controller(LoginController::class)->group(function () {
         ->name('login');
 });
 
-//記事一覧画面表示
-Route::get('/articles', [ArticleListController::class, 'index'])
-    ->name('articles.index');
+//記事一覧と詳細の表示
+Route::prefix('articles')->group(function () {
+    Route::get('/', [ArticleListController::class, 'index'])
+        ->name('articles.index');
+    Route::get('/{article}', [ArticleDetailController::class, 'show'])
+        ->name('article.details');
+});
 
 //ログイン状態の会員のみがアクセス可能なルート
 Route::middleware(['auth:web'])->group(function () {
