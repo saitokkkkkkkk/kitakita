@@ -40,5 +40,5 @@ Route::prefix('articles')->group(function () {
     Route::get('/', [ArticleListController::class, 'index'])
         ->name('articles.index');
     Route::get('/{article}', [ArticleDetailController::class, 'show'])
-        ->name('articles.details');
+        ->name('article.details');
 });
