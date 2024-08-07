@@ -47,14 +47,13 @@ class ArticleCreateController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-
         //バリデーション済みデータを引数としてサービスのメソッド呼ぶ
         $article = $this->articleService->storeArticle($request->all());
 
         //リダイレクト
         return redirect()->route('articles.edit', ['article' => $article->id])
+            //セッションにサクセスメッセージと入力内容を保持（後で画面で直接使用）
             ->with('success', '<strong>Success!</strong><br>記事投稿が完了しました')
-            //jsを使用して保存後の画面でも入力保持
             ->with('article_data', [
                 'title' => $article->title,
                 'contents' => $article->contents,

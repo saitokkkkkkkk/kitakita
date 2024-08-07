@@ -45,6 +45,8 @@
                             <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+
+                        <!-- ボタン -->
                         <div class="text-end">
                             {!! Form::submit('投稿する', ['class' => 'btn btn-success rounded-pill']) !!}
                         </div>

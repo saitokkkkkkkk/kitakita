@@ -38,7 +38,7 @@ Route::controller(LoginController::class)->group(function () {
 
 /*ログイン状態の会員のみがアクセス可能なルート
 (記事一覧よりも上に書いて、/articles/createにアクセスした時に
-記事詳細（articles/{article}）のルートが反応しないようにする)*/
+記事詳細（articles/{article}）のルートが反応しないように)*/
 Route::middleware(['auth:web'])->group(function () {
     //記事新規作成
     Route::controller(ArticleCreateController::class)->group(function () {
@@ -64,5 +64,3 @@ Route::prefix('articles')->group(function () {
     Route::get('/{article}', [ArticleDetailController::class, 'show'])
         ->name('article.details');
 });
-
-

@@ -11,22 +11,17 @@ class AfterSavingController extends Controller
     /**
      * Display the post-save view.
      *
-     * @param int $articleId
+     * @param \App\Models\Article $article
      * @return \Illuminate\View\View
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function show($articleId)
+    //ルートモデルバインディング使用＋画面でsession()として簡素化
+    public function show(Article $article)
     {
-        // 記事IDを$articleに入れる
-        $article = Article::findOrFail($articleId);
-
         // タグを全て取得
         $tags = ArticleTag::all();
 
-        // セッションからsuccessメッセージを取得
-        $successMessage = session('success');
-
         // 全部渡して画面を返す
-        return view('article.edit.index', compact('article', 'tags', 'successMessage'));
+        return view('article.edit.index', compact('article', 'tags'));
     }
 }

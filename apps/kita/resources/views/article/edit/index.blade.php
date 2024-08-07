@@ -6,14 +6,13 @@
             <div class="col-md-8">
 
                 <!-- 成功メッセージの表示 -->
-                @if($successMessage)
+                @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show mb-4" role="alert" id="success-alert">
-                        {!! $successMessage !!}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        {!! session('success') !!}
                     </div>
                 @endif
 
-                <!-- 保存後のデータを埋め込む -->
+                <!-- 保存後のデータをjsで埋め込む -->
                 @if(session('article_data'))
                     <div id="article-data"
                          data-title="{{ session('article_data')['title'] }}"
@@ -61,6 +60,8 @@
                             <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+
+                        <!-- ボタン -->
                         <div class="text-end">
                             {!! Form::submit('保存する', ['class' => 'btn btn-success rounded-pill']) !!}
                         </div>
