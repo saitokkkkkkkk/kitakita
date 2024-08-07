@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Article\AfterSavingController;
 use App\Http\Controllers\Article\ArticleCreateController;
+use App\Http\Controllers\Article\ArticleDetailController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
@@ -32,13 +33,12 @@ Route::controller(LoginController::class)->group(function () {
         ->name('show.login');
     Route::post('/login', 'login')
         ->name('login');
+
 });
 
-//記事一覧画面表示
-Route::get('/articles', [ArticleListController::class, 'index'])
-    ->name('articles.index');
-
-//ログイン状態の会員のみがアクセス可能なルート
+/*ログイン状態の会員のみがアクセス可能なルート
+(記事一覧よりも上に書いて、/articles/createにアクセスした時に
+記事詳細（articles/{article}）のルートが反応しないようにする)*/
 Route::middleware(['auth:web'])->group(function () {
     //記事新規作成
     Route::controller(ArticleCreateController::class)->group(function () {
@@ -56,3 +56,13 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])
         ->name('logout');
 });
+
+//記事一覧と詳細の表示
+Route::prefix('articles')->group(function () {
+    Route::get('/', [ArticleListController::class, 'index'])
+        ->name('articles.index');
+    Route::get('/{article}', [ArticleDetailController::class, 'show'])
+        ->name('article.details');
+});
+
+
