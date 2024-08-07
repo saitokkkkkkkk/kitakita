@@ -9,12 +9,18 @@ use App\Services\ArticleService;
 
 class ArticleCreateController extends Controller
 {
+    /**
+     * The service instance
+     *
+     * @var \App\Services\ArticleService
+     */
     protected $articleService;
 
     /**
-     * ArticleCreateController constructor.
+     * Create a new controller instance.
      *
      * @param \App\Services\ArticleService $articleService
+     * @return void
      */
     public function __construct(ArticleService $articleService)
     {
@@ -30,10 +36,15 @@ class ArticleCreateController extends Controller
     {
         $tags = ArticleTag::all();
 
-        return view('article.create', compact('tags'));
+        return view('article.form', compact('tags'));
     }
 
-
+    /**
+     * Store a newly created article in the database.
+     *
+     * @param \App\Http\Requests\StoreArticleRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StoreArticleRequest $request)
     {
 
@@ -42,7 +53,12 @@ class ArticleCreateController extends Controller
 
         //リダイレクト
         return redirect()->route('articles.edit', ['article' => $article->id])
-            ->with('success', '<strong>Success!</strong><br>記事投稿が完了しました');
-
+            ->with('success', '<strong>Success!</strong><br>記事投稿が完了しました')
+            //jsを使用して保存後の画面でも入力保持
+            ->with('article_data', [
+                'title' => $article->title,
+                'contents' => $article->contents,
+                'tags' => $article->tags->pluck('id')->toArray(),
+            ]);
     }
 }

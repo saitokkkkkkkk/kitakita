@@ -27,6 +27,6 @@ class AfterSavingController extends Controller
         $successMessage = session('success');
 
         // 全部渡して画面を返す
-        return view('article.after-saving', compact('article', 'tags', 'successMessage'));
+        return view('article.edit.index', compact('article', 'tags', 'successMessage'));
     }
 }

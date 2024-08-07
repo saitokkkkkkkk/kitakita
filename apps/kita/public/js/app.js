@@ -3049,7 +3049,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('input[name="title"]').value = title;
     document.querySelector('textarea[name="contents"]').value = contents;
 
-    //選択されたタグを所得して表示
+    //選択されたタグを取得して表示
     var select = document.querySelector('select[name="tags[]"]');
     if (select) {
       Array.from(select.options).forEach(function (option) {

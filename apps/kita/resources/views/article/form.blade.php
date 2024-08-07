@@ -5,24 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                <!-- 成功メッセージの表示 -->
-                @if(session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
-                        {!! session('success') !!}
-                    </div>
-                @endif
-
                 <div class="card">
                     <div class="card-body">
 
-                        <!-- 保存後の画面（after-saving.blade.php）ではフォームを無効にする -->
-                        @if($formRoute && $formMethod)
-                            {!! Form::open(['route' => $formRoute, 'method' => $formMethod]) !!}
-                            @csrf
-                        @endif
+                        <!-- フォーム開始 -->
+                        {!! Form::open(['route' => 'articles.store', 'method' => 'post']) !!}
 
                         <!-- タイトル -->
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             {!! Form::label('title', 'タイトル', ['for' => 'title']) !!}
                             {!! Form::text('title', old('title'), ['class' => 'form-control custom-border', 'id' => 'title']) !!}
                             @error('title')
@@ -31,7 +21,7 @@
                         </div>
 
                         <!-- タグ -->
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             {!! Form::label('tags', 'タグ', ['for' => 'tags']) !!}
                             {!! Form::select('tags[]', $tags->pluck('name', 'id'), old('tags'), [
                                 'class' => 'form-control custom-border',
@@ -44,7 +34,7 @@
                         </div>
 
                         <!-- 記事内容 -->
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             {!! Form::label('contents', '記事内容', ['for' => 'contents']) !!}
                             {!! Form::textarea('contents', old('contents'), [
                                 'class' => 'form-control custom-border',
@@ -55,14 +45,10 @@
                             <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-
-                        <!-- 保存後の画面（新規作成後と更新後で共通） -->
-                        @if($formRoute && $formMethod && $submitButtonText)
-                            <div class="text-right">
-                                {!! Form::submit($submitButtonText, ['class' => 'btn btn-success rounded-pill']) !!}
-                            </div>
-                            {!! Form::close() !!}
-                        @endif
+                        <div class="text-end">
+                            {!! Form::submit('投稿する', ['class' => 'btn btn-success rounded-pill']) !!}
+                        </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
