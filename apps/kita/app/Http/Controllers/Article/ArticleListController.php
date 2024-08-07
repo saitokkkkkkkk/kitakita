@@ -3,18 +3,27 @@
 namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
+use App\Service\ArticleSearchService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class ArticleListController extends Controller
 {
     /**
-     * Number of articles to show per page.
-     *
-     * @var int
+     * @var ArticleSearchService
      */
-    public const PAGINATION_COUNT = 10;
+    protected $articleSearchService;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param ArticleSearchService $articleSearchService
+     * @return void
+     */
+    // サービスの初期化
+    public function __construct(ArticleSearchService $articleSearchService)
+    {
+        $this->articleSearchService = $articleSearchService;
+    }
 
     /**
      * Display a listing of the articles.
@@ -24,17 +33,11 @@ class ArticleListController extends Controller
      */
     public function index(Request $request)
     {
-        // 検索ワード取得
-        $searchQuery = $request->input('search', '');
+        // 検索ワード取得（デフォルトがなぜか空文字stringではなくnullとして動いていたため変更）
+        $searchQuery = $request->input('search') ?? '';
 
-        // タイトルと内容について部分一致検索
-        $articles = Article::where(function ($query) use ($searchQuery) {
-            $query->where('title', 'like', "%{$searchQuery}%")
-                ->orWhere('contents', 'like', "%{$searchQuery}%");
-        })
-            ->orderBy('created_at', 'desc')
-            ->paginate(self::PAGINATION_COUNT)
-            ->appends(['search' => $searchQuery]);
+        // 検索ワードをサービス層に渡してそこで記事取得
+        $articles = $this->articleSearchService->searchArticles($searchQuery);
 
         return view('article.index', compact('articles', 'searchQuery'));
     }
