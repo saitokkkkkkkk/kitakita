@@ -11,21 +11,26 @@
                     </a>
                     <!-- 右寄せにする要素を入れる -->
                     <div class="d-flex">
-                        <!-- ここに検索窓 -->
-                        @auth
                             <!-- 576px未満の時 -->
                             <div class="d-sm-none">
                                 <!-- ここにペン -->
+                                <a href="{{ route('articles.create') }}" class="btn btn-sm btn-outline-success me-2">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
                                 <!-- ここに虫眼鏡 -->
                             </div>
 
                             <!-- 576px以上の時 -->
                             <div class="d-none d-sm-flex">
                                 <!-- ここに記事作成ボタン -->
+                                <a href="{{ route('articles.create') }}" class="btn btn-sm btn-outline-success me-2">
+                                    <div class="text-dark">記事を作成する</div>
+                                </a>
                                 <!-- ここに検索フォーム -->
                             </div>
 
-                            <!-- 人 -->
+                        <!-- 人 -->
+                        @auth
                             <div class="dropdown">
                                 <a class="btn btn-success btn-sm" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="far fa-user-circle"></i>

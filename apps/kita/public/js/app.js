@@ -3022,6 +3022,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
+// アラートメッセージを5秒で非表示にする
+document.addEventListener('DOMContentLoaded', function () {
+  var successAlert = document.getElementById('success-alert');
+  if (successAlert) {
+    setTimeout(function () {
+      successAlert.classList.add('out'); // アラートにoutクラスを追加
+      setTimeout(function () {
+        successAlert.style.display = 'none'; // 完全に非表示にする
+      }, 15); // トランジションの時間に合わせる
+    }, 5000); // 5秒後に実行
+  }
+});
+
+//保存後の画面で入力内容を保持
+document.addEventListener('DOMContentLoaded', function () {
+  //タイトル、内容、タグを取得
+  var articleData = document.getElementById('article-data');
+  if (articleData) {
+    //各々を変数に入れる
+    var title = articleData.getAttribute('data-title');
+    var contents = articleData.getAttribute('data-contents');
+    var tags = JSON.parse(articleData.getAttribute('data-tags'));
+
+    //タイトルと内容をポピュレート（＝入力フィールドに入力）
+    document.querySelector('input[name="title"]').value = title;
+    document.querySelector('textarea[name="contents"]').value = contents;
+
+    //選択されたタグを取得して表示
+    var select = document.querySelector('select[name="tags[]"]');
+    if (select) {
+      Array.from(select.options).forEach(function (option) {
+        option.selected = tags.includes(parseInt(option.value));
+      });
+    }
+  }
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
