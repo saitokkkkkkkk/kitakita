@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Article;
+namespace App\Service\Article;
 
 use App\Models\Article;
 
