@@ -4,11 +4,28 @@ namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Service\Article\ArticleDeleteService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 
 class ArticleDeleteController extends Controller
 {
+    /**
+     * The article service instance.
+     *
+     * @var ArticleDeleteService
+     */
+    protected $articleDeleteService;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param ArticleDeleteService $articleDeleteService
+     */
+    public function __construct(ArticleDeleteService $articleDeleteService)
+    {
+        $this->articleDeleteService = $articleDeleteService;
+    }
+
     /**
      * Handle the deletion of an article.
      *
@@ -17,20 +34,14 @@ class ArticleDeleteController extends Controller
      */
     public function destroy(Article $article)
     {
-        //ログイン中のユーザのユーザid取得
-        $userId = Auth::id();
-
-        //記事の会員idとログイン中のユーザのidが一致するか確認
-        if ($userId && $userId === $article->member_id) {
-            //論理削除
-            $article->delete();
-
+        //サービスを使って記事削除
+        if ($this->articleDeleteService->deleteArticle($article)) {
             // セッションにメッセージを追加してリダイレクト
             return redirect()->route('articles.index')
                 ->with('success', '<p class="fw-bold fs-3 mb-0">Success!</p>記事を削除しました');
         }
 
-        //削除権限がないときは単にリダイレクト
+        //削除権限がない時は単にリダイレクト
         return redirect()->route('articles.index');
     }
 }
