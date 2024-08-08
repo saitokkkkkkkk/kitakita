@@ -3,44 +3,41 @@
 namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
+use App\Service\Article\ArticleSearchService;
 use Illuminate\Http\Request;
 
 class ArticleListController extends Controller
 {
     /**
-     * Number of articles to show per page.
-     *
-     * @var int
+     * @var ArticleSearchService
      */
-    public const PAGINATION_COUNT = 10;
+    protected $articleSearchService;
 
     /**
-     * Display a listing of the articles with pagination.
+     * Create a new controller instance.
      *
-     * This method handles pagination of articles and redirects to the last page
-     * if the requested page number exceeds the maximum available page number.
+     * @param ArticleSearchService $articleSearchService
+     * @return void
+     */
+    // サービスの初期化
+    public function __construct(ArticleSearchService $articleSearchService)
+    {
+        $this->articleSearchService = $articleSearchService;
+    }
+
+    /**
+     * Display a listing of the articles.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View|\Illuminate\Support\Collection
      */
     public function index(Request $request)
     {
-        // 現在のページ番号をクエリから取得し、整数にキャスト
-        $currentPage = intval($request->query('page', '1'));
+        // 検索ワード取得（デフォルトがなぜか空文字stringではなくnullとして動いていたため変更）
+        $searchQuery = $request->input('search') ?? '';
 
-        // 最大ページ番号を取得
-        $maxPage = Article::orderBy('created_at', 'desc')
-            ->paginate(self::PAGINATION_COUNT)->lastPage();
-
-        // クエリが最大ページ番号を超えている場合は最大ページのとこにリダイレクト
-        if ($currentPage > $maxPage) {
-            return redirect()->route('articles.index', ['page' => $maxPage]);
-        }
-
-        // 作成日時が新しい順にソートし、ページネーション
-        $articles = Article::orderBy('created_at', 'desc')
-            ->paginate(self::PAGINATION_COUNT);
+        // 検索ワードをサービス層に渡してそこで記事取得
+        $articles = $this->articleSearchService->searchArticles($searchQuery);
 
         return view('article.index', compact('articles'));
     }
