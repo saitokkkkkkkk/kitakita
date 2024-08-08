@@ -11,12 +11,12 @@
                             <!-- 削除、編集ボタン（削除、編集機能の時にいじる） -->
                             @if($canEditOrDelete)
                                 <div class="text-end p-1 d-flex justify-content-end gap-2">
-                                    <!-- あとは各々ルートを追加するだけ -->
-                                    <form method="POST">
+                                    <form method="POST" action="{{ route('article.destroy', ['article' => $article->id]) }}" class="delete-form">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger rounded-pill px-3">削除する</button>
                                     </form>
+                                    <!-- 後で記事編集ルートの追加 -->
                                     <a class="btn btn-success rounded-pill px-3">編集する</a>
                                 </div>
                             @endif
