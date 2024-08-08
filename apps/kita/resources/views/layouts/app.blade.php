@@ -41,7 +41,7 @@
                             </div>
                         </div>
 
-                            <!-- 人 -->
+                        <!-- 人 -->
                         @auth
                         <div class="dropdown d-flex align-items-center">
                             <a class="btn btn-sm btn-success" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

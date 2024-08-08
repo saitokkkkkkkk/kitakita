@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
-use App\Service\ArticleSearchService;
 use Illuminate\Http\Request;
 
 class ArticleListController extends Controller
@@ -39,6 +38,6 @@ class ArticleListController extends Controller
         // 検索ワードをサービス層に渡してそこで記事取得
         $articles = $this->articleSearchService->searchArticles($searchQuery);
 
-        return view('article.index', compact('articles', 'searchQuery'));
+        return view('article.index', compact('articles'));
     }
 }
