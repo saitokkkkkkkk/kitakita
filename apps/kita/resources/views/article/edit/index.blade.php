@@ -7,7 +7,7 @@
 
                 <!-- 成功メッセージの表示 -->
                 @if(session('success'))
-                    <div class="alert alert-success alert-dismissible fade show mb-4" role="alert" id="success-alert">
+                    <div id="success-alert" class="alert alert-success" role="alert">
                         {!! session('success') !!}
                     </div>
                 @endif

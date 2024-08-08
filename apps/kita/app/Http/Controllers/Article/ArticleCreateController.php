@@ -53,7 +53,7 @@ class ArticleCreateController extends Controller
         //リダイレクト
         return redirect()->route('articles.edit', ['article' => $article->id])
             //セッションにサクセスメッセージと入力内容を保持（後で画面で直接使用）
-            ->with('success', '<strong>Success!</strong><br>記事投稿が完了しました')
+            ->with('success', '<p class="fw-bold fs-3 mb-0">Success!</p>記事投稿が完了しました')
             ->with('article_data', [
                 'title' => $article->title,
                 'contents' => $article->contents,
