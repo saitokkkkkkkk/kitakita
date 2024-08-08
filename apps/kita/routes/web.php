@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Article\ArticleDeleteController;
 use App\Http\Controllers\Article\ArticleDetailController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
@@ -41,4 +42,14 @@ Route::prefix('articles')->group(function () {
         ->name('articles.index');
     Route::get('/{article}', [ArticleDetailController::class, 'show'])
         ->name('article.details');
+});
+
+//ログインしてないと使えないルート
+Route::middleware(['auth:web'])->group(function () {
+    //記事作成とかプロフィール編集のルートもここに入れる
+
+    //記事削除
+    Route::delete('/articles/{article}', [ArticleDeleteController::class, 'destroy'])
+        ->name('article.destroy');
+
 });
