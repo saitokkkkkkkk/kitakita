@@ -40,4 +40,14 @@ class Article extends Model
     {
         return $this->belongsToMany(ArticleTag::class, 'article_article_tag', 'article_id', 'article_tag_id');
     }
+
+    /**
+     * Get the comments of the article.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(ArticleComment::class);
+    }
 }

@@ -37,6 +37,16 @@ class Member extends Authenticatable
      */
     public function articles()
     {
-        return $this->hasMany(Article::class, 'member_id');
+        return $this->hasMany(ArticleComment::class);
+    }
+
+    /**
+     * Get the comments for the member.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(ArticleComment::class);
     }
 }
