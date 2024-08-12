@@ -11,32 +11,44 @@
                     </a>
                     <!-- 右寄せにする要素を入れる -->
                     <div class="d-flex">
-                        <!-- ここに検索窓 -->
-                        @auth
-                            <!-- 576px未満の時 -->
-                            <div class="d-sm-none">
-                                <!-- ここにペン -->
-                                <!-- ここに虫眼鏡 -->
-                            </div>
 
-                            <!-- 576px以上の時 -->
-                            <div class="d-none d-sm-flex">
-                                <!-- ここに記事作成ボタン -->
-                                <!-- ここに検索フォーム -->
-                            </div>
-
-                            <!-- 人 -->
+                        <!-- 576px未満の時 -->
+                        <div class="d-sm-none">
+                            <!-- ここにペン（authで） -->
+                            <!-- ここに虫眼鏡 -->
                             <div class="dropdown">
-                                <a class="btn btn-success btn-sm" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-sm btn-outline-success d-sm-none me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end p-2">
+                                    {!! Form::open(['route' => 'articles.index', 'method' => 'GET', 'class' => 'd-flex align-items-center']) !!}
+                                    {!! Form::search('search', request('search'), ['class' => 'form-control form-control-sm border-success rounded-end-0', 'placeholder' => 'Search for something']) !!}
+                                    {!! Form::button('<i class="fas fa-search"></i>', ['type' => 'submit', 'class' => 'btn btn-sm btn-success rounded-start-0 px-1 me-2']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 576px以上の時 -->
+                        <div class="d-none d-sm-flex">
+                            <!-- ここに記事作成ボタン（authで） -->
+                            <!-- ここに検索フォーム -->
+                            <div id="search-form" class="d-none d-sm-flex align-items-center py-3">
+                                {!! Form::open(['route' => 'articles.index', 'method' => 'GET', 'class' => 'd-flex align-items-center']) !!}
+                                {!! Form::search('search', request('search'), ['class' => 'form-control form-control-sm rounded-end-0 border-success', 'placeholder' => 'Search for something', 'aria-label' => '検索']) !!}
+                                {!! Form::button('検索', ['type' => 'submit', 'class' => 'btn btn-sm btn-success text-nowrap rounded-start-0 px-1 me-2']) !!}
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+
+                        <!-- 人 -->
+                        @auth
+                            <div class="dropdown d-flex align-items-center">
+                                <a class="btn btn-sm btn-success" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="far fa-user-circle"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                    <!-- プロフィール編集 -->
-                                    <li>
-                                        <a href="{{route('member.profile.show')}}" class="dropdown-item text-primary py-0 pl-3">
-                                            プロフィール編集
-                                        </a>
-                                    </li>
+                                    <!-- ここにプロフィール編集 -->
                                     <!--ログアウト-->
                                     <li>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -46,7 +58,6 @@
                                     </li>
                                 </ul>
                             </div>
-
                         @endauth
                     </div>
                 </div>
