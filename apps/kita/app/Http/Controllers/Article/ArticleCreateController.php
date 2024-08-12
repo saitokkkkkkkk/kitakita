@@ -12,14 +12,14 @@ class ArticleCreateController extends Controller
     /**
      * The service instance
      *
-     * @var \app\Services\Article\ArticleCreateService
+     * @var \App\Services\Article\ArticleCreateService
      */
     protected $articleCreateService;
 
     /**
      * Create a new controller instance.
      *
-     * @param \app\Services\Article\ArticleCreateService $articleCreateService
+     * @param \App\Services\Article\ArticleCreateService $articleCreateService
      * @return void
      */
     public function __construct(ArticleCreateService $articleCreateService)
