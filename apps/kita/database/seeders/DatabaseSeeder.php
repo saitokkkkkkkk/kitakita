@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         // 最後に中間テーブルのシーダー実行
         $this->call(ArticleArticleTagSeeder::class);
-        */
+         */
         // コメントデータの生成
         $this->call(ArticleCommentSeeder::class);
     }

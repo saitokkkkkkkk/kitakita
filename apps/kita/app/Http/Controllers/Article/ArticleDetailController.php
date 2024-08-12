@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
-use Illuminate\Support\Facades\DB;
 
 class ArticleDetailController extends Controller
 {
     /**
      * Display the details of the clicked article.
      *
-     * @param int $id
+     * @param \App\Models\Article $article
      * @return \Illuminate\View\View
      */
     public function show(Article $article)

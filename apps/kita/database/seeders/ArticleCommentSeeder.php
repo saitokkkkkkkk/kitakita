@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Article;
 use App\Models\Member;
-use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class ArticleCommentSeeder extends Seeder

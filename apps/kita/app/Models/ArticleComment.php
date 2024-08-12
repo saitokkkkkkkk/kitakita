@@ -11,7 +11,6 @@ class ArticleComment extends Model
 
     protected $fillable = ['contents', 'member_id', 'article_id'];
 
-
     /**
      * Get the member that owns the comment.
      *
