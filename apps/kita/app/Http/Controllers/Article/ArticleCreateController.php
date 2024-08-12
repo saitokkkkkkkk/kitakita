@@ -5,26 +5,26 @@ namespace App\Http\Controllers\Article;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
 use App\Models\ArticleTag;
-use App\Services\ArticleService;
+use App\Services\Article\ArticleCreateService;
 
 class ArticleCreateController extends Controller
 {
     /**
      * The service instance
      *
-     * @var \App\Services\ArticleService
+     * @var \app\Services\Article\ArticleCreateService
      */
-    protected $articleService;
+    protected $articleCreateService;
 
     /**
      * Create a new controller instance.
      *
-     * @param \App\Services\ArticleService $articleService
+     * @param \app\Services\Article\ArticleCreateService $articleCreateService
      * @return void
      */
-    public function __construct(ArticleService $articleService)
+    public function __construct(ArticleCreateService $articleCreateService)
     {
-        $this->articleService = $articleService;
+        $this->articleCreateService = $articleCreateService;
     }
 
     /**
@@ -34,7 +34,7 @@ class ArticleCreateController extends Controller
      */
     public function show()
     {
-        $tags = ArticleTag::all();
+        $tags = ArticleTag::orderBy('name', 'asc')->get();
 
         return view('article.form', compact('tags'));
     }
@@ -48,16 +48,13 @@ class ArticleCreateController extends Controller
     public function store(StoreArticleRequest $request)
     {
         //バリデーション済みデータを引数としてサービスのメソッド呼ぶ
-        $article = $this->articleService->storeArticle($request->all());
+        $article = $this->articleCreateService->create($request->all());
 
         //リダイレクト
         return redirect()->route('articles.edit', ['article' => $article->id])
-            //セッションにサクセスメッセージと入力内容を保持（後で画面で直接使用）
-            ->with('success', '<p class="fw-bold fs-3 mb-0">Success!</p>記事投稿が完了しました')
-            ->with('article_data', [
-                'title' => $article->title,
-                'contents' => $article->contents,
-                'tags' => $article->tags->pluck('id')->toArray(),
+            //リダイレクト先（編集画面）で利用するからセッションで保持
+            ->with([
+                'success' => '<p class="fw-bold fs-3 mb-0">Success!</p>記事投稿が完了しました',
             ]);
     }
 }

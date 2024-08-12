@@ -28,7 +28,7 @@ class StoreArticleRequest extends FormRequest
             'title' => 'required|string|max:255',
             'tags' => 'required|array',
             'tags.*' => 'exists:article_tags,id', //存在するタグのみを追加可能
-            'contents' => 'required|string',
+            'contents' => 'required|string|max:3000',
         ];
     }
 }

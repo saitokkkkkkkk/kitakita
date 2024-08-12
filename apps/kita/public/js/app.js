@@ -3032,30 +3032,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-//保存後の画面で入力内容を保持
-document.addEventListener('DOMContentLoaded', function () {
-  //タイトル、内容、タグを取得
-  var articleData = document.getElementById('article-data');
-  if (articleData) {
-    //各々を変数に入れる
-    var title = articleData.getAttribute('data-title');
-    var contents = articleData.getAttribute('data-contents');
-    var tags = JSON.parse(articleData.getAttribute('data-tags'));
-
-    //タイトルと内容をポピュレート（＝入力フィールドに入力）
-    document.querySelector('input[name="title"]').value = title;
-    document.querySelector('textarea[name="contents"]').value = contents;
-
-    //選択されたタグを取得して表示
-    var select = document.querySelector('select[name="tags[]"]');
-    if (select) {
-      Array.from(select.options).forEach(function (option) {
-        option.selected = tags.includes(parseInt(option.value));
-      });
-    }
-  }
-});
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

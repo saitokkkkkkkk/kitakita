@@ -6,22 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleTag;
 
-class AfterSavingController extends Controller
+class ArticleEditController extends Controller
 {
     /**
-     * Display the post-save view.
+     * Display the post-save and edit view.
      *
      * @param \App\Models\Article $article
      * @return \Illuminate\View\View
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    //ルートモデルバインディング使用＋画面でsession()として簡素化
+    //
     public function show(Article $article)
     {
         // タグを全て取得
-        $tags = ArticleTag::all();
+        $tags = ArticleTag::orderBy('name', 'asc')->get();
 
         // 全部渡して画面を返す
-        return view('article.edit.index', compact('article', 'tags'));
+        return view('article.edit', compact('article', 'tags'));
     }
 }

@@ -35,6 +35,7 @@ return [
         'contents' => [
             'required' => ':attributeは必須です。',
             'string' => ':attributeは文字列でなければなりません。',
+            'max' => ':attributeは:max字以下でなければなりません',
         ],
     ],
 

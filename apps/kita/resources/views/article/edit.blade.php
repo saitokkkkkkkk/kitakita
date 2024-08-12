@@ -12,24 +12,15 @@
                     </div>
                 @endif
 
-                <!-- 保存後のデータをjsで埋め込む -->
-                @if(session('article_data'))
-                    <div id="article-data"
-                         data-title="{{ session('article_data')['title'] }}"
-                         data-contents="{{ session('article_data')['contents'] }}"
-                         data-tags="{{ json_encode(session('article_data')['tags']) }}">
-                    </div>
-                @endif
-
                 <div class="card">
                     <div class="card-body">
                         <!-- フォーム開始 -->
-                        {!! Form::open(['route' => 'articles.store', 'method' => 'post']) !!}
+                        {!! Form::model($article, ['route' => ['articles.update', $article->id], 'method' => 'put']) !!}
 
                         <!-- タイトル -->
                         <div class="form-group mb-3">
                             {!! Form::label('title', 'タイトル', ['for' => 'title']) !!}
-                            {!! Form::text('title', old('title'), ['class' => 'form-control custom-border', 'id' => 'title']) !!}
+                            {!! Form::text('title', old('title', $article->title), ['class' => 'form-control custom-border', 'id' => 'title']) !!}
                             @error('title')
                             <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -38,7 +29,7 @@
                         <!-- タグ -->
                         <div class="form-group mb-3">
                             {!! Form::label('tags', 'タグ', ['for' => 'tags']) !!}
-                            {!! Form::select('tags[]', $tags->pluck('name', 'id'), old('tags'), [
+                            {!! Form::select('tags[]', $tags->pluck('name', 'id'), old('tags', $article->tags), [
                                 'class' => 'form-control custom-border',
                                 'id' => 'tags',
                                 'multiple' => 'multiple' //複数選択可能に
@@ -51,7 +42,7 @@
                         <!-- 記事内容 -->
                         <div class="form-group mb-3">
                             {!! Form::label('contents', '記事内容', ['for' => 'contents']) !!}
-                            {!! Form::textarea('contents', old('contents'), [
+                            {!! Form::textarea('contents', old('contents', $article->contents), [
                                 'class' => 'form-control custom-border',
                                 'rows' => 10,
                                 'id' => 'contents'
