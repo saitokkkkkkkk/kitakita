@@ -5,10 +5,18 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateMemberProfileRequest;
 use App\Models\Member;
+use App\Services\Member\MemberUpdateService;
 use Illuminate\Support\Facades\Auth;
 
 class MemberProfileController extends Controller
 {
+    protected $memberUpdateService;
+
+    public function __construct(MemberUpdateService $memberUpdateService)
+    {
+        $this->memberUpdateService = $memberUpdateService;
+    }
+
     /**
      * Display the logged-in member's profile.
      *
@@ -30,21 +38,28 @@ class MemberProfileController extends Controller
     /**
      * Update the member's profile.
      *
-     * @param  \App\Http\Requests\UpdateMemberProfileRequest  $request
+     * @param \App\Http\Requests\UpdateMemberProfileRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateMemberProfileRequest $request)
     {
-        //ログイン中のユーザ取得
+        /** @var \App\Models\Member $member */
+        // ログイン中のユーザ取得
         $member = Auth::user();
-        //バリデーション済みデータでupdate
-        $member->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-        ]);
 
-        // 成功メッセージをセッションに追加し、プロフィールページにリダイレクト
-        return redirect()->route('member.profile.show')
-            ->with('success', '<strong>Success!</strong><br>プロフィールが更新されました。');
+        // サービスでプロフィール更新
+        $success = $this->memberUpdateService->updateProfile($member, $request->only(['name', 'email']));
+
+        // メッセージをセッションに追加してリダイレクト
+        if ($success)
+        {
+            //更新成功したとき
+            return redirect()->route('member.profile.show')
+                ->with('success', '<p class="fw-bold fs-3 mb-0">Success!</p>プロフィールが更新されました。');
+        } else {
+            //更新失敗したとき
+            return redirect()->route('member.profile.show')
+                ->with('error', '<p class="fw-bold fs-3 mb-0">Error!</p>プロフィールの更新に失敗しました。');
+        }
     }
 }

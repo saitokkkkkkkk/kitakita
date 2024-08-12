@@ -4,10 +4,18 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+
                 <!-- サクセスメッセージの表示 -->
                 @if(session('success'))
                     <div id="success-alert" class="alert alert-success" role="alert">
                         {!! session('success') !!}
+                    </div>
+                @endif
+
+                <!-- エラーメッセージの表示-->
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {!! session('error') !!}
                     </div>
                 @endif
 
@@ -24,7 +32,7 @@
                             {!! Form::label('name', 'ユーザー名') !!}
                             {!! Form::text('name', old('name', $name), ['class' => 'form-control']) !!}
 
-                            <!-- ユーザー名のエラーメッセージ -->
+                            <!-- ユーザー名のバリデーションエラーメッセージ -->
                             @if ($errors->has('name'))
                                 <div class="text-danger">
                                     {{ $errors->first('name') }}
@@ -36,7 +44,7 @@
                             {!! Form::label('email', 'メールアドレス') !!}
                             {!! Form::email('email', old('email', $email), ['class' => 'form-control']) !!}
 
-                            <!-- メールアドレスのエラーメッセージ -->
+                            <!-- メールアドレスのバリデーションエラーメッセージ -->
                             @if ($errors->has('email'))
                                 <div class="text-danger">
                                     {{ $errors->first('email') }}
