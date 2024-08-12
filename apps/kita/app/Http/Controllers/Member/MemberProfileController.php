@@ -12,6 +12,12 @@ class MemberProfileController extends Controller
 {
     protected $memberUpdateService;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @param \App\Services\Member\MemberUpdateService $memberUpdateService
+     * @return void
+     */
     public function __construct(MemberUpdateService $memberUpdateService)
     {
         $this->memberUpdateService = $memberUpdateService;
