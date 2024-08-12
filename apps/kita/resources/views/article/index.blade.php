@@ -7,6 +7,11 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card p-4 w-100">
+                            @if($articles->isEmpty())
+                                <div class="alert alert-warning" role="alert">
+                                    記事が存在しません
+                                </div>
+                            @else
                             <div class="list-group-flush mb-8 font-color">
                                 @foreach($articles as $article)
                                     <!-- 記事詳細に遷移可能にする -->
@@ -30,6 +35,7 @@
                             <div class="d-flex justify-content-center custom-pagination mt-4 mb-0">
                                 {{ $articles->links('vendor.pagination.simple') }}
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
