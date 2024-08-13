@@ -39,21 +39,23 @@
 
                         <!-- コメント -->
                         <div class="card text-muted mb-4">
-                        <strong class="p-3">コメント</strong>
-                        <hr class="my-0">
-                        <!-- 投稿者と投稿日 -->
-                        @foreach($article->comments as $comment)
-                        <small class="mx-3 mt-3 mb-1 d-block">
-                            {{ $comment->member->name }}が{{ $article->created_at->format('Y年m月d日') }}に投稿
-                        </small>
-                        <!-- コメント内容 -->
-                        <div>
-                            <p class="mb-2 mx-3">{{ $comment->contents }}</p>
-                            @if(!$loop->last)
-                                <hr class="mb-2 mx-3">
-                            @endif
-                        @endforeach
-                        </div>
+                            <strong class="p-3">コメント</strong>
+                            <hr class="my-0">
+                            <!-- 投稿者と投稿日 -->
+                            @forelse($article->comments as $comment)
+                                <small class="mx-3 mt-3 mb-1 d-block">
+                                    {{ $comment->member->name }}が{{ $comment->created_at->format('Y年m月d日') }}に投稿
+                                </small>
+                                <!-- コメント内容 -->
+                                <div>
+                                    <p class="mb-2 mx-3">{{ $comment->contents }}</p>
+                                    @if(!$loop->last)
+                                        <hr class="mb-2 mx-3">
+                                    @endif
+                                </div>
+                            @empty
+                                <p class="p-3">コメントはありません</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
