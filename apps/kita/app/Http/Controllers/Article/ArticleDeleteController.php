@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
-use App\Service\Article\ArticleDeleteService;
+use App\Services\Article\ArticleDeleteService;
 use Illuminate\Http\RedirectResponse;
 
 class ArticleDeleteController extends Controller

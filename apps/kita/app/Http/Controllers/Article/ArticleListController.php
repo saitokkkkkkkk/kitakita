@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
-use App\Service\Article\ArticleSearchService;
+use App\Services\Article\ArticleSearchService;
 use Illuminate\Http\Request;
 
 class ArticleListController extends Controller
