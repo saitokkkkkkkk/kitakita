@@ -10,7 +10,6 @@ class MemberUpdateService
     /**
      * Update the member's profile.
      *
-     * @param Member $member
      * @param array $data
      * @return bool
      */
