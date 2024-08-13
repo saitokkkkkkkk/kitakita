@@ -49,12 +49,9 @@ class MemberProfileController extends Controller
      */
     public function update(UpdateMemberProfileRequest $request)
     {
-        /** @var \App\Models\Member $member */
-        // ログイン中のユーザ取得
-        $member = Auth::user();
 
         // サービスでプロフィール更新
-        $success = $this->memberUpdateService->updateProfile($member, $request->only(['name', 'email']));
+        $success = $this->memberUpdateService->updateProfile($request->only(['name', 'email']));
 
         // メッセージをセッションに追加してリダイレクト
         if ($success)
