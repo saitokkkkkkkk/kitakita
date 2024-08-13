@@ -3022,6 +3022,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
+// アラートメッセージを5秒で非表示にする
+document.addEventListener('DOMContentLoaded', function () {
+  var successAlert = document.getElementById('success-alert');
+  if (successAlert) {
+    setTimeout(function () {
+      successAlert.style.display = 'none'; // 非表示にする
+    }, 5000); // 5秒後に実行
+  }
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
