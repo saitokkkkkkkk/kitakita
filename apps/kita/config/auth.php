@@ -65,10 +65,7 @@ return [
             'model' => App\Models\Member::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        //adminを後で追加。
     ],
 
     /*

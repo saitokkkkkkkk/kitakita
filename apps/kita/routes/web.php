@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Article\ArticleCreateController;
 use App\Http\Controllers\Article\ArticleDetailController;
+use App\Http\Controllers\Article\ArticleEditController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
@@ -32,6 +34,47 @@ Route::controller(LoginController::class)->group(function () {
         ->name('show.login');
     Route::post('/login', 'login')
         ->name('login');
+
+});
+
+/*ログイン状態の会員のみがアクセス可能なルート
+(記事一覧よりも上に書いて、/articles/createにアクセスした時に
+記事詳細（articles/{article}）のルートが反応しないように)*/
+Route::middleware(['auth:web'])->group(function () {
+
+    Route::prefix('articles')->group(function () {
+        //新規記事作成
+        Route::controller(ArticleCreateController::class)->group(function () {
+            Route::get('/create', 'show')
+                ->name('articles.create');
+            Route::post('/articles', 'store')
+                ->name('articles.store');
+        });
+
+        //記事更新
+        Route::controller(ArticleEditController::class)->group(function () {
+            Route::get('/{article}/edit', 'show')
+                ->name('articles.edit');
+            Route::put('/{article}', 'update')
+                ->name('articles.update');
+        });
+
+    });
+
+    //ログアウト
+    Route::post('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
+
+    //プロフィール編集
+    Route::prefix('profile')->group(function () {
+        Route::controller(MemberProfileController::class)->group(function () {
+            Route::get('/', 'show')
+                ->name('member.profile.show');
+            Route::put('/', 'update')
+                ->name('member.profile.update');
+        });
+    });
+
 });
 
 //記事一覧と詳細の表示
@@ -40,19 +83,4 @@ Route::prefix('articles')->group(function () {
         ->name('articles.index');
     Route::get('/{article}', [ArticleDetailController::class, 'show'])
         ->name('article.details');
-});
-
-//ログイン状態の会員のみがアクセス可能なルート
-Route::middleware(['auth:web'])->group(function () {
-    //プロフィール編集
-    Route::controller(MemberProfileController::class)->group(function () {
-        Route::get('/profile', 'show')
-            ->name('member.profile.show');
-        Route::put('/profile', 'update')
-            ->name('member.profile.update');
-    });
-
-    //ログアウト
-    Route::post('/logout', [LoginController::class, 'logout'])
-        ->name('logout');
 });
