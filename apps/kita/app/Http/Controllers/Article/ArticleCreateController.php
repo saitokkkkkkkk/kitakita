@@ -16,16 +16,16 @@ class ArticleCreateController extends Controller
      */
     protected $articleCreateService;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @param \App\Services\Article\ArticleCreateService $articleCreateService
-     * @return void
-     */
-    public function __construct(ArticleCreateService $articleCreateService)
-    {
-        $this->articleCreateService = $articleCreateService;
-    }
+        /**
+         * Create a new controller instance.
+         *
+         * @param \App\Services\Article\ArticleCreateService $articleCreateService
+         * @return void
+         */
+        public function __construct(ArticleCreateService $articleCreateService)
+        {
+            $this->articleCreateService = $articleCreateService;
+        }
 
     /**
      * Display the form for creating a new article.

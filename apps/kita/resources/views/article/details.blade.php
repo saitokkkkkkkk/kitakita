@@ -17,7 +17,7 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger rounded-pill px-3">削除する</button>
                                     </form>
-                                    <a class="btn btn-success rounded-pill px-3">編集する</a>
+                                    <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="btn btn-success rounded-pill px-3">編集する</a>
                                 </div>
                             @endif
 
