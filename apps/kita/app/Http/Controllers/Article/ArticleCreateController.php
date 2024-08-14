@@ -54,7 +54,7 @@ class ArticleCreateController extends Controller
         return redirect()->route('articles.edit', ['article' => $article->id])
             //リダイレクト先（編集画面）で利用するからセッションで保持
             ->with([
-                'success' => '<p class="fw-bold fs-3 mb-0">Success!</p>記事投稿が完了しました',
+                'success' => '記事投稿が完了しました',
             ]);
     }
 }

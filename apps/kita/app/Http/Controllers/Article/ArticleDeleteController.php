@@ -38,7 +38,7 @@ class ArticleDeleteController extends Controller
         if ($this->articleDeleteService->deleteArticle($article)) {
             // セッションにメッセージを追加してリダイレクト
             return redirect()->route('articles.index')
-                ->with('success', '<p class="fw-bold fs-3 mb-0">Success!</p>記事を削除しました');
+                ->with('success', '記事を削除しました');
         }
 
         //削除権限がない時は単にリダイレクト

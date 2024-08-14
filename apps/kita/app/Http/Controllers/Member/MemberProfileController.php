@@ -58,11 +58,11 @@ class MemberProfileController extends Controller
         {
             //更新成功したとき
             return redirect()->route('member.profile.show')
-                ->with('success', '<p class="fw-bold fs-3 mb-0">Success!</p>プロフィールが更新されました。');
+                ->with('success', 'プロフィールが更新されました。');
         } else {
             //更新失敗したとき
             return redirect()->route('member.profile.show')
-                ->with('error', '<p class="fw-bold fs-3 mb-0">Error!</p>プロフィールの更新に失敗しました。');
+                ->with('error', 'プロフィールの更新に失敗しました。');
         }
     }
 }
