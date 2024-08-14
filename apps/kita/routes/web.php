@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Article\ArticleCreateController;
+use App\Http\Controllers\Article\ArticleDeleteController;
 use App\Http\Controllers\Article\ArticleDetailController;
 use App\Http\Controllers\Article\ArticleEditController;
 use App\Http\Controllers\Article\ArticleListController;
@@ -43,7 +44,7 @@ Route::controller(LoginController::class)->group(function () {
 Route::middleware(['auth:web'])->group(function () {
 
     Route::prefix('articles')->group(function () {
-        //新規記事作成
+        //記事新規作成
         Route::controller(ArticleCreateController::class)->group(function () {
             Route::get('/create', 'show')
                 ->name('articles.create');
@@ -59,6 +60,9 @@ Route::middleware(['auth:web'])->group(function () {
                 ->name('articles.update');
         });
 
+        //記事削除
+        Route::delete('/{article}', [ArticleDeleteController::class, 'destroy'])
+            ->name('article.destroy');
     });
 
     //ログアウト
@@ -74,7 +78,6 @@ Route::middleware(['auth:web'])->group(function () {
                 ->name('member.profile.update');
         });
     });
-
 });
 
 //記事一覧と詳細の表示

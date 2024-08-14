@@ -28,18 +28,23 @@ class ArticleEditController extends Controller
     }
 
     /**
-     * Display the post-save edit view.
+     * Display the edit view for the article.
      *
-     * @param \App\Models\Article $article
-     * @return \Illuminate\View\View
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     * @param Article $article
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function show(Article $article)
     {
+
+        // 編集画面の閲覧権限ない時は一覧に遷移
+        if (! $this->articleUpdateService->canViewEditScreen($article)) {
+            return redirect()->route('articles.index');
+        }
+
         // タグを全て取得
         $tags = ArticleTag::orderBy('name', 'asc')->get();
 
-        // 全部渡して画面を返す
+        // 編集画面の閲覧権限ある時
         return view('article.edit', compact('article', 'tags'));
     }
 
@@ -55,7 +60,12 @@ class ArticleEditController extends Controller
         // バリデーション済みデータと記事を引数としてサービスを呼ぶ
         $article = $this->articleUpdateService->update($article, $request);
 
-        // 成功メッセージとリダイレクト先を指定
+        // 更新権限がない場合は一覧にリダイレクト
+        if (is_null($article)) {
+            return redirect()->route('articles.index');
+        }
+
+        // 更新権限がある時
         return redirect()->route('articles.edit', $article->id)
             ->with([
                 'success' => '<p class="fw-bold fs-3 mb-0">Success!</p>記事編集が完了しました',
