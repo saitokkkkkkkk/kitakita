@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /** 最初にタグデータ作成
+        // 最初にタグデータ作成
         $this->call(ArticleTagSeeder::class);
 
         // メンバーも先に作成
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         // 最後に中間テーブルのシーダー実行
         $this->call(ArticleArticleTagSeeder::class);
-         */
+
         // コメントデータの生成
         $this->call(ArticleCommentSeeder::class);
     }
