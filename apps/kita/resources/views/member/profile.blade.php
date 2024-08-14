@@ -5,19 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                <!-- サクセスメッセージの表示 -->
-                @if(session('success'))
-                    <div id="success-alert" class="alert alert-success" role="alert">
-                        {!! session('success') !!}
-                    </div>
-                @endif
-
-                <!-- エラーメッセージの表示-->
-                @if (session('error'))
-                    <div class="alert alert-danger">
-                        {!! session('error') !!}
-                    </div>
-                @endif
+                @include('vendor.alerts.alerts')
 
                 <div class="card">
                     <div>

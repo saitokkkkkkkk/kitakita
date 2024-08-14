@@ -7,6 +7,9 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card p-4 w-100">
+
+                            @include('vendor.alerts.alerts')
+
                             @if($articles->isEmpty())
                                 <div class="alert alert-warning" role="alert">
                                     記事が存在しません
