@@ -37,7 +37,7 @@ class Member extends Authenticatable
      */
     public function articles()
     {
-        return $this->hasMany(ArticleComment::class);
+        return $this->hasMany(Article::class);
     }
 
     /**
