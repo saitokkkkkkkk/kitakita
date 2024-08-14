@@ -7,7 +7,6 @@ use App\Models\ArticleComment;
 use App\Models\Member;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class ArticleCommentSeeder extends Seeder
 {
@@ -18,20 +17,23 @@ class ArticleCommentSeeder extends Seeder
      */
     public function run()
     {
-        //インスタンス化とデータ取得
+        // インスタンス化とデータ取得
         $faker = Faker::create('ja_JP');
         $members = Member::all();
         $articles = Article::all();
 
-        //データ生成
+        // コメントデータの生成
         foreach ($articles as $article) {
-            $comment = new ArticleComment();
-            $comment->contents = $faker->realText(200);
-            $comment->member_id = $members->random()->id;
-            $comment->article_id = $article->id;
-            $comment->save(); // ここでcreated_atとupdated_atが自動設定
+            // 1記事に対してランダムな数のコメントを生成（1~5）
+            $numberOfComments = rand(1, 5);
+
+            for ($i = 0; $i < $numberOfComments; $i++) {
+                $comment = new ArticleComment();
+                $comment->contents = $faker->realText(200);
+                $comment->member_id = $members->random()->id;
+                $comment->article_id = $article->id;
+                $comment->save(); // ここでcreated_atとupdated_atが自動設定
+            }
         }
-
-
     }
 }
