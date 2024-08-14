@@ -53,7 +53,7 @@ class ArticleEditController extends Controller
     public function update(Article $article, StoreArticleRequest $request)
     {
         // バリデーション済みデータと記事を引数としてサービスを呼ぶ
-        $article = $this->articleUpdateService->update($article, $request->validated());
+        $article = $this->articleUpdateService->update($article, $request);
 
         // 成功メッセージとリダイレクト先を指定
         return redirect()->route('articles.edit', $article->id)

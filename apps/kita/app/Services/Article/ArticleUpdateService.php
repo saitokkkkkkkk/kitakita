@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\DB;
 class ArticleUpdateService
 {
     /**
-     * Update the article's data.
+     * Update the article.
      *
      * @param Article $article
-     * @param array $data
-     * @return \App\Models\Article
+     * @param $data
+     * @return mixed
      */
-    public function update(Article $article, array $data)
+    public function update(Article $article, $data)
     {
         return DB::transaction(function () use ($article, $data) {
 
