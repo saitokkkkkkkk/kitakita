@@ -28,9 +28,9 @@
                             </div>
                             <!-- ここにペン（authで） -->
                             @auth
-                            <a href="{{ route('articles.create') }}" class="btn btn-sm btn-outline-success me-2">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
+                                <a href="{{ route('articles.create') }}" class="btn btn-sm btn-outline-success me-2">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
                             @endauth
                         </div>
 
@@ -45,9 +45,9 @@
                             </div>
                             <!-- 記事作成 -->
                             @auth
-                            <a href="{{ route('articles.create') }}" class="d-flex align-items-center btn btn-sm btn-outline-success me-2 text-dark text-nowrap">
-                                記事を作成する
-                            </a>
+                                <a href="{{ route('articles.create') }}" class="d-flex align-items-center btn btn-sm btn-outline-success me-2 text-dark text-nowrap">
+                                    記事を作成する
+                                </a>
                             @endauth
                         </div>
 
@@ -59,6 +59,11 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                     <!-- ここにプロフィール編集 -->
+                                    <li>
+                                        <a href="{{route('member.profile.show')}}" class="dropdown-item text-primary py-0 pl-3">
+                                            プロフィール編集
+                                        </a>
+                                    </li>
                                     <!--ログアウト-->
                                     <li>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">

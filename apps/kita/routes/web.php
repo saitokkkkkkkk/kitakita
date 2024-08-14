@@ -7,6 +7,7 @@ use App\Http\Controllers\Article\ArticleEditController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
+use App\Http\Controllers\Member\MemberProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,33 +44,40 @@ Route::controller(LoginController::class)->group(function () {
 Route::middleware(['auth:web'])->group(function () {
 
     Route::prefix('articles')->group(function () {
+        //記事新規作成
         Route::controller(ArticleCreateController::class)->group(function () {
-            //記事新規作成の表示
             Route::get('/create', 'show')
                 ->name('articles.create');
-            //新規記事の保存
             Route::post('/articles', 'store')
                 ->name('articles.store');
         });
 
+        //記事更新
         Route::controller(ArticleEditController::class)->group(function () {
-            //記事編集画面の表示
             Route::get('/{article}/edit', 'show')
                 ->name('articles.edit');
-            //記事更新
             Route::put('/{article}', 'update')
                 ->name('articles.update');
         });
 
+        //記事削除
+        Route::delete('/{article}', [ArticleDeleteController::class, 'destroy'])
+            ->name('article.destroy');
     });
 
     //ログアウト
     Route::post('/logout', [LoginController::class, 'logout'])
         ->name('logout');
 
-    //記事削除
-    Route::delete('/articles/{article}', [ArticleDeleteController::class, 'destroy'])
-        ->name('article.destroy');
+    //プロフィール編集
+    Route::prefix('profile')->group(function () {
+        Route::controller(MemberProfileController::class)->group(function () {
+            Route::get('/', 'show')
+                ->name('member.profile.show');
+            Route::put('/', 'update')
+                ->name('member.profile.update');
+        });
+    });
 });
 
 //記事一覧と詳細の表示

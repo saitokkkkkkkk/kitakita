@@ -10,12 +10,12 @@ class ArticleDetailController extends Controller
     /**
      * Display the details of the clicked article.
      *
-     * @param int $id
+     * @param \App\Models\Article  $article
      * @return \Illuminate\View\View
      */
-    public function show(int $id)
+    public function show(Article $article)
     {
-        $article = Article::with('tags', 'member')->findOrFail($id);
+        $article->load('tags', 'member');
         //ビューではなくコントローラで処理しとく
         $userId = auth()->id();
         $canEditOrDelete = $userId && $userId === $article->member_id;
