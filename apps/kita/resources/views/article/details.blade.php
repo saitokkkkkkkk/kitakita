@@ -59,9 +59,9 @@
                             @empty
                                 <p class="p-3">コメントはありません</p>
                             @endforelse
-                            <hr class="my-3">
                             <!-- コメント投稿 -->
                             @auth
+                                <hr class="my-3">
                                 {!! Form::open(['route' => 'articles.comment.store', 'method' => 'post']) !!}
                                 <!-- 隠しフォームで記事idを送信 -->
                                 {!! Form::hidden('article_id', $article->id) !!}
