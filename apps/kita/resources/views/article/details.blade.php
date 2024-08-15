@@ -56,6 +56,31 @@
                             @empty
                                 <p class="p-3">コメントはありません</p>
                             @endforelse
+                            <hr class="my-3">
+                            <!-- コメント投稿 -->
+                            @auth
+                                {!! Form::open(['route' => 'articles.comment.store', 'method' => 'post']) !!}
+                                <div class="container">
+                                    <div class="d-flex align-items-end flex-column flex-sm-row mb-3 mx-2">
+                                        <div class="flex-grow-1 me-sm-3">
+                                            {!! Form::textarea('contents', old('contents'), [
+                                                'class' => 'form-control border-success rounded',
+                                                'rows' => 6,
+                                                'id' => 'contents',
+                                                'placeholder' => 'コメントを入力'
+                                            ]) !!}
+                                            @error('contents')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <!-- コメント投稿ボタン -->
+                                        <div>
+                                            {!! Form::submit('コメント', ['class' => 'btn border-success text-success rounded-pill mt-3 px-3']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                                {!! Form::close() !!}
+                            @endauth
                         </div>
                     </div>
                 </div>
