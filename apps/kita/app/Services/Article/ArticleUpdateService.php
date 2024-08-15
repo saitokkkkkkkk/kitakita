@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\DB;
 class ArticleUpdateService
 {
     /**
-     * Check if the authenticated user has permission to edit the article.
+     * Check if the authenticated user has permission.
      *
      * @param Article $article
      * @return bool
      */
-    public function canViewEditScreen(Article $article): bool
+    public function hasEditPermission(Article $article): bool
     {
-        //url直接打っても編集画面見れないように
+        // 権限の確認
         $userId = Auth::id();
 
         return $userId === $article->member_id;
@@ -27,32 +27,31 @@ class ArticleUpdateService
      *
      * @param Article $article
      * @param $data
-     * @return mixed
+     * @return bool
      */
-    public function update(Article $article, $data)
+    public function update(Article $article, $data): bool
     {
-        // ログイン中のユーザのユーザIDを取得
-        $userId = Auth::id();
 
-        // 編集権限がある時は更新
-        if ($userId && $userId === $article->member_id)
+        // 編集権限がない時はfalse返却
+        if (! $this->hasEditPermission($article))
         {
-            return DB::transaction(function () use ($article, $data) {
-
-                // 記事テーブルの更新
-                $article->update([
-                    'title' => $data['title'],
-                    'contents' => $data['contents'],
-                ]);
-
-                // 中間テーブルの更新
-                $article->tags()->sync($data['tags']);
-
-                return $article;
-            });
+            return false;
         }
 
-        // 編集権限がない時
-        return null;
+        // 編集権限ある時は更新してtrue返却
+        DB::transaction(function () use ($article, $data) {
+
+            // 記事テーブルの更新
+            $article->update([
+                'title' => $data['title'],
+                'contents' => $data['contents'],
+            ]);
+
+            // 中間テーブルの更新
+            $article->tags()->sync($data['tags']);
+
+        });
+
+        return true;
     }
 }

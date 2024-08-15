@@ -37,7 +37,7 @@ class ArticleEditController extends Controller
     {
 
         // 編集画面の閲覧権限ない時は一覧に遷移
-        if (! $this->articleUpdateService->canViewEditScreen($article)) {
+        if (! $this->articleUpdateService->hasEditPermission($article)) {
             return redirect()->route('articles.index');
         }
 
@@ -49,26 +49,23 @@ class ArticleEditController extends Controller
     }
 
     /**
-     * Update the article's data.
+     * Update the article.
      *
+     * @param ArticleUpdateService $articleUpdateService
      * @param Article $article
      * @param StoreArticleRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Article $article, StoreArticleRequest $request)
+    public function update(ArticleUpdateService $articleUpdateService, Article $article, StoreArticleRequest $request)
     {
-        // バリデーション済みデータと記事を引数としてサービスを呼ぶ
-        $article = $this->articleUpdateService->update($article, $request);
+        // サービスがtrueを返却した時
+        if ($articleUpdateService->update($article, $request)) {
+            return redirect()->route('articles.edit', $article)
+                ->with('success', '<p class="fw-bold fs-3 mb-0">Success!</p>記事編集が完了しました');
 
-        // 更新権限がない場合は一覧にリダイレクト
-        if (is_null($article)) {
-            return redirect()->route('articles.index');
+        // サービスがfalseを返却した時
+        } else {
+            return redirect()->route('article.index');
         }
-
-        // 更新権限がある時
-        return redirect()->route('articles.edit', $article->id)
-            ->with([
-                'success' => '<p class="fw-bold fs-3 mb-0">Success!</p>記事編集が完了しました',
-            ]);
     }
 }
