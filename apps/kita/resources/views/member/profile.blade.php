@@ -52,7 +52,13 @@
                             @endif
                         </div>
 
-                        <!-- ここに後でパスワード更新 -->
+                        <!-- パスワード変更ボタン -->
+                        
+                        <div class="text-start mb-4 mt-5">
+                            <button type="button" class="btn btn-success btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                                パスワードを変更する
+                            </button>
+                        </div>
 
                         <div class="text-end mb-4 mt-5">
                             {!! Form::submit('更新する', ['class' => 'btn rounded-pill btn-success']) !!}
