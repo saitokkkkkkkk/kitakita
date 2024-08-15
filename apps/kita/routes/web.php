@@ -1,6 +1,6 @@
 <?php
 
-use app\Http\Controllers\Article\ArticleCommentController;
+use App\Http\Controllers\Article\ArticleCommentController;
 use App\Http\Controllers\Article\ArticleCreateController;
 use App\Http\Controllers\Article\ArticleDeleteController;
 use App\Http\Controllers\Article\ArticleDetailController;

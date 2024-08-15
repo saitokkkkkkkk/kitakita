@@ -6,6 +6,9 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
+
+                        @include('vendor.alerts.alerts')
+
                         <div class="card p-4 text-muted mb-4">
 
                             <!-- 削除、編集ボタン（削除、編集機能の時にいじる） -->
@@ -60,6 +63,8 @@
                             <!-- コメント投稿 -->
                             @auth
                                 {!! Form::open(['route' => 'articles.comment.store', 'method' => 'post']) !!}
+                                <!-- 隠しフォームで記事idを送信 -->
+                                {!! Form::hidden('article_id', $article->id) !!}
                                 <div class="container">
                                     <div class="d-flex align-items-end flex-column flex-sm-row mb-3 mx-2">
                                         <div class="flex-grow-1 me-sm-3">
@@ -67,7 +72,8 @@
                                                 'class' => 'form-control border-success rounded',
                                                 'rows' => 6,
                                                 'id' => 'contents',
-                                                'placeholder' => 'コメントを入力'
+                                                'placeholder' => 'コメントを入力',
+                                                'required' => true // リロードしてスクロールしなくて良いように画面で処理
                                             ]) !!}
                                             @error('contents')
                                             <small class="form-text text-danger">{{ $message }}</small>
