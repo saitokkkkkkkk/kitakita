@@ -1,5 +1,5 @@
 @include('partials.head')
-<body>
+<body style="background-color: #e9ecef;">
 <div class="container">
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-6">

@@ -1,5 +1,5 @@
 @include('partials.head')
-<body class="bg-light">
+<body style="background-color: #e9ecef;">
 <div id="app">
     <nav class="fixed-top navbar border-bottom border-secondary-subtle bg-white">
         <div class="container">
