@@ -17,7 +17,7 @@
                     {!! Form::open(['route' => 'login', 'method' => 'POST']) !!}
                         @csrf
                         <!--メアド-->
-                        <div class="form-group">
+                        <div class="form-group mb-4">
                             {!! Form::label('email', 'メールアドレス') !!}
                             {!! Form::text('email', old('email'), ['class' => 'form-control']) !!}
                             @error('email')
@@ -25,7 +25,7 @@
                             @enderror
                         </div>
                         <!--パスワード-->
-                        <div class="form-group mb-2">
+                        <div class="form-group mb-4">
                             {!! Form::label('password', 'パスワード') !!}
                             {!! Form::password('password', ['class' => 'form-control']) !!}
                             @error('password')
