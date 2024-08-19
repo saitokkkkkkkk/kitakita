@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var successAlert = document.getElementById('success-alert');
     if (successAlert) {
         setTimeout(function () {
-            successAlert.style.display ='none'; // 非表示にする
+            successAlert.style.display = 'none'; // 非表示にする
         }, 5000); // 5秒後に実行
     }
 
