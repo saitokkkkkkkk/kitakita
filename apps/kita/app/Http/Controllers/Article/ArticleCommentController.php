@@ -8,13 +8,27 @@ use App\Services\Article\ArticleCommentService;
 
 class ArticleCommentController extends Controller
 {
+    /**
+     * @var ArticleCommentService
+     */
     protected $articleCommentService;
 
+    /**
+     * ArticleCommentController constructor.
+     *
+     * @param ArticleCommentService $articleCommentService
+     */
     public function __construct(ArticleCommentService $articleCommentService)
     {
         $this->articleCommentService = $articleCommentService;
     }
 
+    /**
+     * Add comments.
+     *
+     * @param StoreCommentRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addComment(StoreCommentRequest $request)
     {
         // サービスを使ってコメント保存

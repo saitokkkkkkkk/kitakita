@@ -74,7 +74,6 @@
                                                 'rows' => 6,
                                                 'id' => 'contents',
                                                 'placeholder' => 'コメントを入力',
-                                                'required' => true // リロードしてスクロールしなくて良いように画面で処理
                                             ]) !!}
                                             @error('contents')
                                             <small class="form-text text-danger">{{ $message }}</small>
