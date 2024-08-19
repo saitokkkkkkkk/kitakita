@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-//記事更新でも多分使う
 class StoreArticleRequest extends FormRequest
 {
     /**
