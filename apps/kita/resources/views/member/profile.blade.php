@@ -5,24 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                <!-- サクセスメッセージの表示 -->
-                @if(session('success'))
-                    <div id="success-alert" class="alert alert-success" role="alert">
-                        {!! session('success') !!}
-                    </div>
-                @endif
-
-                <!-- エラーメッセージの表示-->
-                @if (session('error'))
-                    <div class="alert alert-danger">
-                        {!! session('error') !!}
-                    </div>
-                @endif
+                @include('vendor.alerts.success')
+                @include('vendor.alerts.error')
 
                 <div class="card">
                     <div>
                         <h2 class="mb-0 mt-3 ms-4 text-secondary">プロフィール編集</h2>
-                        <div class="border-bottom border-dark border-secondary mt-3 mx-3"></div>
+                        <div class="border-bottom border-dark border-secondary my-3 mx-3"></div>
                     </div>
 
                     <div class="card-body">
@@ -30,7 +19,7 @@
 
                         <div class="form-group">
                             {!! Form::label('name', 'ユーザー名') !!}
-                            {!! Form::text('name', old('name', $name), ['class' => 'form-control']) !!}
+                            {!! Form::text('name', old('name', $name), ['class' => 'form-control mb-3']) !!}
 
                             <!-- ユーザー名のバリデーションエラーメッセージ -->
                             @if ($errors->has('name'))

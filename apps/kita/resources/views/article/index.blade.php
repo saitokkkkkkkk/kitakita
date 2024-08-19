@@ -6,6 +6,8 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
+                        @include('vendor.alerts.success')
+                        @include('vendor.alerts.error')
                         <div class="card p-4 w-100">
                             @if($articles->isEmpty())
                                 <div class="alert alert-warning" role="alert">

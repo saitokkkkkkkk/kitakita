@@ -1,5 +1,5 @@
 @include('partials.head')
-<body class="bg-light">
+<body style="background-color: #e9ecef;">
 <div id="app">
     <nav class="fixed-top navbar border-bottom border-secondary-subtle bg-white">
         <div class="container">
@@ -19,7 +19,7 @@
                                 <button class="btn btn-sm btn-outline-success d-sm-none me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-search"></i>
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-end p-2">
+                                <div class="dropdown-menu dropdown-menu-end p-2" style="width: 230px;">
                                     {!! Form::open(['route' => 'articles.index', 'method' => 'GET', 'class' => 'd-flex align-items-center']) !!}
                                     {!! Form::search('search', request('search'), ['class' => 'form-control form-control-sm border-success rounded-end-0', 'placeholder' => 'Search for something']) !!}
                                     {!! Form::button('<i class="fas fa-search"></i>', ['type' => 'submit', 'class' => 'btn btn-sm btn-success rounded-start-0 px-1 me-2']) !!}
