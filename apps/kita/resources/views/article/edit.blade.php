@@ -5,7 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                @include('vendor.alerts.alerts')
+                @include('vendor.alerts.success')
+                @include('vendor.alerts.error')
 
                 <div class="card">
                     <div class="card-body">
