@@ -61,7 +61,7 @@ class ArticleEditController extends Controller
         // サービスがtrueを返却した時
         if ($articleUpdateService->update($article, $request)) {
             return redirect()->route('articles.edit', $article)
-                ->with('success', '<p class="fw-bold fs-3 mb-0">Success!</p>記事編集が完了しました');
+                ->with('success', '記事編集が完了しました');
 
         // サービスがfalseを返却した時
         } else {
