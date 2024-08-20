@@ -1,7 +1,7 @@
 <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #e9ecef;">
                 <h5 class="modal-title" id="passwordModalLabel">パスワード変更</h5>
             </div>
             <div class="modal-body">
