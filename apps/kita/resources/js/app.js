@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // パラメータにmodal=trueがあればモーダルを自動で表示
-    if (window.location.search.includes('modal=true') && document.querySelectorAll('.is-invalid').length > 0) {
+    if (window.location.search.includes('modal=true')) {
         var passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
         passwordModal.show();
     }

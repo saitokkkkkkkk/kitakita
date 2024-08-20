@@ -2988,7 +2988,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // パラメータにmodal=trueがあればモーダルを自動で表示
-  if (window.location.search.includes('modal=true') && document.querySelectorAll('.is-invalid').length > 0) {
+  if (window.location.search.includes('modal=true')) {
     var passwordModal = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Modal(document.getElementById('passwordModal'));
     passwordModal.show();
   }
