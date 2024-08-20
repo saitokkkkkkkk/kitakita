@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticleCommentService
 {
+    /**
+     *Add a new comment to an article.
+     *
+     * @param StoreCommentRequest $request
+     * @return void
+     */
     public function addComment(StoreCommentRequest $request)
     {
         // ログイン中のユーザーIDを取得
