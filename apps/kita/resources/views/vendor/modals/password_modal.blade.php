@@ -16,9 +16,6 @@
                 <div class="mb-3">
                     {!! Form::label('newPassword_confirmation', '新しいパスワード（確認）', ['class' => 'form-label']) !!}
                     {!! Form::password('newPassword_confirmation', ['class' => 'form-control']) !!}
-                    @error('newPassword_confirmation')
-                    <small class="form-text text-danger">{{ $message }}</small>
-                    @enderror
                 </div>
             </div>
             <div class="ms-3 mb-3">
@@ -28,7 +25,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    var showModal = @json($errors->any());
-</script>

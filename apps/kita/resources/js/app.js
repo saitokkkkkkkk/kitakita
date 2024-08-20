@@ -1,4 +1,5 @@
-import './bootstrap';
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
 
 // DOMの読み込みが完了した後に実行
 document.addEventListener('DOMContentLoaded', function () {
@@ -20,4 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // パラメータにmodal=trueがあればモーダルを自動で表示
+    if (window.location.search.includes('modal=true') && document.querySelectorAll('.is-invalid').length > 0) {
+        var passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
+        passwordModal.show();
+    }
 });

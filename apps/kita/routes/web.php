@@ -81,7 +81,7 @@ Route::middleware(['auth:web'])->group(function () {
     });
 
     //パスワード変更
-    Route::put('/password_change', [MemberPasswordController::class, 'update'] )
+    Route::put('/password_change', [MemberPasswordController::class, 'update'])
         ->name('member.password.update');
 });
 
