@@ -9,20 +9,22 @@ use Illuminate\Support\Facades\Auth;
 class RedirectIfAuthenticated
 {
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param  string|null  ...$guards
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @param Closure $next
+     * @param ...$guards
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|mixed
      */
+    //認証時のリダイレクト先
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect('/articles'); //ログイン状態の時に/loginか/member_registrationにアクセスがあった時の遷移先
+                if ($guard === 'admin') {
+                    return redirect('/admin/admin_users'); // 管理者の場合のリダイレクト先
+                }
+                return redirect('/articles'); // 会員の場合のリダイレクト先
             }
         }
 

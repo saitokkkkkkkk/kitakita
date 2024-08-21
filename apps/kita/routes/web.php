@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminListController;
 use App\Http\Controllers\Article\ArticleCreateController;
 use App\Http\Controllers\Article\ArticleDeleteController;
 use App\Http\Controllers\Article\ArticleDetailController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use App\Http\Controllers\Member\MemberProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,4 +88,23 @@ Route::prefix('articles')->group(function () {
         ->name('articles.index');
     Route::get('/{article}', [ArticleDetailController::class, 'show'])
         ->name('article.details');
+});
+
+//管理者ログイン
+Route::controller(AdminLoginController::class)->group(function () {
+    Route::get('/admin/login', 'showLoginForm')
+        ->name('show.admin.login');
+    Route::post('/admin/login', 'login')
+        ->name('admin.login');
+});
+
+//管理者ログイン状態で利用可能なルート
+Route::middleware('auth.admin:admin')->group(function () {
+    //ログアウト
+    Route::post('/admin/logout', [AdminLoginController::class, 'logout'])
+        ->name('admin.logout');
+
+    //管理者一覧画面の表示
+    Route::get('/admin/admin_users', [AdminListController::class, 'index'])
+        ->name('admin.users.index');
 });
