@@ -21,7 +21,7 @@ return [
             'confirmed' => ':attribute確認が一致しません。',
         ],
 
-        // 記事保存のバリデーションエラーメッセージ
+        // 記事、コメント保存のバリデーションエラーメッセージ
         'title' => [
             'required' => ':attributeは必須です。',
             'string' => ':attributeは文字列でなければなりません。',
@@ -37,6 +37,13 @@ return [
             'string' => ':attributeは文字列でなければなりません。',
             'max' => ':attributeは:max字以下でなければなりません',
         ],
+
+        // パスワード変更のバリデーションエラーメッセージ
+        'newPassword' => [
+            'required' => ':attributeは必須です。',
+            'min' => ':attributeは:min文字以上にしてください。',
+            'confirmed' => ':attribute確認が一致しません。',
+        ],
     ],
 
     'attributes' => [
@@ -45,7 +52,8 @@ return [
         'password' => 'パスワード',
         'title' => 'タイトル',
         'tags' => 'タグ',
-        'contents' => '記事内容',
+        'contents' => '内容の入力',
+        'newPassword' => '新しいパスワード',
     ],
 
 ];

@@ -9,25 +9,29 @@ use Illuminate\Support\Facades\Auth;
 class RedirectIfAuthenticated
 {
     /**
-     * @param Request $request
-     * @param Closure $next
-     * @param ...$guards
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|mixed
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  ...$guards
+     * @return mixed
      */
-    //認証時のリダイレクト先
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                if ($guard === 'admin') {
-                    return redirect('/admin/admin_users'); // 管理者の場合のリダイレクト先
-                }
-                return redirect('/articles'); // 会員の場合のリダイレクト先
+        // URIに基づいて認証状態を確認
+        if ($request->is('admin/*')) {
+            // 管理者エリアのリクエスト
+            if (Auth::guard('admin')->check()) {
+                return redirect('/admin/admin_users'); // 認証済み管理者のリダイレクト先
+            }
+        } else {
+            // 会員エリアのリクエスト
+            if (Auth::guard('web')->check()) {
+                return redirect('/articles'); // 認証済み会員のリダイレクト先
             }
         }
 
+        // 未認証の場合、このミドルウェアはスルー
         return $next($request);
     }
 }

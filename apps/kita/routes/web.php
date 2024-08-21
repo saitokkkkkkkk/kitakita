@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminListController;
+use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
+use App\Http\Controllers\Article\ArticleCommentController;
 use App\Http\Controllers\Article\ArticleCreateController;
 use App\Http\Controllers\Article\ArticleDeleteController;
 use App\Http\Controllers\Article\ArticleDetailController;
@@ -8,9 +10,9 @@ use App\Http\Controllers\Article\ArticleEditController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
+use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +82,14 @@ Route::middleware(['auth:web'])->group(function () {
                 ->name('member.profile.update');
         });
     });
+
+    //コメント投稿
+    Route::post('/comments', [ArticleCommentController::class, 'addComment'])
+        ->name('articles.comment.store');
+
+    //パスワード変更
+    Route::put('/password_change', [MemberPasswordController::class, 'update'])
+        ->name('member.password.update');
 });
 
 //記事一覧と詳細の表示
@@ -90,20 +100,18 @@ Route::prefix('articles')->group(function () {
         ->name('article.details');
 });
 
-//管理者ログイン
+//管理者ログイン、ログアウト（コンストラクタでミドルウェアかけてる）
 Route::controller(AdminLoginController::class)->group(function () {
     Route::get('/admin/login', 'showLoginForm')
         ->name('show.admin.login');
     Route::post('/admin/login', 'login')
         ->name('admin.login');
+    Route::post('/admin/logout', 'logout')
+        ->name('admin.logout');
 });
 
 //管理者ログイン状態で利用可能なルート
-Route::middleware('auth.admin:admin')->group(function () {
-    //ログアウト
-    Route::post('/admin/logout', [AdminLoginController::class, 'logout'])
-        ->name('admin.logout');
-
+Route::middleware('auth:admin')->group(function () {
     //管理者一覧画面の表示
     Route::get('/admin/admin_users', [AdminListController::class, 'index'])
         ->name('admin.users.index');

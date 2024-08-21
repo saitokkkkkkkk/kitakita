@@ -1,4 +1,5 @@
-import './bootstrap';
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
 
 // DOMの読み込みが完了した後に実行
 document.addEventListener('DOMContentLoaded', function () {
@@ -6,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var successAlert = document.getElementById('success-alert');
     if (successAlert) {
         setTimeout(function () {
-            successAlert.style.display ='none'; // 非表示にする
+            successAlert.style.display = 'none'; // 非表示にする
         }, 5000); // 5秒後に実行
     }
 
@@ -20,4 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // パラメータにmodal=trueがあればモーダルを自動で表示
+    if (window.location.search.includes('modal=true')) {
+        var passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
+        passwordModal.show();
+    }
 });

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\AdminUser;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Faker\Factory as Faker;
-use App\Models\AdminUser;
 
 class AdminUserSeeder extends Seeder
 {

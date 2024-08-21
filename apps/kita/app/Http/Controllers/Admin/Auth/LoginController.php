@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,13 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, ThrottlesLogins;
+
+    //ログイントライ可能回数
+    protected $maxAttempts = 3;
+
+    //ロックアウト時間
+    protected $decayMinutes = 1;
 
     /**
      * Create a new controller instance.
@@ -30,10 +37,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        //guestミドルウェアをadminガードで使用
         $this->middleware('guest:admin')->except('logout');
-        //auth.adminミドルウェアをadminガードで使用
-        $this->middleware('auth.admin')->only('logout');
+        $this->middleware('auth:admin')->only('logout');
     }
 
     /**
