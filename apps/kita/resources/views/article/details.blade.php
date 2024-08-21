@@ -6,6 +6,10 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
+
+                        @include('vendor.alerts.success')
+                        @include('vendor.alerts.error')
+
                         <div class="card p-4 text-muted mb-4">
 
                             <!-- 削除、編集ボタン（削除、編集機能の時にいじる） -->
@@ -57,6 +61,33 @@
                             @empty
                                 <p class="p-3">コメントはありません</p>
                             @endforelse
+                            <!-- コメント投稿 -->
+                            @auth
+                                <hr class="my-3">
+                                {!! Form::open(['route' => 'articles.comment.store', 'method' => 'post']) !!}
+                                <!-- 隠しフォームで記事idを送信 -->
+                                {!! Form::hidden('article_id', $article->id) !!}
+                                <div class="container">
+                                    <div class="d-flex align-items-end flex-column flex-sm-row mb-3 mx-2">
+                                        <div class="flex-grow-1 me-sm-3">
+                                            {!! Form::textarea('contents', old('contents'), [
+                                                'class' => 'form-control border-success rounded',
+                                                'rows' => 6,
+                                                'id' => 'contents',
+                                                'placeholder' => 'コメントを入力',
+                                            ]) !!}
+                                            @error('contents')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <!-- コメント投稿ボタン -->
+                                        <div>
+                                            {!! Form::submit('コメント', ['class' => 'btn border-success text-success rounded-pill mt-3 px-3']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                                {!! Form::close() !!}
+                            @endauth
                         </div>
                     </div>
                 </div>

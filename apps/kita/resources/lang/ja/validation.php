@@ -21,7 +21,7 @@ return [
             'confirmed' => ':attribute確認が一致しません。',
         ],
 
-        // 記事保存のバリデーションエラーメッセージ
+        // 記事、コメント保存のバリデーションエラーメッセージ
         'title' => [
             'required' => ':attributeは必須です。',
             'string' => ':attributeは文字列でなければなりません。',
@@ -45,7 +45,7 @@ return [
         'password' => 'パスワード',
         'title' => 'タイトル',
         'tags' => 'タグ',
-        'contents' => '記事内容',
+        'contents' => '内容の入力',
     ],
 
 ];

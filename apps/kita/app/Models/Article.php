@@ -50,4 +50,21 @@ class Article extends Model
     {
         return $this->hasMany(ArticleComment::class);
     }
+
+    /**
+     *Set up event listeners for the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        //記事が論理削除される直前（deleting）にコメントは物理削除
+        static::deleting(function ($article) {
+            if (! $article->isForceDeleting()) {
+                $article->comments()->forceDelete();
+            }
+        });
+    }
 }
