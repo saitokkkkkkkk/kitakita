@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Article\ArticleCommentController;
 use App\Http\Controllers\Article\ArticleCreateController;
 use App\Http\Controllers\Article\ArticleDeleteController;
 use App\Http\Controllers\Article\ArticleDetailController;
@@ -79,6 +80,10 @@ Route::middleware(['auth:web'])->group(function () {
                 ->name('member.profile.update');
         });
     });
+
+    //コメント投稿
+    Route::post('/comments', [ArticleCommentController::class, 'addComment'])
+        ->name('articles.comment.store');
 
     //パスワード変更
     Route::put('/password_change', [MemberPasswordController::class, 'update'])
