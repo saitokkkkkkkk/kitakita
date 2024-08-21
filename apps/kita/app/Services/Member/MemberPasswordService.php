@@ -16,10 +16,10 @@ class MemberPasswordService
     public function updatePassword(string $newPassword): void
     {
         // 現在のユーザーを取得
-        $user = Auth::user();
+        $member = Auth::user();
 
         // パスワードを更新
-        $user->password = Hash::make($newPassword);
-        $user->save();
+        $member->password = Hash::make($newPassword);
+        $member->save();
     }
 }
