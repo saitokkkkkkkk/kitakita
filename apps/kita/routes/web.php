@@ -10,6 +10,7 @@ use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
+use App\Http\Controllers\Tag\CreateTagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,4 +97,14 @@ Route::prefix('articles')->group(function () {
         ->name('articles.index');
     Route::get('/{article}', [ArticleDetailController::class, 'show'])
         ->name('article.details');
+});
+
+//タグ新規登録（あとでauthミドルウェアの適用）
+Route::prefix('admin/article_tags')->group(function () {
+    Route::controller(CreateTagController::class)->group(function () {
+        Route::get('/create', 'show')
+            ->name('tags.create');
+        Route::post('/', 'store')
+            ->name('tags.store');
+    });
 });
