@@ -17,9 +17,9 @@
                     <div class="card-body">
                         {!! Form::open(['route' => 'member.profile.update', 'method' => 'PUT']) !!}
 
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             {!! Form::label('name', 'ユーザー名') !!}
-                            {!! Form::text('name', old('name', $name), ['class' => 'form-control mb-3']) !!}
+                            {!! Form::text('name', old('name', $name), ['class' => 'form-control']) !!}
 
                             <!-- ユーザー名のバリデーションエラーメッセージ -->
                             @if ($errors->has('name'))
@@ -29,7 +29,7 @@
                             @endif
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             {!! Form::label('email', 'メールアドレス') !!}
                             {!! Form::email('email', old('email', $email), ['class' => 'form-control']) !!}
 
@@ -41,9 +41,17 @@
                             @endif
                         </div>
 
-                        <!-- ここに後でパスワード更新 -->
+                        <!-- パスワード変更 -->
+                        <div>パスワード</div>
+                        <div class="d-flex align-items-center mb-4 mt-2">
+                            <div class="me-4">*****</div>
+                            <button type="button" class="btn btn-success btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                                パスワードを変更する
+                            </button>
+                        </div>
 
-                        <div class="text-end mb-4 mt-5">
+                        <!-- プロフィール変更ボタン -->
+                        <div class="text-end mb-4">
                             {!! Form::submit('更新する', ['class' => 'btn rounded-pill btn-success']) !!}
                         </div>
 

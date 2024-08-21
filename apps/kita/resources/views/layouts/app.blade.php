@@ -86,4 +86,6 @@
         @yield('content')
     </main>
 </div>
+<!-- パスワードのモーダル画面 -->
+@include('vendor.modals.password_modal')
 </body>

@@ -37,6 +37,13 @@ return [
             'string' => ':attributeは文字列でなければなりません。',
             'max' => ':attributeは:max字以下でなければなりません',
         ],
+
+        // パスワード変更のバリデーションエラーメッセージ
+        'newPassword' => [
+            'required' => ':attributeは必須です。',
+            'min' => ':attributeは:min文字以上にしてください。',
+            'confirmed' => ':attribute確認が一致しません。',
+        ],
     ],
 
     'attributes' => [
@@ -46,6 +53,7 @@ return [
         'title' => 'タイトル',
         'tags' => 'タグ',
         'contents' => '内容の入力',
+        'newPassword' => '新しいパスワード',
     ],
 
 ];

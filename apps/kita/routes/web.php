@@ -8,6 +8,7 @@ use App\Http\Controllers\Article\ArticleEditController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
+use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -83,6 +84,10 @@ Route::middleware(['auth:web'])->group(function () {
     //コメント投稿
     Route::post('/comments', [ArticleCommentController::class, 'addComment'])
         ->name('articles.comment.store');
+
+    //パスワード変更
+    Route::put('/password_change', [MemberPasswordController::class, 'update'])
+        ->name('member.password.update');
 });
 
 //記事一覧と詳細の表示
