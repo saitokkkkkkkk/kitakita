@@ -1,5 +1,6 @@
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
+import '@fontsource/poppins';
 
 // DOMの読み込みが完了した後に実行
 document.addEventListener('DOMContentLoaded', function () {

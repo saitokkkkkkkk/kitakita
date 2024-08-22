@@ -100,19 +100,22 @@ Route::prefix('articles')->group(function () {
         ->name('article.details');
 });
 
-//管理者ログイン、ログアウト（コンストラクタでミドルウェアかけてる）
-Route::controller(AdminLoginController::class)->group(function () {
-    Route::get('/admin/login', 'showLoginForm')
-        ->name('show.admin.login');
-    Route::post('/admin/login', 'login')
-        ->name('admin.login');
-    Route::post('/admin/logout', 'logout')
-        ->name('admin.logout');
-});
+//以下、管理者のルート
+Route::prefix('admin')->name('admin.')->group(function () {
+    // ログイン、ログアウト
+    Route::controller(AdminLoginController::class)->group(function () {
+        Route::get('/login', 'showLoginForm')
+            ->name('login.show');
+        Route::post('/login', 'login')
+            ->name('login');
+        Route::post('/logout', 'logout')
+            ->name('logout');
+    });
 
-//管理者ログイン状態で利用可能なルート
-Route::middleware('auth:admin')->group(function () {
-    //管理者一覧画面の表示
-    Route::get('/admin/admin_users', [AdminListController::class, 'index'])
-        ->name('admin.users.index');
+    // 管理者ログイン状態で利用可能なルート
+    Route::middleware('auth:admin')->group(function () {
+        // 管理者一覧画面の表示
+        Route::get('/admin_users', [AdminListController::class, 'index'])
+            ->name('users.index');
+    });
 });

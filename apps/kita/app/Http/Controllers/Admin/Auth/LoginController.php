@@ -65,7 +65,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request)
     {
-        return redirect()->intended('/admin/admin_users');
+        return redirect('/admin/admin_users');
     }
 
     /**

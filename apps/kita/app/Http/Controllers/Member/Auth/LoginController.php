@@ -122,7 +122,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $this->guard()->logout();
-        
+
         $request->session()->regenerateToken();
 
         if ($response = $this->loggedOut($request)) {
