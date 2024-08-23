@@ -23,7 +23,7 @@ class CreateTagController extends Controller
         ]);
 
         // 保存完了したらリダイレクト
-        return redirect()->route('tags.edit', ['articleTag' => $articleTag->id])
+        return redirect()->route('admin.tags.edit', ['articleTag' => $articleTag->id])
             ->with([
                 'success' => '登録処理が完了しました',
             ]);

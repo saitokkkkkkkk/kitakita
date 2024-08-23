@@ -12,20 +12,26 @@ class RedirectIfAuthenticated
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param  string|null  ...$guards
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @param  \Closure  $next
+     * @param  ...$guards
+     * @return mixed
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect('/articles'); //ログイン状態の時に/loginか/member_registrationにアクセスがあった時の遷移先
+        // URIに基づいて認証状態を確認
+        if ($request->is('admin/*')) {
+            // 管理者エリアのリクエスト
+            if (Auth::guard('admin')->check()) {
+                return redirect('/admin/admin_users'); // 認証済み管理者のリダイレクト先
+            }
+        } else {
+            // 会員エリアのリクエスト
+            if (Auth::guard('web')->check()) {
+                return redirect('/articles'); // 認証済み会員のリダイレクト先
             }
         }
 
+        // 未認証の場合、このミドルウェアはスルー
         return $next($request);
     }
 }

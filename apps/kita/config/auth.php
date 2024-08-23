@@ -36,9 +36,16 @@ return [
     */
 
     'guards' => [
+        // 会員
         'web' => [
             'driver' => 'session',
             'provider' => 'members',
+        ],
+
+        // 管理者
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
         ],
     ],
 
@@ -60,12 +67,17 @@ return [
     */
 
     'providers' => [
+        // 会員
         'members' => [
             'driver' => 'eloquent',
             'model' => App\Models\Member::class,
         ],
 
-        //adminを後で追加。
+        // 管理者
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AdminUser::class,
+        ],
     ],
 
     /*

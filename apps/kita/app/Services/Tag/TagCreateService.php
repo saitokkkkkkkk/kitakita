@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\ArticleTag;
 
-class TagService
+class TagCreateService
 {
     /**
      * Store the tag.

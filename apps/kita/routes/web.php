@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminListController;
+use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Article\ArticleCommentController;
 use App\Http\Controllers\Article\ArticleCreateController;
 use App\Http\Controllers\Article\ArticleDeleteController;
@@ -100,18 +102,38 @@ Route::prefix('articles')->group(function () {
         ->name('article.details');
 });
 
-//（あとでauthミドルウェアの適用）
-Route::prefix('admin/article_tags')->group(function () {
-    //タグ新規登録
-    Route::controller(CreateTagController::class)->group(function () {
-        Route::get('/create', 'show')
-            ->name('tags.create');
-        Route::post('/', 'store')
-            ->name('tags.store');
+//以下、管理者のルート
+Route::prefix('admin')->name('admin.')->group(function () {
+    // ログイン、ログアウト
+    Route::controller(AdminLoginController::class)->group(function () {
+        Route::get('/login', 'showLoginForm')
+            ->name('login.show');
+        Route::post('/login', 'login')
+            ->name('login');
+        Route::post('/logout', 'logout')
+            ->name('logout');
     });
-    //タグ編集
-    Route::controller(UpdateTagController::class)->group(function () {
-        Route::get('{articleTag}/edit', 'show')
-            ->name('tags.edit');
+
+    // 管理者として認証されてたら利用可能なルート
+    Route::middleware('auth:admin')->group(function () {
+        // 管理者一覧画面の表示
+        Route::get('/admin_users', [AdminListController::class, 'index'])
+            ->name('users.index');
+
+        // タグ関連のルート（admin/article_tags）
+        Route::prefix('article_tags')->group(function () {
+            //タグ新規登録
+            Route::controller(CreateTagController::class)->group(function () {
+                Route::get('/create', 'show')
+                    ->name('tags.create');
+                Route::post('/', 'store')
+                    ->name('tags.store');
+            });
+            //タグ編集
+            Route::controller(UpdateTagController::class)->group(function () {
+                Route::get('{articleTag}/edit', 'show')
+                    ->name('tags.edit');
+            });
+        });
     });
 });
