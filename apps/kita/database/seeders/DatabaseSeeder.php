@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,5 +27,8 @@ class DatabaseSeeder extends Seeder
 
         // コメントデータの生成
         $this->call(ArticleCommentSeeder::class);
+
+        // 管理者データの生成
+        $this->call(AdminUserSeeder::class);
     }
 }
