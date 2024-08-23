@@ -47,7 +47,7 @@ return [
     ],
 
     'attributes' => [
-        'name' => 'ユーザー名',
+        'name' => '内容の入力',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'title' => 'タイトル',

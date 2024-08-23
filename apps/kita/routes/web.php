@@ -11,6 +11,7 @@ use App\Http\Controllers\Member\Auth\RegisterController;
 use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
 use App\Http\Controllers\Tag\CreateTagController;
+use App\Http\Controllers\Tag\UpdateTagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -99,12 +100,18 @@ Route::prefix('articles')->group(function () {
         ->name('article.details');
 });
 
-//タグ新規登録（あとでauthミドルウェアの適用）
+//（あとでauthミドルウェアの適用）
 Route::prefix('admin/article_tags')->group(function () {
+    //タグ新規登録
     Route::controller(CreateTagController::class)->group(function () {
         Route::get('/create', 'show')
             ->name('tags.create');
         Route::post('/', 'store')
             ->name('tags.store');
+    });
+    //タグ編集
+    Route::controller(UpdateTagController::class)->group(function () {
+        Route::get('{articleTag}/edit', 'show')
+            ->name('tags.edit');
     });
 });
