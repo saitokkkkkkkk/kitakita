@@ -1,73 +1,42 @@
-@extends('layouts.app')
-
-@section('content')
+@include('partials.head')
+<body style="background-color: #e9ecef;">
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="col-sm-7 col-md-6 col-lg-4">
+            <div class="text-center mb-3">
+                <span class="card-title text-start" style="font-family: 'Poppins', sans-serif;">
+                    <span class="fs-1 fw-bold">K</span><span class="fs-1">ita</span>
+                    <span class="fs-5 ms-2">Administrator Console</span>
+                </span>
+            </div>
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                    {!! Form::open(['route' => 'admin.login', 'method' => 'POST']) !!}
+                    @csrf
+                    <!--メアド-->
+                    <div class="form-group mb-4">
+                        {!! Form::label('email', 'メールアドレス') !!}
+                        {!! Form::text('email', old('email'), ['class' => 'form-control']) !!}
+                        @error('email')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!--パスワード-->
+                    <div class="form-group mb-4">
+                        {!! Form::label('password', 'パスワード') !!}
+                        {!! Form::password('password', ['class' => 'form-control']) !!}
+                        @error('password')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!--ログインボタン-->
+                    <div class="text-start">
+                        {!! Form::submit('ログイン', ['class' => 'btn btn-primary px-3']) !!}
+                    </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+</body>

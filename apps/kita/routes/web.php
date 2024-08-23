@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminListController;
+use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Article\ArticleCommentController;
 use App\Http\Controllers\Article\ArticleCreateController;
 use App\Http\Controllers\Article\ArticleDeleteController;
@@ -96,4 +98,24 @@ Route::prefix('articles')->group(function () {
         ->name('articles.index');
     Route::get('/{article}', [ArticleDetailController::class, 'show'])
         ->name('article.details');
+});
+
+//以下、管理者のルート
+Route::prefix('admin')->name('admin.')->group(function () {
+    // ログイン、ログアウト
+    Route::controller(AdminLoginController::class)->group(function () {
+        Route::get('/login', 'showLoginForm')
+            ->name('login.show');
+        Route::post('/login', 'login')
+            ->name('login');
+        Route::post('/logout', 'logout')
+            ->name('logout');
+    });
+
+    // 管理者ログイン状態で利用可能なルート
+    Route::middleware('auth:admin')->group(function () {
+        // 管理者一覧画面の表示
+        Route::get('/admin_users', [AdminListController::class, 'index'])
+            ->name('users.index');
+    });
 });

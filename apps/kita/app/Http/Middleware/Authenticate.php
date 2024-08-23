@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
@@ -14,10 +15,21 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request): ?string
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        // JSONリクエストの場合はリダイレクトしない
+        if ($request->expectsJson()) {
+            return null;
         }
 
-        return '';
+        // uriに基づいてガードとルートを先に取得
+        $isAdmin = $request->is('admin/*');
+        $guard = $isAdmin ? 'admin' : 'web';
+        $route = $isAdmin ? 'admin.login.show' : 'show.login';
+
+        // リダイレクト先の決定
+        if (! Auth::guard($guard)->check()) { // 未認証の時
+            return route($route);
+        }
+
+        return null; // 認証済みの場合はリダイレクトしない
     }
 }
