@@ -7,7 +7,12 @@ use App\Models\ArticleTag;
 
 class UpdateTagController extends Controller
 {
-    // タグの詳細表示画面（編集画面）を表示
+    /**
+     * Show the form for editing the specified tag.
+     *
+     * @param ArticleTag $articleTag
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show(ArticleTag $articleTag)
     {
         return view('tag.edit', compact('articleTag'));
