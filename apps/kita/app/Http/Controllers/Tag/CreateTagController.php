@@ -4,28 +4,46 @@ namespace App\Http\Controllers\Tag;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTagRequest;
-use App\Models\ArticleTag;
+use App\Services\Tag\TagCreateService;
 
 class CreateTagController extends Controller
 {
-    //新規タグ追加の画面表示
+    /**
+     * @var TagCreateService
+     */
+    protected $tagCreateService;
+
+    /**
+     * CreateTagController constructor.
+     *
+     * @param TagCreateService $tagCreateService
+     */
+    public function __construct(TagCreateService $tagCreateService)
+    {
+        $this->tagCreateService = $tagCreateService;
+    }
+
+    /**
+     * Show the view for creating a tag.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show()
     {
         return view('tag.create');
     }
 
-    //新規タグ追加
+    /**
+     * Store the tag.
+     *
+     * @param StoreTagRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StoreTagRequest $request)
     {
-        //バリデーション済みデータを保存
-        $articleTag = ArticleTag::create([
-            'name' => $request->input('name'),
-        ]);
+        $articleTag = $this->tagCreateService->store($request);
 
-        // 保存完了したらリダイレクト
-        return redirect()->route('admin.tags.edit', ['articleTag' => $articleTag->id])
-            ->with([
-                'success' => '登録処理が完了しました',
-            ]);
+        return redirect()->route('admin.tags.edit', $articleTag)
+            ->with(['success' => '登録が完了しました']);
     }
 }

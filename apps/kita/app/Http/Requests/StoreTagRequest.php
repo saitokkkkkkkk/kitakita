@@ -20,6 +20,7 @@ class StoreTagRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array<string, mixed>
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function rules()
     {

@@ -8,7 +8,6 @@
                 <span class="card-title text-start text-white" style="font-family: 'Poppins', sans-serif;">
                     <span class="fs-1 fw-bold ms-3">K</span><span class="fs-1">ita</span>
                 </span>
-                <!-- ログアウトボタン -->
                 <div>
                     @if (Auth::guard('admin')->check())
                         <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-inline">

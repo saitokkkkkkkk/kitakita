@@ -104,7 +104,7 @@ Route::prefix('articles')->group(function () {
 
 //以下、管理者のルート
 Route::prefix('admin')->name('admin.')->group(function () {
-    // ログイン、ログアウト
+    // ログイン、ログアウト（ミドルウェはコントローラで効かせてる）
     Route::controller(AdminLoginController::class)->group(function () {
         Route::get('/login', 'showLoginForm')
             ->name('login.show');
@@ -114,7 +114,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('logout');
     });
 
-    // 管理者として認証されてたら利用可能なルート
+    // 管理者関連のルート（後でadmin_usersでprefix）
     Route::middleware('auth:admin')->group(function () {
         // 管理者一覧画面の表示
         Route::get('/admin_users', [AdminListController::class, 'index'])

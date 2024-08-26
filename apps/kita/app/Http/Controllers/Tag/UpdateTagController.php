@@ -10,7 +10,6 @@ class UpdateTagController extends Controller
     // タグの詳細表示画面（編集画面）を表示
     public function show(ArticleTag $articleTag)
     {
-        // モデルバインディングにより、指定されたタグを取得
         return view('tag.edit', compact('articleTag'));
     }
 }

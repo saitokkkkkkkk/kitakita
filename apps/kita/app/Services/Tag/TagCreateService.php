@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Tag;
 
+use App\Http\Requests\StoreTagRequest;
 use App\Models\ArticleTag;
 
 class TagCreateService
 {
     /**
-     * Store the tag.
+     * Store a new tag in the database.
      *
-     * @param array $data
-     * @return ArticleTag
+     * @param  StoreTagRequest $request
+     * @return \App\Models\ArticleTag
      */
-    public function store(array $data): ArticleTag
+    public function store(StoreTagRequest $request): ArticleTag
     {
         // バリデーション済みデータを保存
         return ArticleTag::create([
-            'name' => $data['name'],
+            'name' => $request->input('name'),
         ]);
     }
 }
