@@ -114,8 +114,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // 管理者ログイン状態で利用可能なルート
     Route::middleware('auth:admin')->group(function () {
-        // 管理者一覧画面の表示
-        Route::get('/admin_users', [AdminListController::class, 'index'])
-            ->name('users.index');
+        // admin/admin_usersのルート
+        Route::prefix('admin_users')->group(function () {
+            // 管理者一覧画面の表示
+            Route::get('/', [AdminListController::class, 'index'])
+                ->name('users.index');
+        });
     });
 });
