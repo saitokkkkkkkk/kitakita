@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTagRequest;
 use App\Services\Tag\TagCreateService;
 
-class CreateTagController extends Controller
+class TagCreateController extends Controller
 {
     /**
      * @var TagCreateService

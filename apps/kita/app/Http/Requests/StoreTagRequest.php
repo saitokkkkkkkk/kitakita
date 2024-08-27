@@ -28,4 +28,16 @@ class StoreTagRequest extends FormRequest
             'name' => 'required|string|max:255',
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes()
+    {
+        return [
+            'name' => __('validation.attributes.tag.name'),
+        ];
+    }
 }

@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="mx-4">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-12">
                 <h2 class="my-5">タグ管理 - 新規登録</h2>
                 <div class="row">
 
                     <!-- フォーム入力欄 -->
-                    <div class="col-sm-8 mb-3">
+                    <div class="col-sm-9 mb-3">
                         <div class="card">
                             <div class="card-body">
                                 {!! Form::open(['route' => 'admin.tags.store', 'method' => 'POST']) !!}
@@ -28,7 +28,7 @@
                     </div>
 
                     <!-- 登録ボタン -->
-                    <div class="col-sm-4 mb-3">
+                    <div class="col-sm-3 mb-3">
                         <div class="card">
                             <div class="card-body">
                                 <!-- ボタン -->
