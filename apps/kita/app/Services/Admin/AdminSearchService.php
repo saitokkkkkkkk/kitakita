@@ -3,6 +3,7 @@
 namespace App\Services\Admin;
 
 use App\Models\AdminUser;
+use App\Services\Helpers\StringHelper;
 use Illuminate\Http\Request;
 
 class AdminSearchService
@@ -17,32 +18,39 @@ class AdminSearchService
      */
     public function getAdminUsers(Request $request)
     {
-        // クエリビルダーのインスタンス作成
+        // クエリビルダのインスタンスを作成（applySearchCriteria()で使う）
         $query = AdminUser::query();
 
-        // 特殊文字をエスケープする関数
-        $escapeLike = function ($value) {
-            return '%'.str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $value).'%';
-        };
+        // 検索条件を追加するメソッドを呼ぶ
+        $this->applySearchCriteria($query, $request);
 
-        // 姓で部分一致（where句の追加）
-        if ($request->filled('first_name')) {
-            $query->where('first_name', 'like', $escapeLike($request->input('first_name')));
-        }
-
-        // 名で部分一致（where句の追加）
-        if ($request->filled('last_name')) {
-            $query->where('last_name', 'like', $escapeLike($request->input('last_name')));
-        }
-
-        // メールアドレスで部分一致（where句の追加）
-        if ($request->filled('email')) {
-            $query->where('email', 'like', $escapeLike($request->input('email')));
-        }
-
-        // ここでクエリ発行
+        // ここでクエリの実行
         return $query->orderBy('created_at', 'desc')
-                     ->paginate(self::PAGINATION_COUNT)
-                     ->appends($request->query());
+            ->paginate(self::PAGINATION_COUNT)
+            ->appends($request->query());
+    }
+
+    /**
+     * Apply search filters to the query.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param Request $request
+     * @return void
+     */
+    private function applySearchCriteria($query, Request $request)
+    {
+        // フィールド名とカラム名を対応させてセット
+        $searchCriteria = [
+            'last_name' => 'last_name',
+            'first_name' => 'first_name',
+            'email' => 'email',
+        ];
+
+        // フィールドが埋まっていれば対応するカラムで部分一致検索。where句を追加していく
+        foreach ($searchCriteria as $inputName => $columnName) {
+            if ($request->filled($inputName)) {
+                $query->where($columnName, 'like', StringHelper::escapeLike($request->input($inputName)));
+            }
+        }
     }
 }
