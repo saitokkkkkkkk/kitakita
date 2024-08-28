@@ -3,7 +3,6 @@
 return [
     'custom' => [
 
-        //会員登録のバリデーションエラーメッセージ
         'name' => [
             'required' => ':attributeは必須です。',
             'string' => ':attributeは文字列でなければなりません。',
@@ -21,7 +20,6 @@ return [
             'confirmed' => ':attribute確認が一致しません。',
         ],
 
-        // 記事、コメント保存のバリデーションエラーメッセージ
         'title' => [
             'required' => ':attributeは必須です。',
             'string' => ':attributeは文字列でなければなりません。',
@@ -37,12 +35,18 @@ return [
             'string' => ':attributeは文字列でなければなりません。',
             'max' => ':attributeは:max字以下でなければなりません',
         ],
-
-        // パスワード変更のバリデーションエラーメッセージ
         'newPassword' => [
             'required' => ':attributeは必須です。',
             'min' => ':attributeは:min文字以上にしてください。',
             'confirmed' => ':attribute確認が一致しません。',
+        ],
+        'last_name' => [
+            'required' => ':attributeは必須です。',
+            'max' => ':attributeは:max字以下でなければなりません',
+        ],
+        'first_name' => [
+            'required' => ':attributeは必須です。',
+            'max' => ':attributeは:max字以下でなければなりません',
         ],
     ],
 
@@ -56,6 +60,8 @@ return [
         'tags' => 'タグ',
         'contents' => '内容の入力',
         'newPassword' => '新しいパスワード',
+        'last_name' => '姓',
+        'first_name' => '名',
     ],
 
 ];
