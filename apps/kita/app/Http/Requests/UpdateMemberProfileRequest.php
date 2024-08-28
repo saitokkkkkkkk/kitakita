@@ -30,4 +30,16 @@ class UpdateMemberProfileRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:members,email,'.Auth::id(),
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes()
+    {
+        return [
+            'name' => __('validation.attributes.profile.name'),
+        ];
+    }
 }

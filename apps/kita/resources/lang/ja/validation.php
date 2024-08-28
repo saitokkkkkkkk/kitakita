@@ -50,6 +50,9 @@ return [
         'tag' => [
             'name' => 'タグ名',
         ],
+        'profile' => [
+            'name' => '名前',
+        ],
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'title' => 'タイトル',
