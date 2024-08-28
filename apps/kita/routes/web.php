@@ -12,6 +12,8 @@ use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
 use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
+use App\Http\Controllers\Tag\TagCreateController;
+use App\Http\Controllers\Tag\TagUpdateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -114,11 +116,28 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // 管理者ログイン状態で利用可能なルート
     Route::middleware('auth:admin')->group(function () {
-        // admin/admin_usersのルート
+
+        // 管理者関連のルート（admin/admin_users）
         Route::prefix('admin_users')->group(function () {
-            // 管理者一覧画面の表示
+            // 管理者検索、一覧表示
             Route::get('/', [AdminListController::class, 'index'])
                 ->name('users.index');
+        });
+
+        // タグ関連のルート（admin/article_tags）
+        Route::prefix('article_tags')->group(function () {
+            //タグ新規登録
+            Route::controller(TagCreateController::class)->group(function () {
+                Route::get('/create', 'show')
+                    ->name('tags.create');
+                Route::post('/', 'store')
+                    ->name('tags.store');
+            });
+            //タグ編集
+            Route::controller(TagUpdateController::class)->group(function () {
+                Route::get('{articleTag}/edit', 'show')
+                    ->name('tags.edit');
+            });
         });
     });
 });
