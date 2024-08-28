@@ -47,7 +47,9 @@ return [
     ],
 
     'attributes' => [
-        'name' => 'ユーザー名',
+        'tag' => [
+            'name' => 'タグ名',
+        ],
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'title' => 'タイトル',
