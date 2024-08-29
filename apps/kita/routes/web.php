@@ -13,6 +13,7 @@ use App\Http\Controllers\Member\Auth\RegisterController;
 use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
 use App\Http\Controllers\Tag\TagCreateController;
+use App\Http\Controllers\Tag\TagListController;
 use App\Http\Controllers\Tag\TagUpdateController;
 use Illuminate\Support\Facades\Route;
 
@@ -122,6 +123,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // タグ関連のルート（admin/article_tags）
         Route::prefix('article_tags')->group(function () {
+            //タグ検索、一覧表示
+            Route::get('/', [TagListController::class, 'index'])
+                ->name('tags.index');
+
             //タグ新規登録
             Route::controller(TagCreateController::class)->group(function () {
                 Route::get('/create', 'show')
