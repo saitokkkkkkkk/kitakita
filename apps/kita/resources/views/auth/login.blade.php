@@ -2,7 +2,7 @@
 <body style="background-color: #e9ecef;">
 <div class="container">
     <div class="row justify-content-center align-items-center vh-100">
-        <div class="col-md-6">
+        <div class="col-9 col-sm-8 col-md-6 col-lg-5">
             <div class="text-center">
                 <h3 class="card-title text-start text-muted">
                     Kitaログイン
