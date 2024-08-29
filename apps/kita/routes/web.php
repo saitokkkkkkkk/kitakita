@@ -115,7 +115,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('logout');
     });
 
-    // 管理者関連のルート
+    // 以下、管理者として認証されてたらアクセス可能
     Route::middleware('auth:admin')->group(function () {
         // 管理者関連のルート（admin/admin_user）
         Route::prefix('admin_users')->group(function () {
