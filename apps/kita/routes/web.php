@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminListController;
+use App\Http\Controllers\Admin\AdminUpdateController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Article\ArticleCommentController;
 use App\Http\Controllers\Article\ArticleCreateController;
@@ -114,11 +115,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('logout');
     });
 
-    // 管理者関連のルート（後でadmin_usersでprefix）
+    // 管理者関連のルート
     Route::middleware('auth:admin')->group(function () {
-        // 管理者一覧画面の表示
-        Route::get('/admin_users', [AdminListController::class, 'index'])
-            ->name('users.index');
+        // 管理者関連のルート（admin/admin_user）
+        Route::prefix('admin_users')->group(function () {
+            // 管理者一覧画面の表示
+            Route::get('/', [AdminListController::class, 'index'])
+                ->name('users.index');
+            // 管理者編集
+            Route::controller(AdminUpdateController::class)->group(function () {
+                Route::get('{adminUser}/edit', 'edit')
+                    ->name('users.edit');
+                Route::put('{adminUser}', 'update')
+                    ->name('users.update');
+            });
+        });
 
         // タグ関連のルート（admin/article_tags）
         Route::prefix('article_tags')->group(function () {
