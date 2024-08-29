@@ -13,23 +13,29 @@
                             <div class="card-body">
                                 {!! Form::open(['route' => ['admin.tags.update', $articleTag], 'method' => 'PUT']) !!}
                                 @csrf
+                                <!-- ID -->
                                 <div class="form-group m-3">
-                                    <!-- id -->
                                     {!! Form::label('id', 'ID', ['class' => 'me-2']) !!}
                                     {!! Form::text('id', $articleTag->id, ['class' => 'form-control mb-3', 'disabled' => 'disabled', 'style' => 'background-color: #e8e8e8;']) !!}
-
-                                    <!-- タグ名 -->
+                                </div>
+                                <!-- タグ名 -->
+                                <div class="form-group m-3">
                                     <div class="d-flex align-items-center">
                                         {!! Form::label('name', 'タグ名', ['class' => 'me-2']) !!}
                                         <span class="badge bg-danger rounded-1 px-1 mb-1">必須</span>
                                     </div>
-                                    {!! Form::text('name', old('name', $articleTag->name), ['class' => 'form-control mb-3']) !!}
-
-                                    <!-- 更新日時 -->
+                                    {!! Form::text('name', old('name', $articleTag->name), ['class' => 'form-control']) !!}
+                                    @error('name')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <!-- 更新日時 -->
+                                <div class="form-group m-3">
                                     {!! Form::label('updated_at', '更新日時', ['class' => 'me-2']) !!}
                                     {!! Form::text('updated_at', $articleTag->updated_at->format('Y/m/d H:i:s'), ['class' => 'form-control mb-3', 'disabled' => 'disabled', 'style' => 'background-color: #e8e8e8;']) !!}
-
-                                    <!-- 登録日時 -->
+                                </div>
+                                <!-- 登録日時 -->
+                                <div class="form-group m-3">
                                     {!! Form::label('created_at', '登録日時', ['class' => 'me-2']) !!}
                                     {!! Form::text('created_at', $articleTag->created_at->format('Y/m/d H:i:s'), ['class' => 'form-control mb-3', 'disabled' => 'disabled', 'style' => 'background-color: #e8e8e8;']) !!}
                                 </div>
