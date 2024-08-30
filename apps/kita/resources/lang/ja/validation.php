@@ -51,7 +51,7 @@ return [
             'name' => 'タグ名',
         ],
         'profile' => [
-            'name' => '名前',
+            'name' => 'ユーザー名',
         ],
         'email' => 'メールアドレス',
         'password' => 'パスワード',
