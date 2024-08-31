@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreAdminRequest extends FormRequest
 {
@@ -32,7 +31,7 @@ class StoreAdminRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
-                'unique:admin_users,email' //全てのレコードに関してユニーク制約
+                'unique:admin_users,email', //全てのレコードに関してユニーク制約
             ],
             'password' => 'required|string|min:8|confirmed',
         ];
