@@ -32,8 +32,7 @@ class StoreAdminRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
-                // 論理削除された管理者についてはメアドのユニーク制約を適用しない
-                Rule::unique('admin_users')->whereNull('deleted_at'),
+                'unique:admin_users,email' //全てのレコードに関してユニーク制約
             ],
             'password' => 'required|string|min:8|confirmed',
         ];

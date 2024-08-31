@@ -16,15 +16,12 @@ class AdminCreateService
      */
     public function createAdmin(StoreAdminRequest $request): AdminUser
     {
-        // こっちでバリデーション済みデータを取り出す
-        $validated = $request->validated();
-
         // データを入れる
         return AdminUser::create([
-            'last_name' => $validated['last_name'],
-            'first_name' => $validated['first_name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'last_name' => $request['last_name'],
+            'first_name' => $request['first_name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]);
     }
 }
