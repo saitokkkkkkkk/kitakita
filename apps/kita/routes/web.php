@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminDeleteController;
 use App\Http\Controllers\Admin\AdminListController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Article\ArticleCommentController;
@@ -116,9 +117,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // 管理者関連のルート（後でadmin_usersでprefix）
     Route::middleware('auth:admin')->group(function () {
-        // 管理者一覧画面の表示
-        Route::get('/admin_users', [AdminListController::class, 'index'])
-            ->name('users.index');
+        // 管理者関連のルート（admin/admin_users）
+        Route::prefix('admin_users')->group(function () {
+            // 管理者一覧の表示
+            Route::get('/', [AdminListController::class, 'index'])
+                ->name('users.index');
+            // 管理者削除
+            Route::delete('/{adminUser}', [AdminDeleteController::class, 'destroy'])
+                ->name('user.destroy');
+        });
 
         // タグ関連のルート（admin/article_tags）
         Route::prefix('article_tags')->group(function () {
