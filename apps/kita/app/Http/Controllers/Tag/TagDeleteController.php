@@ -4,17 +4,31 @@ namespace App\Http\Controllers\Tag;
 
 use App\Http\Controllers\Controller;
 use App\Models\ArticleTag;
+use App\Services\Tag\TagDeleteService;
 
 class TagDeleteController extends Controller
 {
+    private $TagDeleteService;
+
+    /**
+     * Constructor for TagDeleteController.
+     * @param TagDeleteService $TagDeleteService
+     */
+    public function __construct(TagDeleteService $TagDeleteService)
+    {
+        $this->TagDeleteService = $TagDeleteService;
+    }
+
+    /**
+     * Delete the tag.
+     *
+     * @param ArticleTag $articleTag
+     * @return void
+     */
     public function destroy(ArticleTag $articleTag)
     {
-        //タグを物理削除（中間テーブルのレコードも削除される）
-        $articleTag->forceDelete();
+        $this->TagDeleteService->destroy($articleTag);
 
-        /*タグ一覧機能作成したらそこにリダイレクト
-        return redirect()->route('')
-        ->with('success', '削除処理が完了しました')
-        */
+        //あとでリダイレクト先の追加
     }
 }
