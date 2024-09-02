@@ -37,13 +37,12 @@
                     {{ $articleTags->links('vendor.pagination.admin') }}
                 </div>
                 --}}
-                <!-- 会員一覧 -->
+                <!-- タグ一覧 -->
                 <div class="card">
                     <div class="d-flex justify-content-start">
-                        <!-- 後でルート付与 -->
-                        <div class="btn btn-primary px-3 m-4">
+                        <a href="{{ route('admin.tags.create') }}" class="btn btn-primary px-3 m-4">
                             新規登録
-                        </div>
+                        </a>
                     </div>
                     <!-- タグテーブル -->
                     @if($articleTags->isEmpty())
@@ -69,10 +68,10 @@
                                         <td class="text-end">{{ $tag->created_at->format('Y/m/d H:i') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <!-- 後でルート付与 -->
-                                                <div class="btn btn-primary px-3 py-1 text-nowrap">
+                                                {{-- タグ編集機能マージ後、コメントアウト解除
+                                                <a href="{{ route('admin.tags.update') }}" class="btn btn-primary px-3 m-4">
                                                     編集
-                                                </div>
+                                                </a>--}}
                                             </div>
                                         </td>
                                     </tr>
