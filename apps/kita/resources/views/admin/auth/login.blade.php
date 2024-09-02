@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     {!! Form::open(['route' => 'admin.login', 'method' => 'POST']) !!}
-                    @csrf
+
                     <!--メアド-->
                     <div class="form-group mb-4">
                         {!! Form::label('email', 'メールアドレス') !!}

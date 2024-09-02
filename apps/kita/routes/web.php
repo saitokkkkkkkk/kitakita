@@ -13,6 +13,7 @@ use App\Http\Controllers\Member\Auth\RegisterController;
 use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
 use App\Http\Controllers\Tag\TagCreateController;
+use App\Http\Controllers\Tag\TagDeleteController;
 use App\Http\Controllers\Tag\TagUpdateController;
 use Illuminate\Support\Facades\Route;
 
@@ -134,6 +135,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::get('{articleTag}/edit', 'show')
                     ->name('tags.edit');
             });
+            //タグ削除
+            Route::delete('/{articleTag}', [TagDeleteController::class, 'destroy'])
+                ->name('tags.destroy');
         });
     });
 });
