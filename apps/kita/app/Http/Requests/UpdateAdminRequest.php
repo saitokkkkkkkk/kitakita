@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UpdateAdminRequest extends FormRequest
@@ -24,8 +25,6 @@ class UpdateAdminRequest extends FormRequest
      */
     public function rules()
     {
-        //ルートパラメータから更新する管理者のid取得
-        $adminUserId = $this->route('adminUser');
 
         return [
             'last_name' => 'required|string|max:255',
@@ -35,8 +34,8 @@ class UpdateAdminRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
-                // その更新対象の本人のメアド＋論理削除された管理者のメアドは、ユニーク制約を適用しない
-                Rule::unique('admin_users')->ignore($adminUserId)->whereNull('deleted_at'),
+                // その更新対象の本人のメアドはユニーク制約を適用しない
+                Rule::unique('admin_users', 'email')->ignore(Auth::id()),
             ],
         ];
     }
