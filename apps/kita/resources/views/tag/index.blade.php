@@ -31,12 +31,10 @@
                     </div>
                     {!! Form::close() !!}
                 </div>
-                {{-- 管理者一覧機能がマージされたらコメントアウト解除
                 <!-- ページネーション -->
                 <div class="d-flex justify-content-start custom-pagination mt-4 mb-0">
                     {{ $articleTags->links('vendor.pagination.admin') }}
                 </div>
-                --}}
                 <!-- タグ一覧 -->
                 <div class="card">
                     <div class="d-flex justify-content-start">
@@ -63,15 +61,15 @@
                                 <tbody>
                                 @foreach($articleTags as $tag)
                                     <tr>
-                                        <td class="text-center">{{ $tag->id }}</td>
-                                        <td class="px-4">{{ $tag->name }}</td>
-                                        <td class="text-end">{{ $tag->created_at->format('Y/m/d H:i') }}</td>
+                                        <td class="text-center align-middle">{{ $tag->id }}</td>
+                                        <td class="px-4 align-middle">{{ $tag->name }}</td>
+                                        <td class="text-end align-middle">{{ $tag->created_at->format('Y/m/d H:i') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center align-items-center">
-                                                {{-- タグ編集機能マージ後、コメントアウト解除
-                                                <a href="{{ route('admin.tags.update') }}" class="btn btn-primary px-3 m-4">
+                                                {{-- タグ編集機能マージ後、遷移可能にするためにルート追加 --}}
+                                                <a class="btn btn-primary px-3 py-1">
                                                     編集
-                                                </a>--}}
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

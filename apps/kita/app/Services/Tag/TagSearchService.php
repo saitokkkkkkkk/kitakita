@@ -7,14 +7,28 @@ use App\Services\Helpers\StringHelper;
 
 class TagSearchService
 {
-    //private const PAGINATION_COUNT = 10;
+    private const PAGINATION_COUNT = 10;
 
-    public function getTags($tag)
+    /**
+     * Get the tags with pagination.
+     *
+     * @param string|null $tag
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getTags($tag = null) //
     {
-        //エスケープ
-        $escapedTag = StringHelper::escapeLike($tag);
+        // フォームが入力されてたら、
+        if (! empty($tag)) {
+            // エスケープ処理
+            $escapedTag = StringHelper::escapeLike($tag);
 
-        //エスケープ後のパラメータでデータ取得
-        return ArticleTag::where('name', 'LIKE', $escapedTag)->get();
+            // エスケープ後のパラメータでlike検索
+            return ArticleTag::where('name', 'LIKE', $escapedTag)
+                ->paginate(self::PAGINATION_COUNT)
+                ->appends(['tag' => $tag]);
+        }
+
+        // フォームが入力されていない場合は全件を取得
+        return ArticleTag::paginate(self::PAGINATION_COUNT);
     }
 }
