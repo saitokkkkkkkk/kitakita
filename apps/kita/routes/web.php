@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCreateController;
 use App\Http\Controllers\Admin\AdminListController;
+use App\Http\Controllers\Admin\AdminUpdateController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Article\ArticleCommentController;
 use App\Http\Controllers\Article\ArticleCreateController;
@@ -114,11 +116,28 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('logout');
     });
 
-    // 管理者関連のルート（後でadmin_usersでprefix）
+    // 管理者関連のルート
     Route::middleware('auth:admin')->group(function () {
-        // 管理者一覧画面の表示
-        Route::get('/admin_users', [AdminListController::class, 'index'])
-            ->name('users.index');
+
+        // 管理者関連のルート（admin/admin/users）
+        Route::prefix('admin_users')->group(function () {
+            // 管理者検索、一覧
+            Route::get('/', [AdminListController::class, 'index'])
+                ->name('users.index');
+
+            // 管理者新規登録
+            Route::controller(AdminCreateController::class)->group(function () {
+                Route::get('/create', 'show')
+                    ->name('users.create');
+                Route::post('/', 'store')
+                    ->name('users.store');
+            });
+
+            Route::controller(AdminUpdateController::class)->group(function () {
+                Route::get('{adminUser}/edit', 'show')
+                    ->name('users.edit');
+            });
+        });
 
         // タグ関連のルート（admin/article_tags）
         Route::prefix('article_tags')->group(function () {
