@@ -24,12 +24,14 @@ class AdminDeleteController extends Controller
      * Delete the admin.
      *
      * @param AdminUser $adminUser
-     * @return void これも後で変更
+     * @return void //これも後で変更
      */
     public function destroy(AdminUser $adminUser)
     {
         $this->adminDeleteService->destroy($adminUser);
 
-        //あとでリダイレクト先を追加
+        /*あとでコメントアウト解除
+        return redirect()->route('admin.users.index')
+            ->with('success', '削除処理が完了しました');*/
     }
 }

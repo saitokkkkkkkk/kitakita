@@ -124,7 +124,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 ->name('users.index');
             // 管理者削除
             Route::delete('/{adminUser}', [AdminDeleteController::class, 'destroy'])
-                ->name('user.destroy');
+                ->name('users.destroy');
         });
 
         // タグ関連のルート（admin/article_tags）
