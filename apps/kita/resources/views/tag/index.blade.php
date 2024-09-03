@@ -18,8 +18,8 @@
                     <div class="card-body">
                         <div class="row g-3">
                             <div>
-                                {!! Form::label('tag', 'タグ', ['class' => 'form-label']) !!}
-                                {!! Form::text('tag', request('tag'), ['id' => 'tag', 'class' => 'form-control']) !!}
+                                {!! Form::label('name', 'タグ', ['class' => 'form-label']) !!}
+                                {!! Form::text('name', request('name'), ['id' => 'name', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                     </div>

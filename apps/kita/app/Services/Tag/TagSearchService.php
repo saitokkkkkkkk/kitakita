@@ -15,7 +15,7 @@ class TagSearchService
      * @param string|null $tag
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getTags($tag = null) //
+    public function getTags($tag = null) // 空文字で検索した時にはnullが入る
     {
         // フォームが入力されてたら、
         if (! empty($tag)) {
@@ -25,7 +25,7 @@ class TagSearchService
             // エスケープ後のパラメータでlike検索
             return ArticleTag::where('name', 'LIKE', $escapedTag)
                 ->paginate(self::PAGINATION_COUNT)
-                ->appends(['tag' => $tag]);
+                ->appends(['name' => $tag]);
         }
 
         // フォームが入力されていない場合は全件を取得

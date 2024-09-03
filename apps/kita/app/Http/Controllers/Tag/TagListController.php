@@ -29,7 +29,7 @@ class TagListController extends Controller
     public function index(Request $request)
     {
         // リクエストからtag取得
-        $tag = $request->input('tag');
+        $tag = $request->input('name');
 
         // サービスクラスで検索ロジックを実行
         $articleTags = $this->tagSearchService->getTags($tag);
