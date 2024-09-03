@@ -81,7 +81,7 @@
                                 {!! Form::close() !!}
 
                                 <!-- 削除ボタン（削除機能作成の時に再度触る） -->
-                                {{--!! Form::open(['route' => ['tags.destroy', $adminUser->id], 'method' => 'DELETE' !!--}}
+                                {{--!! Form::open(['route' => ['users.destroy', $adminUser->id], 'method' => 'DELETE' !!--}}
                                 {!! Form::submit('削除する', ['class' => 'btn btn-danger w-100']) !!}
                                 {!! Form::close() !!}
                             </div>

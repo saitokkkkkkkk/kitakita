@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UpdateAdminRequest extends FormRequest
@@ -34,8 +33,8 @@ class UpdateAdminRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
-                // その更新対象の本人のメアドはユニーク制約を適用しない
-                Rule::unique('admin_users', 'email')->ignore(Auth::id()),
+                // その更新対象の管理者のメアドはユニーク制約を適用しない
+                Rule::unique('admin_users', 'email')->ignore($this->route('adminUser')),
             ],
         ];
     }
