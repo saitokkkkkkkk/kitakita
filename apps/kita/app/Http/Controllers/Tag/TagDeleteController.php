@@ -23,12 +23,14 @@ class TagDeleteController extends Controller
      * Delete the tag.
      *
      * @param ArticleTag $articleTag
-     * @return void
+     * @return void // これも後で変更
      */
     public function destroy(ArticleTag $articleTag)
     {
         $this->TagDeleteService->destroy($articleTag);
 
-        //あとでリダイレクト先の追加
+        /*あとでコメントアウト解除
+        return redirect()->route('admin.tags.index')
+            ->with('success', '削除処理が完了しました');*/
     }
 }
