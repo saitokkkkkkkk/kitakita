@@ -10,6 +10,7 @@ use App\Http\Controllers\Article\ArticleEditController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
+use App\Http\Controllers\Member\MemberListController;
 use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
 use App\Http\Controllers\Tag\TagCreateController;
@@ -114,11 +115,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('logout');
     });
 
-    // 管理者関連のルート（後でadmin_usersでprefix）
+    // 以下、管理者として認証状態ならアクセス可能
     Route::middleware('auth:admin')->group(function () {
-        // 管理者一覧画面の表示
-        Route::get('/admin_users', [AdminListController::class, 'index'])
-            ->name('users.index');
+        // 管理者関連のルート（admin/admin_users）
+        Route::prefix('admin_users')->group(function () {
+            // 管理者一覧表示
+            Route::get('/', [AdminListController::class, 'index'])
+                ->name('users.index');
+        });
 
         // タグ関連のルート（admin/article_tags）
         Route::prefix('article_tags')->group(function () {
@@ -134,6 +138,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::get('{articleTag}/edit', 'show')
                     ->name('tags.edit');
             });
+        });
+
+        // 会員関連のルート（admin/users）機能追加の可能性を考えてこれもprefix
+        Route::prefix('users')->group(function () {
+            Route::get('/', [MemberListController::class, 'index'])
+                ->name('members.index');
         });
     });
 });
