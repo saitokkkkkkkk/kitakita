@@ -16,15 +16,7 @@ class AdminUpdateService
      */
     public function update(UpdateAdminRequest $request, AdminUser $adminUser)
     {
-        // 値の取り出し
-        $validated = $request->validated();
-
-        // データの更新
-        $adminUser->update([
-            'last_name' => $validated['last_name'],
-            'first_name' => $validated['first_name'],
-            'email' => $validated['email'],
-        ]);
+        $adminUser->update($request->validated());
 
         return $adminUser;
     }

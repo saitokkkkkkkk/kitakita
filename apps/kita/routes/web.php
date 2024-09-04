@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCreateController;
 use App\Http\Controllers\Admin\AdminListController;
 use App\Http\Controllers\Admin\AdminUpdateController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
@@ -119,7 +120,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth:admin')->group(function () {
         // 管理者関連のルート（admin/admin_user）
         Route::prefix('admin_users')->group(function () {
-            // 管理者一覧画面の表示
+            // 管理者一覧
             Route::get('/', [AdminListController::class, 'index'])
                 ->name('users.index');
             // 管理者編集
@@ -128,6 +129,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
                     ->name('users.edit');
                 Route::put('{adminUser}', 'update')
                     ->name('users.update');
+            });
+
+            // 管理者新規登録
+            Route::controller(AdminCreateController::class)->group(function () {
+                Route::get('/create', 'show')
+                    ->name('users.create');
+                Route::post('/', 'store')
+                    ->name('users.store');
             });
         });
 
@@ -144,6 +153,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')
                     ->name('tags.edit');
+                Route::put('{articleTag}', 'update')
+                    ->name('tags.update');
             });
         });
     });

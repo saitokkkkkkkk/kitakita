@@ -47,10 +47,8 @@ class AdminUpdateController extends Controller
      */
     public function update(UpdateAdminRequest $request, AdminUser $adminUser)
     {
-        // サービスで処理
         $this->adminUpdateService->update($request, $adminUser);
 
-        // 更新後のデータを持ってリダイレクト
         return redirect()->route('admin.users.edit', $adminUser)
             ->with(['success' => '　更新処理が完了しました']);
     }
