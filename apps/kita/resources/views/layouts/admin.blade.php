@@ -23,7 +23,12 @@
                                 管理者管理
                             </a>
                         </div>
-                        <!--ここに会員管理ボタン-->
+                        <!--会員管理ボタン-->
+                        <div class="nav-item d-md-flex text-end ms-4">
+                            <a href="{{ route('admin.members.index') }}" class="nav-link text-white text-nowrap">
+                                会員管理
+                            </a>
+                        </div>
                         <!--タグ管理ボタン-->
                         <div class="nav-item d-md-flex text-end ms-4">
                             <a href="{{ route('admin.tags.index') }}" class="nav-link text-white text-nowrap">

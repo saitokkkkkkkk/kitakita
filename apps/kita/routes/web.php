@@ -12,6 +12,7 @@ use App\Http\Controllers\Article\ArticleEditController;
 use App\Http\Controllers\Article\ArticleListController;
 use App\Http\Controllers\Member\Auth\LoginController;
 use App\Http\Controllers\Member\Auth\RegisterController;
+use App\Http\Controllers\Member\MemberListController;
 use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
 use App\Http\Controllers\Tag\TagCreateController;
@@ -117,27 +118,27 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('logout');
     });
 
-    // 管理者関連のルート（後でadmin_usersでprefix）
+    // 以下、管理者として認証されてたらアクセス可能
     Route::middleware('auth:admin')->group(function () {
 
         // 管理者関連のルート（admin/admin/users）
         Route::prefix('admin_users')->group(function () {
-            // 管理者検索、一覧
+            // 管理者一覧
             Route::get('/', [AdminListController::class, 'index'])
                 ->name('users.index');
-
+            // 管理者編集
+            Route::controller(AdminUpdateController::class)->group(function () {
+                Route::get('{adminUser}/edit', 'edit')
+                    ->name('users.edit');
+                Route::put('{adminUser}', 'update')
+                    ->name('users.update');
+            });
             // 管理者新規登録
             Route::controller(AdminCreateController::class)->group(function () {
                 Route::get('/create', 'show')
                     ->name('users.create');
                 Route::post('/', 'store')
                     ->name('users.store');
-            });
-
-            // 管理者更新
-            Route::controller(AdminUpdateController::class)->group(function () {
-                Route::get('{adminUser}/edit', 'show')
-                    ->name('users.edit');
             });
         });
 
@@ -161,6 +162,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::put('{articleTag}', 'update')
                     ->name('tags.update');
             });
+        });
+
+        // 会員関連のルート（admin/users）機能追加の可能性と見やすさを考えてこれもprefix
+        Route::prefix('users')->group(function () {
+            // 会員一覧
+            Route::get('/', [MemberListController::class, 'index'])
+                ->name('members.index');
         });
     });
 });
