@@ -118,7 +118,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // 以下、管理者として認証されてたらアクセス可能
     Route::middleware('auth:admin')->group(function () {
-        // 管理者関連のルート（admin/admin_user）
+
+        // 管理者関連のルート（admin/admin/users）
         Route::prefix('admin_users')->group(function () {
             // 管理者一覧
             Route::get('/', [AdminListController::class, 'index'])
@@ -130,7 +131,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::put('{adminUser}', 'update')
                     ->name('users.update');
             });
-
             // 管理者新規登録
             Route::controller(AdminCreateController::class)->group(function () {
                 Route::get('/create', 'show')
@@ -142,14 +142,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // タグ関連のルート（admin/article_tags）
         Route::prefix('article_tags')->group(function () {
-            //タグ新規登録
+            // タグ新規登録
             Route::controller(TagCreateController::class)->group(function () {
                 Route::get('/create', 'show')
                     ->name('tags.create');
                 Route::post('/', 'store')
                     ->name('tags.store');
             });
-            //タグ編集
+            // タグ編集
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')
                     ->name('tags.edit');
