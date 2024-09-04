@@ -4,6 +4,7 @@ namespace App\Services\Tag;
 
 use App\Models\ArticleTag;
 use App\Services\Helpers\StringHelper;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class TagSearchService
 {
@@ -15,20 +16,19 @@ class TagSearchService
      * @param string|null $tag
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getTags($tag = null) // 空文字で検索した時にはnullが入る
+    public function getTags($tag = null): LengthAwarePaginator
     {
-        // フォームが入力されてたら、
-        if (! empty($tag)) {
-            // エスケープ処理
-            $escapedTag = StringHelper::escapeLike($tag);
+        // 基本のクエリを生成
+        $query = ArticleTag::query();
 
-            // エスケープ後のパラメータでlike検索
-            return ArticleTag::where('name', 'LIKE', $escapedTag)
-                ->paginate(self::PAGINATION_COUNT)
-                ->appends(['name' => $tag]);
+        // フォームが入力されていたら、エスケープ処理+検索条件を追加
+        if (! empty($tag)) {
+            $escapedTag = StringHelper::escapeLike($tag);
+            $query->where('name', 'LIKE', $escapedTag);
         }
 
-        // フォームが入力されていない場合は全件を取得
-        return ArticleTag::paginate(self::PAGINATION_COUNT);
+        // 実行（空文字検索では全件をreturn）
+        return $query->paginate(self::PAGINATION_COUNT)
+                     ->appends(['name' => $tag]);
     }
 }
