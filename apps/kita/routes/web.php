@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCreateController;
 use App\Http\Controllers\Admin\AdminListController;
+use App\Http\Controllers\Admin\AdminUpdateController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Article\ArticleCommentController;
 use App\Http\Controllers\Article\ArticleCreateController;
@@ -117,11 +119,26 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // 以下、管理者として認証状態ならアクセス可能
     Route::middleware('auth:admin')->group(function () {
-        // 管理者関連のルート（admin/admin_users）
+
+        // 管理者関連のルート（admin/admin/users）
         Route::prefix('admin_users')->group(function () {
-            // 管理者一覧表示
+            // 管理者検索、一覧
             Route::get('/', [AdminListController::class, 'index'])
                 ->name('users.index');
+
+            // 管理者新規登録
+            Route::controller(AdminCreateController::class)->group(function () {
+                Route::get('/create', 'show')
+                    ->name('users.create');
+                Route::post('/', 'store')
+                    ->name('users.store');
+            });
+
+            // 管理者更新
+            Route::controller(AdminUpdateController::class)->group(function () {
+                Route::get('{adminUser}/edit', 'show')
+                    ->name('users.edit');
+            });
         });
 
         // タグ関連のルート（admin/article_tags）
@@ -137,11 +154,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')
                     ->name('tags.edit');
+                Route::put('{articleTag}', 'update')
+                    ->name('tags.update');
             });
         });
 
-        // 会員関連のルート（admin/users）機能追加の可能性を考えてこれもprefix
+        // 会員関連のルート（admin/users）機能追加の可能性と見やすさを考えてこれもprefix
         Route::prefix('users')->group(function () {
+            // 会員一覧
             Route::get('/', [MemberListController::class, 'index'])
                 ->name('members.index');
         });
