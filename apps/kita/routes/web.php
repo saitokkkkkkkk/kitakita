@@ -105,7 +105,7 @@ Route::prefix('articles')->group(function () {
         ->name('article.details');
 });
 
-//以下、管理者のルート
+// 以下、管理者のルート
 Route::prefix('admin')->name('admin.')->group(function () {
     // ログイン、ログアウト（ミドルウェはコントローラで効かせてる）
     Route::controller(AdminLoginController::class)->group(function () {
@@ -117,14 +117,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('logout');
     });
 
-    // 以下、管理者として認証状態ならアクセス可能
+    // 以下、管理者として認証されてたらアクセス可能
     Route::middleware('auth:admin')->group(function () {
 
         // 管理者関連のルート（admin/admin/users）
         Route::prefix('admin_users')->group(function () {
-            // 管理者検索、一覧
+            // 管理者一覧
             Route::get('/', [AdminListController::class, 'index'])
                 ->name('users.index');
+
+            // 管理者編集
+            Route::controller(AdminUpdateController::class)->group(function () {
+                Route::get('{adminUser}/edit', 'edit')
+                    ->name('users.edit');
+                Route::put('{adminUser}', 'update')
+                    ->name('users.update');
+            });
 
             // 管理者新規登録
             Route::controller(AdminCreateController::class)->group(function () {
@@ -132,12 +140,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
                     ->name('users.create');
                 Route::post('/', 'store')
                     ->name('users.store');
-            });
-
-            // 管理者更新
-            Route::controller(AdminUpdateController::class)->group(function () {
-                Route::get('{adminUser}/edit', 'show')
-                    ->name('users.edit');
             });
         });
 
@@ -150,6 +152,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/', 'store')
                     ->name('tags.store');
             });
+
             // タグ編集
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')
