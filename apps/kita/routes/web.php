@@ -143,14 +143,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // タグ関連のルート（admin/article_tags）
         Route::prefix('article_tags')->group(function () {
-            //タグ新規登録
+            // タグ新規登録
             Route::controller(TagCreateController::class)->group(function () {
                 Route::get('/create', 'show')
                     ->name('tags.create');
                 Route::post('/', 'store')
                     ->name('tags.store');
             });
-            //タグ編集
+            // タグ編集
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')
                     ->name('tags.edit');
