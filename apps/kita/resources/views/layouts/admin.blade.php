@@ -17,8 +17,14 @@
             <div class="collapse navbar-collapse" id="navbarToggleContent">
                 <ul class="navbar-nav me-md-auto mb-2 mb-sm-0">
                     @if (Auth::guard('admin')->check())
-                        <!--ここに管理者管理-->
-                        <!--ここに会員管理-->
+                        <!--管理者管理ボタン-->
+                        <div class="nav-item d-md-flex text-end ms-5">
+                            <a href="{{ route('admin.users.index') }}" class="nav-link text-white text-nowrap ms-3">
+                                管理者管理
+                            </a>
+                        </div>
+                        <!--ここに会員管理ボタン-->
+                        <!--タグ管理ボタン-->
                         <div class="nav-item d-md-flex text-end ms-4">
                             <a href="{{ route('admin.tags.index') }}" class="nav-link text-white text-nowrap">
                                 タグ管理
@@ -31,7 +37,7 @@
                         <li class="nav-item text-end">
                             <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-inline">
                                 @csrf
-                                <button type="submit" class="btn btn-outline-light btn-sm">
+                                <button type="submit" class="btn btn-outline-light btn-sm mt-2">
                                     ログアウト
                                 </button>
                             </form>
