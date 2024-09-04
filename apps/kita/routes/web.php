@@ -148,10 +148,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/', 'store')
                     ->name('tags.store');
             });
-            //タグ編集
+            //タグ編集、更新
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')
                     ->name('tags.edit');
+                Route::put('{articleTag}', 'update')
+                    ->name('tags.update');
             });
         });
     });
