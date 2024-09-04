@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCreateController;
 use App\Http\Controllers\Admin\AdminListController;
+use App\Http\Controllers\Admin\AdminUpdateController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Article\ArticleCommentController;
 use App\Http\Controllers\Article\ArticleCreateController;
@@ -102,9 +104,9 @@ Route::prefix('articles')->group(function () {
         ->name('article.details');
 });
 
-//以下、管理者のルート
+// 以下、管理者のルート
 Route::prefix('admin')->name('admin.')->group(function () {
-    // ログイン、ログアウト
+    // ログイン、ログアウト（ミドルウェはコントローラで効かせてる）
     Route::controller(AdminLoginController::class)->group(function () {
         Route::get('/login', 'showLoginForm')
             ->name('login.show');
@@ -117,26 +119,42 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // 管理者ログイン状態で利用可能なルート
     Route::middleware('auth:admin')->group(function () {
 
-        // 管理者関連のルート（admin/admin_users）
+        // 管理者関連のルート（admin/admin/users）
         Route::prefix('admin_users')->group(function () {
-            // 管理者検索、一覧表示
+            // 管理者検索、一覧
             Route::get('/', [AdminListController::class, 'index'])
                 ->name('users.index');
+
+            // 管理者新規登録
+            Route::controller(AdminCreateController::class)->group(function () {
+                Route::get('/create', 'show')
+                    ->name('users.create');
+                Route::post('/', 'store')
+                    ->name('users.store');
+            });
+
+            // 管理者更新
+            Route::controller(AdminUpdateController::class)->group(function () {
+                Route::get('{adminUser}/edit', 'show')
+                    ->name('users.edit');
+            });
         });
 
         // タグ関連のルート（admin/article_tags）
         Route::prefix('article_tags')->group(function () {
-            //タグ新規登録
+            // タグ新規登録
             Route::controller(TagCreateController::class)->group(function () {
                 Route::get('/create', 'show')
                     ->name('tags.create');
                 Route::post('/', 'store')
                     ->name('tags.store');
             });
-            //タグ編集
+            // タグ編集
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')
                     ->name('tags.edit');
+                Route::put('{articleTag}', 'update')
+                    ->name('tags.update');
             });
         });
     });
