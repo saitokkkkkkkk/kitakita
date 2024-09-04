@@ -104,7 +104,7 @@ Route::prefix('articles')->group(function () {
         ->name('article.details');
 });
 
-//以下、管理者のルート
+// 以下、管理者のルート
 Route::prefix('admin')->name('admin.')->group(function () {
     // ログイン、ログアウト（ミドルウェはコントローラで効かせてる）
     Route::controller(AdminLoginController::class)->group(function () {
@@ -116,7 +116,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('logout');
     });
 
-    // 管理者関連のルート
+    // 管理者ログイン状態で利用可能なルート
     Route::middleware('auth:admin')->group(function () {
 
         // 管理者関連のルート（admin/admin/users）
@@ -133,6 +133,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                     ->name('users.store');
             });
 
+            // 管理者更新
             Route::controller(AdminUpdateController::class)->group(function () {
                 Route::get('{adminUser}/edit', 'show')
                     ->name('users.edit');
@@ -141,14 +142,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // タグ関連のルート（admin/article_tags）
         Route::prefix('article_tags')->group(function () {
-            //タグ新規登録
+            // タグ新規登録
             Route::controller(TagCreateController::class)->group(function () {
                 Route::get('/create', 'show')
                     ->name('tags.create');
                 Route::post('/', 'store')
                     ->name('tags.store');
             });
-            //タグ編集、更新
+            // タグ編集
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')
                     ->name('tags.edit');
