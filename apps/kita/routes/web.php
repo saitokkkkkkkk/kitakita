@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminCreateController;
+use App\Http\Controllers\Admin\AdminDeleteController;
 use App\Http\Controllers\Admin\AdminListController;
 use App\Http\Controllers\Admin\AdminUpdateController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
@@ -128,6 +129,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [AdminListController::class, 'index'])
                 ->name('users.index');
 
+            // 管理者削除
+            Route::delete('/{adminUser}', [AdminDeleteController::class, 'destroy'])
+                ->name('users.destroy');
+
             // 管理者編集
             Route::controller(AdminUpdateController::class)->group(function () {
                 Route::get('{adminUser}/edit', 'edit')
@@ -158,7 +163,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/', 'store')
                     ->name('tags.store');
             });
-
             // タグ編集
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')

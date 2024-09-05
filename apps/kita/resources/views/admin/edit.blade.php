@@ -80,8 +80,8 @@
                                 </div>
                                 {!! Form::close() !!}
 
-                                <!-- 削除ボタン（削除機能作成の時に再度触る） -->
-                                {{--!! Form::open(['route' => ['users.destroy', $adminUser->id], 'method' => 'DELETE' !!--}}
+                                <!-- 削除ボタン -->
+                                {!! Form::open(['route' => ['admin.users.destroy', $adminUser->id], 'method' => 'DELETE', 'class' => 'delete-form']) !!}
                                 {!! Form::submit('削除する', ['class' => 'btn btn-danger w-100']) !!}
                                 {!! Form::close() !!}
                             </div>
