@@ -17,6 +17,7 @@ use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
 use App\Http\Controllers\Tag\TagCreateController;
 use App\Http\Controllers\Tag\TagDeleteController;
+use App\Http\Controllers\Tag\TagListController;
 use App\Http\Controllers\Tag\TagUpdateController;
 use Illuminate\Support\Facades\Route;
 
@@ -146,7 +147,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // タグ関連のルート（admin/article_tags）
         Route::prefix('article_tags')->group(function () {
-            // タグ新規登録
+            // タグ検索、一覧表示
+            Route::get('/', [TagListController::class, 'index'])
+                ->name('tags.index');
+
+            //タグ新規登録
             Route::controller(TagCreateController::class)->group(function () {
                 Route::get('/create', 'show')
                     ->name('tags.create');
@@ -161,6 +166,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::put('{articleTag}', 'update')
                     ->name('tags.update');
             });
+
             //タグ削除
             Route::delete('/{articleTag}', [TagDeleteController::class, 'destroy'])
                 ->name('tags.destroy');
