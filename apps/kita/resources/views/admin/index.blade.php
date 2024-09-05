@@ -43,15 +43,14 @@
                 <div class="d-flex justify-content-start custom-pagination mt-4 mb-0">
                     {{ $adminUsers->links('vendor.pagination.admin') }}
                 </div>
-                <!-- 会員一覧 -->
+                <!-- 管理者一覧 -->
                 <div class="card">
+                    <!-- 新規作成ボタン -->
                     <div class="d-flex justify-content-start">
-                        <!-- 後でルート付与 -->
-                        <div class="btn btn-primary px-3 m-4">
+                        <a href="{{ route('admin.users.create') }}" class="btn btn-primary px-3 m-4">
                             新規登録
-                        </div>
+                        </a>
                     </div>
-                    <!-- ここ -->
                     <!-- 管理者テーブル -->
                     @if($adminUsers->isEmpty())
                         <div class="alert alert-warning mx-3" role="alert">
@@ -79,11 +78,11 @@
                                     <td class="text-end">{{ $user->updated_at->format('Y/m/d H:i') }}</td>
                                     <td class="text-end">{{ $user->created_at->format('Y/m/d H:i') }}</td>
                                     <td>
+                                    <!-- 編集ボタン -->
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <!-- 後でルート付与 -->
-                                        <div class="btn btn-primary px-3 py-1 text-nowrap">
+                                        <a href="{{ route('admin.users.edit', ['adminUser' => $user->id]) }}" class="btn btn-primary px-3 py-1 text-nowrap">
                                             編集
-                                        </div>
+                                        </a>
                                     </div>
                                     </td>
                                 </tr>
