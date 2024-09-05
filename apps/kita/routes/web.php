@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminCreateController;
+use App\Http\Controllers\Admin\AdminDeleteController;
 use App\Http\Controllers\Admin\AdminListController;
 use App\Http\Controllers\Admin\AdminUpdateController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
@@ -120,12 +121,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // 以下、管理者として認証されてたらアクセス可能
     Route::middleware('auth:admin')->group(function () {
-
-        // 管理者関連のルート（admin/admin/users）
+        // 管理者関連のルート（admin/admin_users）
         Route::prefix('admin_users')->group(function () {
             // 管理者一覧
             Route::get('/', [AdminListController::class, 'index'])
                 ->name('users.index');
+
+            // 管理者削除
+            Route::delete('/{adminUser}', [AdminDeleteController::class, 'destroy'])
+                ->name('users.destroy');
+
             // 管理者編集
             Route::controller(AdminUpdateController::class)->group(function () {
                 Route::get('{adminUser}/edit', 'edit')
@@ -133,6 +138,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::put('{adminUser}', 'update')
                     ->name('users.update');
             });
+
             // 管理者新規登録
             Route::controller(AdminCreateController::class)->group(function () {
                 Route::get('/create', 'show')
@@ -155,6 +161,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/', 'store')
                     ->name('tags.store');
             });
+
             // タグ編集
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')
