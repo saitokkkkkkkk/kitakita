@@ -16,7 +16,7 @@ class TagSearchService
      * @param string|null $tag
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getTags($tag = null): LengthAwarePaginator
+    public function getTags(string $tag = null): LengthAwarePaginator
     {
         // 基本のクエリを生成
         $query = ArticleTag::query();
