@@ -67,7 +67,7 @@
                                         <td>
                                             <div class="d-flex justify-content-center align-items-center">
                                                 {{-- タグ編集機能マージ後、遷移可能にするためにルート追加 --}}
-                                                <a class="btn btn-primary px-3 py-1">
+                                                <a href="{{ route('admin.tags.edit', ['articleTag' => $tag->id]) }}" class="btn btn-primary px-3 py-1">
                                                     編集
                                                 </a>
                                             </div>

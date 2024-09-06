@@ -17,6 +17,7 @@ use App\Http\Controllers\Member\MemberListController;
 use App\Http\Controllers\Member\MemberPasswordController;
 use App\Http\Controllers\Member\MemberProfileController;
 use App\Http\Controllers\Tag\TagCreateController;
+use App\Http\Controllers\Tag\TagDeleteController;
 use App\Http\Controllers\Tag\TagListController;
 use App\Http\Controllers\Tag\TagUpdateController;
 use Illuminate\Support\Facades\Route;
@@ -121,7 +122,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // 以下、管理者として認証されてたらアクセス可能
     Route::middleware('auth:admin')->group(function () {
-        // 管理者関連のルート（admin/admin_users）
+
+        // 管理者関連のルート（admin/admin/users）
         Route::prefix('admin_users')->group(function () {
             // 管理者一覧
             Route::get('/', [AdminListController::class, 'index'])
@@ -161,7 +163,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/', 'store')
                     ->name('tags.store');
             });
-
             // タグ編集
             Route::controller(TagUpdateController::class)->group(function () {
                 Route::get('{articleTag}/edit', 'show')
@@ -169,6 +170,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::put('{articleTag}', 'update')
                     ->name('tags.update');
             });
+
+            //タグ削除
+            Route::delete('/{articleTag}', [TagDeleteController::class, 'destroy'])
+                ->name('tags.destroy');
         });
 
         // 会員関連のルート（admin/users）機能追加の可能性と見やすさを考えてこれもprefix
