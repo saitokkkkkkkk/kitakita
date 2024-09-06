@@ -18,3 +18,4 @@ yarn-error.log
 /.vscode
 .php-cs-fixer.cache
 /public/fonts
+/storage/logs
