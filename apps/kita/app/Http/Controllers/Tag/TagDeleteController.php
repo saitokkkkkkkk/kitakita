@@ -8,15 +8,15 @@ use App\Services\Tag\TagDeleteService;
 
 class TagDeleteController extends Controller
 {
-    private $TagDeleteService;
+    private $tagDeleteService;
 
     /**
      * Constructor for TagDeleteController.
-     * @param TagDeleteService $TagDeleteService
+     * @param TagDeleteService $tagDeleteService
      */
-    public function __construct(TagDeleteService $TagDeleteService)
+    public function __construct(TagDeleteService $tagDeleteService)
     {
-        $this->TagDeleteService = $TagDeleteService;
+        $this->tagDeleteService = $tagDeleteService;
     }
 
     /**
@@ -27,7 +27,7 @@ class TagDeleteController extends Controller
      */
     public function destroy(ArticleTag $articleTag)
     {
-        $this->TagDeleteService->destroy($articleTag);
+        $this->tagDeleteService->destroy($articleTag);
 
         return redirect()->route('admin.tags.index')
             ->with('success', '削除処理が完了しました');

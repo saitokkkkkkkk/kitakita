@@ -15,6 +15,6 @@ class TagDeleteService
     public function destroy(ArticleTag $articleTag)
     {
         //タグを物理削除
-        $articleTag->forcedelete();
+        $articleTag->delete();
     }
 }
