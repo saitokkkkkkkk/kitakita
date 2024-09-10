@@ -3,6 +3,11 @@ window.bootstrap = bootstrap;
 import '@fontsource/poppins';
 // Import AdminLTE
 import 'admin-lte';
+// Import jQuery
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+// Import Font Awesome
+import '@fortawesome/fontawesome-free/js/all.js';
 
 // DOMの読み込みが完了した後に実行
 document.addEventListener('DOMContentLoaded', function () {
