@@ -21,6 +21,7 @@
         "sass-loader": "^12.6.0"
     },
     "dependencies": {
-        "@fontsource/poppins": "^5.0.15"
+        "@fontsource/poppins": "^5.0.15",
+        "admin-lte": "^3.2.0"
     }
 }
