@@ -10,8 +10,13 @@
 
     <title>Kitaアプリ</title>
 
-    <!-- Scripts -->
+    <!--css-->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <!-- AdminLTE -->
+    <script src="{{ asset('js/adminlte.min.js') }}"></script>
+    <!-- app.js -->
     <script src="{{ mix('js/app.js') }}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>

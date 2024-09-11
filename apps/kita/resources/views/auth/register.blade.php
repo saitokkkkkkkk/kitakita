@@ -4,7 +4,7 @@
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-9 col-sm-8 col-md-6 col-lg-5">
             <div class="text-center">
-                <h3 class="card-title text-start text-muted">
+                <h3 class="text-start text-muted">
                     Kita会員登録
                 </h3>
                 <hr>

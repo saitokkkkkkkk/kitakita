@@ -4,7 +4,7 @@
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-sm-7 col-md-6 col-lg-4">
             <div class="text-center mb-3">
-                <span class="card-title text-start" style="font-family: 'Poppins', sans-serif;">
+                <span class="text-start" style="font-family: 'Poppins', sans-serif;">
                     <span class="fs-1 fw-bold">K</span><span class="fs-1">ita</span>
                     <span class="fs-5 ms-2">Administrator Console</span>
                 </span>

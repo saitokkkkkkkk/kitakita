@@ -1,13 +1,17 @@
+import $ from 'jquery';
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
-import '@fontsource/poppins';
-// Import AdminLTE
 import 'admin-lte';
-// Import jQuery
-import $ from 'jquery';
-window.$ = window.jQuery = $;
-// Import Font Awesome
 import '@fortawesome/fontawesome-free/js/all.js';
+import '@fontsource/poppins';
+
+// 確認のため、jQuery が動作しているか確認する
+$(document).ready(function() {
+    console.log('jQuery is working!');
+});
+
+console.log($.fn.jquery);
+
 
 // DOMの読み込みが完了した後に実行
 document.addEventListener('DOMContentLoaded', function () {

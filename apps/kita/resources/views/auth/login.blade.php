@@ -4,7 +4,7 @@
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-sm-7 col-md-6 col-lg-4">
             <div class="text-center">
-                <h3 class="card-title text-start text-muted">
+                <h3 class="text-start text-muted">
                     Kitaログイン
                 </h3>
                 <hr>

@@ -9089,24 +9089,26 @@ function withinMaxClamp(min, value, max) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
-/* harmony import */ var _fontsource_poppins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fontsource/poppins */ "./node_modules/@fontsource/poppins/index.css");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 /* harmony import */ var admin_lte__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! admin-lte */ "./node_modules/admin-lte/dist/js/adminlte.min.js");
 /* harmony import */ var admin_lte__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(admin_lte__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/all.js */ "./node_modules/@fortawesome/fontawesome-free/js/all.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/all.js */ "./node_modules/@fortawesome/fontawesome-free/js/all.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _fontsource_poppins__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fontsource/poppins */ "./node_modules/@fontsource/poppins/index.css");
 
-window.bootstrap = bootstrap__WEBPACK_IMPORTED_MODULE_0__;
 
-// Import AdminLTE
+window.bootstrap = bootstrap__WEBPACK_IMPORTED_MODULE_1__;
 
-// Import jQuery
 
-window.$ = window.jQuery = (jquery__WEBPACK_IMPORTED_MODULE_3___default());
-// Import Font Awesome
 
+
+// 確認のため、jQuery が動作しているか確認する
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
+  console.log('jQuery is working!');
+});
+console.log((jquery__WEBPACK_IMPORTED_MODULE_0___default().fn).jquery);
 
 // DOMの読み込みが完了した後に実行
 document.addEventListener('DOMContentLoaded', function () {
@@ -9131,7 +9133,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // パラメータにmodal=trueがあればモーダルを自動で表示
   if (window.location.search.includes('modal=true')) {
-    var passwordModal = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Modal(document.getElementById('passwordModal'));
+    var passwordModal = new bootstrap__WEBPACK_IMPORTED_MODULE_1__.Modal(document.getElementById('passwordModal'));
     passwordModal.show();
   }
 });
