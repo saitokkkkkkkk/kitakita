@@ -7,7 +7,7 @@
         <!--管理ボタン-->
         <ul class="navbar-nav">
             <li class="nav-item me-4">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link ms-3" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('admin.users.index') }}" class="nav-link">管理者管理</a>
@@ -54,7 +54,7 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!--管理者-->
-                    <li class="nav-item enu-is-opening">
+                    <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-solid fa-user-tie"></i>
                             <p>
@@ -87,7 +87,7 @@
                         </a>
                     </li>
                     <!--タグ-->
-                    <li class="nav-item menu-is-opening">
+                    <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-solid fa-tag"></i>
                             <p>
