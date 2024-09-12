@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
-import 'admin-lte';
+import 'admin-lte/dist/js/adminlte.js';
 import '@fortawesome/fontawesome-free/js/all.js';
 import '@fontsource/poppins';
 

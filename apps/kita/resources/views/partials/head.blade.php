@@ -12,11 +12,8 @@
 
     <!--css-->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
-    <!-- jQuery -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <!-- AdminLTE -->
-    <script src="{{ asset('js/adminlte.min.js') }}"></script>
-    <!-- app.js -->
+
+    <!-- js -->
     <script src="{{ mix('js/app.js') }}"></script>
+
 </head>

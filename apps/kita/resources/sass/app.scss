@@ -12,11 +12,3 @@
 
 // Import Font Awesome
 @import '~@fortawesome/fontawesome-free/css/all.css';
-
-.main-sidebar {
-    height: 100vh; /* ビューポートの高さに合わせる */
-    overflow-y: auto; /* 高さを超えた場合にスクロールできるようにする */
-    position: fixed; /* 固定位置にする */
-    top: 0;
-    bottom: 0;
-}
