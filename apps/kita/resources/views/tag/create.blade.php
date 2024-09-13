@@ -15,10 +15,9 @@
                                 @csrf
                                 <div class="form-group mb-3">
                                     <div class="d-flex align-items-center">
-                                        {!! Form::label('tag', 'タグ名', ['class' => 'me-2']) !!}
                                         <span class="badge bg-danger rounded-1 px-1">必須</span>
                                     </div>
-                                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                                    {!! Form::text('name', old('name'), ['class' => 'form-control form-control-border', 'placeholder' => 'タグ名']) !!}
                                     @error('name')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                     @enderror

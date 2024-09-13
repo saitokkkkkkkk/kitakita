@@ -18,8 +18,7 @@
                     <div class="card-body">
                         <div class="row g-3">
                             <div>
-                                {!! Form::label('name', 'タグ', ['class' => 'form-label']) !!}
-                                {!! Form::text('name', request('name'), ['id' => 'name', 'class' => 'form-control']) !!}
+                                {!! Form::text('name', request('name'), ['id' => 'name', 'class' => 'form-control form-control-border', 'placeholder' => 'タグ名']) !!}
                             </div>
                         </div>
                     </div>

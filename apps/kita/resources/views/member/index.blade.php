@@ -16,12 +16,10 @@
                     <div class="card-body">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                {!! Form::label('name', 'ユーザ名', ['class' => 'form-label']) !!}
-                                {!! Form::text('name', request('name'), ['id' => 'name', 'class' => 'form-control']) !!}
+                                {!! Form::text('name', request('name'), ['id' => 'name', 'class' => 'form-control form-control-border', 'placeholder' => 'ユーザ名']) !!}
                             </div>
                             <div class="col-md-6">
-                                {!! Form::label('email', 'メールアドレス', ['class' => 'form-label']) !!}
-                                {!! Form::text('email', request('email'), ['id' => 'email', 'class' => 'form-control']) !!}
+                                {!! Form::text('email', request('email'), ['id' => 'email', 'class' => 'form-control form-control-border', 'placeholder' => 'メールアドレス']) !!}
                             </div>
                         </div>
                     </div>

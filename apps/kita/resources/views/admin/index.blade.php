@@ -17,16 +17,13 @@
                     <div class="card-body">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                {!! Form::label('last_name', '姓', ['class' => 'form-label']) !!}
-                                {!! Form::text('last_name', request('last_name'), ['id' => 'last_name', 'class' => 'form-control']) !!}
+                                {!! Form::text('last_name', request('last_name'), ['id' => 'last_name', 'class' => 'form-control form-control-border', 'placeholder' => '姓']) !!}
                             </div>
                             <div class="col-md-4">
-                                {!! Form::label('first_name', '名', ['class' => 'form-label']) !!}
-                                {!! Form::text('first_name', request('first_name'), ['id' => 'first_name', 'class' => 'form-control']) !!}
+                                {!! Form::text('first_name', request('first_name'), ['id' => 'first_name', 'class' => 'form-control form-control-border', 'placeholder' => '名']) !!}
                             </div>
                             <div class="col-md-4">
-                                {!! Form::label('email', 'メールアドレス', ['class' => 'form-label']) !!}
-                                {!! Form::text('email', request('email'), ['id' => 'email', 'class' => 'form-control']) !!}
+                                {!! Form::text('email', request('email'), ['id' => 'email', 'class' => 'form-control form-control-border', 'placeholder' => 'メールアドレス']) !!}
                             </div>
                         </div>
                     </div>
