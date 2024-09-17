@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Article;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Services\Article\ArticleDeleteService;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ArticleDeleteController extends Controller
 {
@@ -29,19 +29,25 @@ class ArticleDeleteController extends Controller
     /**
      * Handle the deletion of an article.
      *
-     * @param Article $article
-     * @return RedirectResponse
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function destroy(Article $article)
+    public function destroy(Request $request, Article $article)
     {
-        //サービスを使って記事削除
-        if ($this->articleDeleteService->deleteArticle($article)) {
-            // セッションにメッセージを追加してリダイレクト
-            return redirect()->route('articles.index')
-                ->with('success', '記事を削除しました');
+        // サービスを使って記事削除（ajaxもそうでないのも共通）
+        $success = $this->articleDeleteService->deleteArticle($article);
+
+        /** レスポンスにJSONを期待している=Acceptヘッダーにapplication/jsonを含んでいる時**/
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => $success,
+                'message' => $success ? '記事を削除しました' : '削除に失敗しました',
+            ]);
         }
 
-        //削除権限がない時は単にリダイレクト
-        return redirect()->route('articles.index');
+        // 非JSONリクエストの場合（メッセージを持って記事一覧にリダイレクト）
+        return redirect()->route('articles.index')
+            ->with($success ? 'success' : 'error', $success ? '記事を削除しました' : '削除に失敗しました');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -46,5 +47,25 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    /**
+     * @param $request
+     * @param Throwable $e
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
+     * @throws Throwable
+     */
+    public function render($request, Throwable $e)
+    {
+        // 未認証の場合の処理
+        if ($e instanceof AuthenticationException) {
+            // JSONリクエストの場合、日本語のエラーメッセージを返す
+            if ($request->expectsJson()) {
+                return response()->json(['message' => '認証が必要です'], 401);
+            }
+        }
+
+        // 親のrenderメソッドを呼び出す（その他の例外処理はデフォルトの処理に任せる）
+        return parent::render($request, $e);
     }
 }

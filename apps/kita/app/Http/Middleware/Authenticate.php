@@ -15,7 +15,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request): ?string
     {
-        // JSONリクエストの場合はリダイレクトしない
+        // リクエストのacceptにjsonを指定しているときはnull（リダイレクトしない）
         if ($request->expectsJson()) {
             return null;
         }
