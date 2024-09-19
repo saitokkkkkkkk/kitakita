@@ -11,7 +11,7 @@
                         @csrf
                         @method('DELETE')
                         <!--一括削除のボタン-->
-                        <div class="d-flex justify-content-end mb-3">
+                        <div class="d-flex justify-content-start mb-3">
                             <button type="submit" class="btn btn-primary">選択した記事を削除</button>
                         </div>
                         <div class="card p-4 w-100">
@@ -24,15 +24,21 @@
                                 @foreach($articles as $article)
                                     <!-- 記事詳細に遷移可能にする -->
                                     <a href="{{ route('article.details', $article->id) }}" class="text-dark text-decoration-none">
+
+                                        <!--一括削除用のチェックボックス-->
+                                        @if (auth()->check() && auth()->user()->id === $article->member_id)
+                                        <div class="text-muted mb-1">
+                                            <input type="checkbox" name="articles[]" value="{{ $article->id }}" class="form-check-input me-3 mt-0">
+                                        </div>
+                                        @endif
+
                                         <div class="d-flex justify-content-between text-muted mb-1">
                                             <small>{{ $article->member->name }}が{{ $article->created_at->format('Y年m月d日') }}に投稿</small>
 
-                                            <!--ログインしてるかつ自分の記事なら、チェックボックスと削除ボタン表示-->
+                                            <!--削除ボタン-->
                                             @if (auth()->check() && auth()->user()->id === $article->member_id)
                                             <div class="article" data-id="{{ $article->id }}">
                                                 <div class="d-flex align-items-center">
-                                                    <!--一括削除用のチェックボックス-->
-                                                    <input type="checkbox" name="articles[]" value="{{ $article->id }}" class="form-check-input me-3 mt-0">
                                                     <!--単体削除用のボタン-->
                                                     <small class="cursor-pointer delete-button" data-id="{{ $article->id }}">
                                                         削除
