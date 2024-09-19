@@ -12151,53 +12151,169 @@ function withinMaxClamp(min, value, max) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
-/* harmony import */ var admin_lte_dist_js_adminlte_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! admin-lte/dist/js/adminlte.js */ "./node_modules/admin-lte/dist/js/adminlte.js");
-/* harmony import */ var admin_lte_dist_js_adminlte_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(admin_lte_dist_js_adminlte_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/all.js */ "./node_modules/@fortawesome/fontawesome-free/js/all.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _fontsource_poppins__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fontsource/poppins */ "./node_modules/@fontsource/poppins/index.css");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+/* harmony import */ var admin_lte_dist_js_adminlte_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! admin-lte/dist/js/adminlte.js */ "./node_modules/admin-lte/dist/js/adminlte.js");
+/* harmony import */ var admin_lte_dist_js_adminlte_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(admin_lte_dist_js_adminlte_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/all.js */ "./node_modules/@fortawesome/fontawesome-free/js/all.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _fontsource_poppins__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fontsource/poppins */ "./node_modules/@fontsource/poppins/index.css");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_4__);
+
+window.bootstrap = bootstrap__WEBPACK_IMPORTED_MODULE_0__;
 
 
-window.bootstrap = bootstrap__WEBPACK_IMPORTED_MODULE_1__;
 
 
-
-
-// 確認のため、jQuery が動作しているか確認する
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  console.log('jQuery is working!');
-});
-console.log((jquery__WEBPACK_IMPORTED_MODULE_0___default().fn).jquery);
+window.$ = (jquery__WEBPACK_IMPORTED_MODULE_4___default());
 
 // DOMの読み込みが完了した後に実行
-document.addEventListener('DOMContentLoaded', function () {
-  // アラートメッセージを5秒で非表示にする
-  var successAlert = document.getElementById('success-alert');
-  if (successAlert) {
+jquery__WEBPACK_IMPORTED_MODULE_4___default()(document).ready(function () {
+  // 成功メッセージの削除
+  var $successAlert = jquery__WEBPACK_IMPORTED_MODULE_4___default()('#success-alert');
+  if ($successAlert.length) {
     setTimeout(function () {
-      successAlert.style.display = 'none'; // 非表示にする
+      $successAlert.hide(); // 非表示にする
+    }, 5000); // 5秒後に実行
+  }
+
+  // エラーメッセージの削除
+  var $errorAlert = jquery__WEBPACK_IMPORTED_MODULE_4___default()('#error-alert');
+  if ($errorAlert.length) {
+    setTimeout(function () {
+      $errorAlert.hide(); // 非表示にする
     }, 5000); // 5秒後に実行
   }
 
   // 論理削除前のconfirm box
-  var deleteForms = document.querySelectorAll('form.delete-form');
-  deleteForms.forEach(function (form) {
-    form.addEventListener('submit', function (event) {
-      var confirmed = confirm('一度削除すると元に戻せません。よろしいですか？');
-      if (!confirmed) {
-        event.preventDefault(); // ユーザが「いいえ」を押したらフォーム送信中止
-      }
-    });
+  jquery__WEBPACK_IMPORTED_MODULE_4___default()('form.delete-form').on('submit', function (event) {
+    var confirmed = confirm('一度削除すると元に戻せません。よろしいですか？');
+    if (!confirmed) {
+      event.preventDefault(); // ユーザが「いいえ」を押したらフォーム送信中止
+    }
   });
 
   // パラメータにmodal=trueがあればモーダルを自動で表示
   if (window.location.search.includes('modal=true')) {
-    var passwordModal = new bootstrap__WEBPACK_IMPORTED_MODULE_1__.Modal(document.getElementById('passwordModal'));
+    var passwordModal = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Modal(jquery__WEBPACK_IMPORTED_MODULE_4___default()('#passwordModal')[0]);
     passwordModal.show();
   }
+
+  // Ajaxで一括削除
+  var bulkDeleteForm = jquery__WEBPACK_IMPORTED_MODULE_4___default()('#bulk-delete-form');
+  if (bulkDeleteForm.length) {
+    bulkDeleteForm.on('submit', function (event) {
+      event.preventDefault(); // デフォルトのフォーム送信を無効にする
+
+      // confirm boxを表示
+      var confirmed = confirm('一度削除すると元に戻せません。よろしいですか？');
+      if (!confirmed) {
+        return; // ユーザーが「いいえ」を押した場合、削除処理を中止
+      }
+
+      // チェックが入っている記事を収集
+      var selectedArticles = jquery__WEBPACK_IMPORTED_MODULE_4___default()('input[name="articles[]"]:checked').map(function () {
+        return jquery__WEBPACK_IMPORTED_MODULE_4___default()(this).val();
+      }).get();
+
+      // 記事が一つもチェックされていない場合も、削除処理を中止
+      if (selectedArticles.length === 0) {
+        alert('記事が選択されていません');
+        return;
+      }
+
+      // 一括削除リクエスト送信
+      jquery__WEBPACK_IMPORTED_MODULE_4___default().ajax({
+        url: bulkDeleteForm.attr('action'),
+        type: 'DELETE',
+        headers: {
+          'X-CSRF-TOKEN': jquery__WEBPACK_IMPORTED_MODULE_4___default()('meta[name="csrf-token"]').attr('content')
+        },
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify({
+          articles: selectedArticles
+        }),
+        // サーバが返す値によって分岐
+        success: function success(data) {
+          // 削除成功した時
+          if (data.success) {
+            // DOMからチェックされた記事を削除
+            selectedArticles.forEach(function (id) {
+              // data-idを持つ記事要素を画面から削除（だからリロードなしでいける）
+              var articleElement = jquery__WEBPACK_IMPORTED_MODULE_4___default()(".article[data-id=\"".concat(id, "\"]"));
+              if (articleElement.length) {
+                articleElement.closest('a').remove(); // `<a>` タグごと削除
+              }
+            });
+            // コントローラからreturnされる成功メッセージを表示
+            alert(data.message);
+            // 削除失敗した時
+          } else {
+            // コントローラからreturnされる失敗メッセージを表示
+            alert(data.message);
+          }
+        },
+        // 未認証時とその他のエラーの処理
+        error: function error(xhr) {
+          // authミドルウェアが401返してきた時
+          if (xhr.status === 401) {
+            alert('ログインしてください');
+          } else {
+            // その他のエラーの場合
+            alert('削除に失敗しました');
+          }
+        }
+      });
+    });
+  }
+
+  // Ajaxで単体削除
+  jquery__WEBPACK_IMPORTED_MODULE_4___default()('.delete-button').on('click', function (event) {
+    event.preventDefault(); // デフォルト動作を無効にする
+
+    // 削除対象の記事IDを取得
+    var articleId = jquery__WEBPACK_IMPORTED_MODULE_4___default()(this).data('id');
+
+    // 確認ダイアログを表示
+    var confirmed = confirm('一度削除すると元に戻せません。よろしいですか？');
+    if (confirmed) {
+      // 削除リクエスト送信
+      jquery__WEBPACK_IMPORTED_MODULE_4___default().ajax({
+        url: "/articles/".concat(articleId),
+        method: 'DELETE',
+        headers: {
+          'X-CSRF-TOKEN': jquery__WEBPACK_IMPORTED_MODULE_4___default()('meta[name="csrf-token"]').attr('content'),
+          'Accept': 'application/json'
+        },
+        // コントローラがなんか返却してきた時
+        success: function success(data) {
+          if (data.success) {
+            // DOMから削除対象の記事を削除
+            var articleElement = jquery__WEBPACK_IMPORTED_MODULE_4___default()("a:has(.article[data-id=\"".concat(articleId, "\"])"));
+            if (articleElement.length) {
+              articleElement.remove(); // aタグごと削除
+            }
+            // コントローラからreturnされる成功メッセージを表示
+            alert(data.message);
+          } else {
+            // コントローラからreturnされる失敗メッセージを表示
+            alert(data.message);
+          }
+        },
+        // ミドルウェアとか?がなんか返却してきた時
+        error: function error(xhr) {
+          // 401
+          if (xhr.status === 401) {
+            alert('ログインしてください');
+            // そのほか
+          } else {
+            alert('削除に失敗しました');
+          }
+        }
+      });
+    }
+  });
 });
 
 /***/ }),

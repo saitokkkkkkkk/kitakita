@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminDeleteController;
 use App\Http\Controllers\Admin\AdminListController;
 use App\Http\Controllers\Admin\AdminUpdateController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
+use App\Http\Controllers\Article\ArticleBulkDeleteController;
 use App\Http\Controllers\Article\ArticleCommentController;
 use App\Http\Controllers\Article\ArticleCreateController;
 use App\Http\Controllers\Article\ArticleDeleteController;
@@ -72,7 +73,11 @@ Route::middleware(['auth:web'])->group(function () {
                 ->name('articles.update');
         });
 
-        //記事削除
+        //記事削除（一括）
+        Route::delete('/bulk-delete', [ArticleBulkDeleteController::class, 'destroy'])
+            ->name('articles.bulkDelete');
+
+        //記事削除（単体）
         Route::delete('/{article}', [ArticleDeleteController::class, 'destroy'])
             ->name('article.destroy');
     });
