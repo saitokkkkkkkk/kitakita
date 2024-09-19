@@ -16,9 +16,10 @@ class ArticleDeleteService
     public function deleteArticle(Article $article): bool
     {
         // ログイン中のユーザのユーザIDを取得
+        // 認証済みであることはミドルウェアによって確認済み（多分そゆこと）
         $userId = Auth::id();
 
-        // 記事の会員IDとログイン中のユーザのIDが一致するか確認
+        // 本人の記事かどうかを確認
         if ($userId && $userId === $article->member_id) {
             // 論理削除
             $article->delete();
@@ -26,7 +27,7 @@ class ArticleDeleteService
             return true;
         }
 
-        // 削除権限がない時
+        // 本人の記事ではない時
         return false;
     }
 }

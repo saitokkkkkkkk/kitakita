@@ -3,47 +3,56 @@
 namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
+use App\Services\Article\ArticleBulkDeleteService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleBulkDeleteController extends Controller
 {
+    /**
+     * @var ArticleBulkDeleteService
+     */
+    protected $articleBulkDeleteService;
+
+    /**
+     * ArticleBulkDeleteController constructor.
+     *
+     * @param ArticleBulkDeleteService $articleBulkDeleteService
+     */
+    public function __construct(ArticleBulkDeleteService $articleBulkDeleteService)
+    {
+        $this->articleBulkDeleteService = $articleBulkDeleteService;
+    }
+
+    /**
+     * Bulk delete the selected articles using service class.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy(Request $request)
     {
-        // チェックされた記事IDを取得
+        // チェックされた記事を取得
         $articleIds = $request->input('articles', []);
 
-        // 記事が一つもチェックされてない場合
-        if (empty($articleIds)) {
+        try {
+
+            $result = $this->articleBulkDeleteService->deleteArticles($articleIds, Auth::id());
+
+            // レスポンスを受け取ってjsonにする
+            return response()->json([
+                'success' => $result['success'],
+                'message' => $result['message'],
+            ]);
+
+        /* サービスのトランザクション外でのエラーを拾うぽい */
+        } catch (\Exception $e) {
+
             return response()->json([
                 'success' => false,
-                'message' => '記事が選択されていません。',
-            ], 400); // 400 Bad Request
+                // ユーザ向けメッセージ
+                'message' => '削除中にエラーが発生しました。',
+            ], 500);
         }
-
-        $success = true;
-
-        foreach ($articleIds as $id) {
-            $article = Article::find($id);
-
-            // 記事が存在し、ログインユーザーがその記事の所有者であるか確認
-            if ($article && auth()->user()->id === $article->member_id) {
-                try {
-                    $article->delete(); // 記事を削除
-                } catch (\Exception $e) {
-                    Log::error('削除エラー: '.$e->getMessage()); // エラーメッセージをログに記録
-                    $success = false; // 削除に失敗した場合
-                }
-            } else {
-                $success = false; // 所有者でない場合や記事が存在しない場合
-            }
-        }
-
-        // レスポンスを返す
-        return response()->json([
-            'success' => $success,
-            'message' => $success ? '選択した記事を削除しました。' : '削除に失敗しました。',
-        ], $success ? 200 : 500);
     }
 }

@@ -26,8 +26,10 @@
                                     <a href="{{ route('article.details', $article->id) }}" class="text-dark text-decoration-none">
                                         <div class="d-flex justify-content-between text-muted mb-1">
                                             <small>{{ $article->member->name }}が{{ $article->created_at->format('Y年m月d日') }}に投稿</small>
+
                                             <!--ログインしてるかつ自分の記事なら、チェックボックスと削除ボタン表示-->
                                             @if (auth()->check() && auth()->user()->id === $article->member_id)
+                                            <div class="article" data-id="{{ $article->id }}">
                                                 <div class="d-flex align-items-center">
                                                     <!--一括削除用のチェックボックス-->
                                                     <input type="checkbox" name="articles[]" value="{{ $article->id }}" class="form-check-input me-3 mt-0">
@@ -36,7 +38,9 @@
                                                         削除
                                                     </small>
                                                 </div>
+                                            </div>
                                             @endif
+
                                         </div>
                                         <strong class="article-title">{{ $article->title }}</strong>
                                         <div>

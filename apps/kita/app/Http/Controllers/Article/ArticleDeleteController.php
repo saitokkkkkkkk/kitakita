@@ -35,19 +35,23 @@ class ArticleDeleteController extends Controller
      */
     public function destroy(Request $request, Article $article)
     {
-        // サービスを使って記事削除（ajaxもそうでないのも共通）
+        // 記事削除（ajaxもそうでないのも共通)
         $success = $this->articleDeleteService->deleteArticle($article);
 
-        /** レスポンスにJSONを期待している=Acceptヘッダーにapplication/jsonを含んでいる時**/
+        // レスポンスにJSONを期待している場合
+        // =記事一覧からの削除
+        // =Acceptヘッダーにapplication/jsonを含んでいる時
         if ($request->expectsJson()) {
             return response()->json([
                 'success' => $success,
-                'message' => $success ? '記事を削除しました' : '削除に失敗しました',
+                'message' => $success ? '記事を削除しました' : '削除権限がありません',
             ]);
         }
 
-        // 非JSONリクエストの場合（メッセージを持って記事一覧にリダイレクト）
+        // 非JSONリクエストの場合
+        // =記事詳細からの削除（メッセージを持って記事一覧にリダイレクト）
         return redirect()->route('articles.index')
-            ->with($success ? 'success' : 'error', $success ? '記事を削除しました' : '削除に失敗しました');
+            ->with($success ? 'success' : 'error',
+                   $success ? '記事を削除しました' : '削除に失敗しました');
     }
 }
