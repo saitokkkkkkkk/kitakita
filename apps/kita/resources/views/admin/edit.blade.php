@@ -24,7 +24,7 @@
                                         {!! Form::label('last_name', '姓', ['class' => 'me-2']) !!}
                                         <span class="badge bg-danger rounded-1 px-1 mb-1">必須</span>
                                     </div>
-                                    {!! Form::text('last_name', old('last_name', $adminUser->last_name), ['class' => 'form-control']) !!}
+                                    {!! Form::text('last_name', old('last_name', $adminUser->last_name), ['class' => 'form-control form-control-border', 'placeholder' => '姓']) !!}
                                     @error('last_name')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                     @enderror
@@ -35,7 +35,7 @@
                                         {!! Form::label('first_name', '名', ['class' => 'me-2']) !!}
                                         <span class="badge bg-danger rounded-1 px-1 mb-1">必須</span>
                                     </div>
-                                    {!! Form::text('first_name', old('first_name', $adminUser->first_name), ['class' => 'form-control']) !!}
+                                    {!! Form::text('first_name', old('first_name', $adminUser->first_name), ['class' => 'form-control form-control-border', 'placeholder' => '名']) !!}
                                     @error('first_name')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                     @enderror
@@ -46,7 +46,7 @@
                                         {!! Form::label('email', 'メールアドレス', ['class' => 'me-2']) !!}
                                         <span class="badge bg-danger rounded-1 px-1 mb-1">必須</span>
                                     </div>
-                                    {!! Form::email('email', old('email', $adminUser->email), ['class' => 'form-control']) !!}
+                                    {!! Form::email('email', old('email', $adminUser->email), ['class' => 'form-control form-control-border', 'placeholder' => 'メールアドレス']) !!}
                                     @error('email')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                     @enderror

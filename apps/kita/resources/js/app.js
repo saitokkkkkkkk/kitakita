@@ -1,5 +1,7 @@
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
+import 'admin-lte/dist/js/adminlte.js';
+import '@fortawesome/fontawesome-free/js/all.js';
 import '@fontsource/poppins';
 import $ from 'jquery';
 window.$ = $;

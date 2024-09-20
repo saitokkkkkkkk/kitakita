@@ -18,8 +18,7 @@
                     <div class="card-body">
                         <div class="row g-3">
                             <div>
-                                {!! Form::label('name', 'タグ', ['class' => 'form-label']) !!}
-                                {!! Form::text('name', request('name'), ['id' => 'name', 'class' => 'form-control']) !!}
+                                {!! Form::text('name', request('name'), ['id' => 'name', 'class' => 'form-control form-control-border', 'placeholder' => 'タグ名']) !!}
                             </div>
                         </div>
                     </div>
@@ -48,36 +47,37 @@
                             タグが存在しません
                         </div>
                     @else
-                        <div class="table-responsive mx-4">
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">ID</th>
-                                    <th class="px-4">タグ名</th>
-                                    <th class="text-end">登録日時</th>
-                                    <th class="text-nowrap text-center">レコード操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($articleTags as $tag)
+                        <!--タグテーブル-->
+                        <div class="card overflow-hidden mx-4">
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-striped">
+                                    <thead>
                                     <tr>
-                                        <td class="text-center align-middle">{{ $tag->id }}</td>
-                                        <td class="px-4 align-middle">{{ $tag->name }}</td>
-                                        <td class="text-end align-middle">{{ $tag->created_at->format('Y/m/d H:i') }}</td>
-                                        <td>
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                {{-- タグ編集機能マージ後、遷移可能にするためにルート追加 --}}
-                                                <a href="{{ route('admin.tags.edit', ['articleTag' => $tag->id]) }}" class="btn btn-primary px-3 py-1">
-                                                    編集
-                                                </a>
-                                            </div>
-                                        </td>
+                                        <th class="text-center text-nowrap">ID</th>
+                                        <th class="px-4 text-nowrap">タグ名</th>
+                                        <th class="text-end text-nowrap">更新日時</th>
+                                        <th class="text-nowrap text-center">レコード操作</th>
                                     </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @endif
+                                    <tbody>
+                                    @foreach($articleTags as $tag)
+                                        <tr>
+                                            <td class="text-center align-middle">{{ $tag->id }}</td>
+                                            <td class="px-4 align-middle">{{ $tag->name }}</td>
+                                            <td class="text-end align-middle">{{ $tag->updated_at->format('Y/m/d H:i') }}</td>
+                                            <td>
+                                                <!-- 編集ボタン -->
+                                                <div class="d-flex justify-content-center align-middle">
+                                                    <a href="{{ route('admin.tags.edit', ['articleTag' => $tag->id]) }}" class="btn btn-primary px-3 py-1 text-nowrap">
+                                                        編集
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            @endif
                 </div>
             </div>
         </div>
