@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('article_article_tag', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
+            $table->foreignId('article_tag_id')->constrained('article_tags')->onDelete('cascade');
             $table->timestamps();
+
+            // 複合ユニークキー
+            $table->unique(['article_id', 'article_tag_id']);
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('article_article_tag');
     }
 };

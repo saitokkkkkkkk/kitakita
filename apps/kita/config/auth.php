@@ -36,9 +36,16 @@ return [
     */
 
     'guards' => [
+        // 会員
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'members',
+        ],
+
+        // 管理者
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
         ],
     ],
 
@@ -60,15 +67,17 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        // 会員
+        'members' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Member::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        // 管理者
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AdminUser::class,
+        ],
     ],
 
     /*
